@@ -1,0 +1,60 @@
+.parent{
+    width: 800px;
+    background-color: #afafaf;
+
+
+}
+
+.parent div{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #eee;
+    text-align: center;
+    width: calc(100% - 20px) ;
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.parent .third{
+    background-color: #eee;
+    text-align: center;
+    width: calc((100% - 40px) / 3);
+    float: left;
+}
+.parent .half{
+    background-color: #eee;
+    text-align: center;
+    width: calc((100% - 30px) / 2);
+    float: left;
+
+
+}
+.parent .quarter{
+    background-color: #eee;
+    text-align: center;
+    width: calc((100% - 50px) / 4);
+    float: left;
+    margin-bottom: 10px;
+
+
+}
+.clear{
+    clear: both;
+}
+.normal,
+.one,
+.two {
+    margin: 20px auto;
+    width: 300px;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 20px;
+    background-color: hsl(0, 0%, 70%);
+    color: black;
+  }
+  .one{
+    background-color: rgb(247 247 247 / 1);
+  }
+  .two{
+      opacity: 0.1;
+  }

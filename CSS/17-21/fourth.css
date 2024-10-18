@@ -1,0 +1,48 @@
+.web {
+    text-shadow: 0.7px 0.4px 0 #cc494a, 1.4px 0.8px 0 #0075ff, 2.13px 1.1px 0 #9d32b4;
+    text-transform: capitalize;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.one {
+    text-transform: uppercase;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.two {
+    text-transform: capitalize;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.three {
+    text-transform: lowercase;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+div {
+    width: 400px;
+    margin: 10px;
+    padding: 10px;
+    background-color: #EEE;
+}
+
+.trois {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+a {
+    background-color: #009688;
+    border-bottom: 5px solid #00514a;
+    display: block;
+    text-align: center;
+    color: #fff;
+    padding: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    width: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    text-transform: capitalize;
+    text-decoration: none;
+}

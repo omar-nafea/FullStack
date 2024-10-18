@@ -1,0 +1,73 @@
+* {
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; 
+}
+.parent{
+    background-color: #eee;
+    width: 500px;
+    height: 300px;
+    margin-top: 10px;
+    transition: top 0.7s 0.1s ease-out;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    text-transform: capitalize;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    position: absolute;
+    top: 100px;
+    left: 550px;
+
+}
+.parent:hover{
+    top: 10px;
+}
+.child{
+    background-color: #ddd;
+    width: 300px;
+    transition: margin-top 0.7s 0.6s ease-out;
+    padding: inherit;
+    margin-top: 50px;
+    margin-left: inherit;
+    margin-right: inherit;
+}
+.parent:hover .child{ 
+    margin-top: 10px;
+}
+.over{
+    background-color: #eee !important;
+    color: #eee !important;
+    padding: 20px;
+    border: 1px solid transparent !important;
+    font-size: 20px !important;
+    position: relative;
+    width: 300px ;
+    margin: 10px;
+}
+.over::after{
+    --mainColor: #000;
+    color: var(--mainColor);
+    content: "Elzero";
+    font-size: 20px;
+    width: 60px;
+    top: 0px;
+    left: 100px;
+    position: absolute;
+    padding: 20px;
+    background-color: #eee;
+}
+:root {
+    --mainColor: #009688;
+    --mainPadding: 10px;
+  }
+  
+.fallback{
+    color: var(--mainColor , red);
+    padding: var(--mainPadding, 10px);
+    border: 5px solid var(--mainColor, black);
+    margin: 10px;
+    width: 500px;
+  }

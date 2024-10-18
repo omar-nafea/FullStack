@@ -1,0 +1,27 @@
+The most important programming books
+
+1. Clean Code: By Robert C. Martin 
+2. Code: Charles Petzold 
+3. Grokking Algorithms by Rishal Hurbans 
+4. Code Complete (2 Edition): By Steve McConnell 
+5. The Clean Coder: A Code of Conduct for Professional Programmers 
+6. Programming Pearls
+7. The Mythical Man-month: By Frederick Brooks  
+7.5. Introduction to Algorithms Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein
+8. The Pragmatic Programmer: Your Journey to Mastery
+8.5. Learning JavaScript Design Patterns: A JavaScript and jQuery Developer's Guide
+9. Refactoring: Improving the Design of Existing Code by Martin Fowler, with Kent Beck
+10. Design Patterns: Elements of Reusable Object-Oriented Software by Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides
+11. Structure and Interpretation of Computer Programs (SICP)
+12. The Art of Computer Programming
+13. Head First Design Patterns: A Brain-Friendly Guide
+14. The Art of Computer Programming Volume 1: Fundamental Algorithms
+15. Volume 2: Seminumerical Algorithms
+16. Volume 3: Sorting and Searching
+17. Volume 4A: Combinatorial Algorithms
+18. The Learning Python by Mark Lutz
+19. Working Effectively with Legacy Code by Michael Feathers
+20. Cracking the Coding Interview
+21. Inside the Machine: An Illustrated Introduction to Microprocessors and Computer Architecture
+22. Code Simplicity: The Fundamentals of Software by Max Kanat-Alexander
+23. Algorithms to Live By: The Computer Science of Human Decisions | Jon Bentley 

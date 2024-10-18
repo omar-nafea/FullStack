@@ -1,0 +1,88 @@
+/* 
+css selectors properties
+==========
+= part 1 =
+==========
+- * [select all elements in the page]
+- element [select all that element in the page ]
+- elemet otherElement [select element inside another element]
+- .class-name [select a specific element with its class]
+- #id-name [select the only element that have that id]
+- .parent .child [select that child in that parent]
+- .class-one.class-two [select element that have this two classes together
+    <element class="class-one class-two"> ]
+- .class-name div, .class-name p [select a div inside element has that class-name , able to group]
+- element.class-name [select that class put apply only on that class]
+- .parent > .child [its direct child ,grandson didnt take the properities
+    <element class="parent">
+        <element class="child"> 
+  the only ex in part 1]
+==========
+= part 2 =
+==========
+- element + other element [ select direct next element and apply on it(the next element)] {div + p}
+- element(parent) ~ other elements(siblings) [ select all the siblings of the parent ]{p ~ div}
+- [Attribute] [ select all elements that have that attribute ]
+- Element[Attribute] [ select the element that have that attribute]
+- [Attribute=value] [ select all elements that have that attribute that have this value]
+- Element[Attribute=value] [ select the element that have that attribute that have this value]=> input{type=submit}
+- [Attribute~=value] [selected (snippet from the value) by a word inside its attribute]
+- [Attribute*=value] [selected (snippet from the value) by a string inside its attribute]
+- [Attribute^=value] [starts with this string inside its attribute]
+==========
+= part 3 =
+==========
+- :first-child [ select the elemet that its the first child between siblings under its parent ]
+- :last-child [ select the elemet that its the last child between siblings under its parent ]
+- :first-of-type [ select the elemet that its the first of its type between siblings under its parent ]
+- :last-of-type [ select the elemet that its the last of its type between siblings under its parent ]
+- :only-child [ select the only elemet under its parent ]
+- :only-of-type [ select the only elemet of its type under its parent ]
+==========
+= part 4 =
+==========
+- not(selector) [to avoid this selector from properities]
+- nth-child(3, even) [select the child according to its place from 1st to 100th..]
+- nth-last-child(2) [select the nth child but start counting from last child] 
+- nth-of-type(5) [select the order of the child but in a specific type]
+- nth-last-of-type(4) [select the nth child but start counting from last child]
+==========
+= part 5 =
+==========
+- :root
+- :checked
+- :empty
+- :disabled
+- :required  
+- ::selection
+- ::placeholder
+
+*/
+
+/* div:last-of-type,
+div:first-child {
+    color: red;
+} */
+/* .parent > .child:last-child{
+    color: red;
+} */
+/* .parent .baby:only-child{
+    color: red;
+} */
+/* :nth-of-type(n+3):nth-of-type(-n+5):not(.parent > div) {
+    color: red;
+} */
+/* div:only-of-type:nth-child(2)  */
+/* div:nth-last-of-type(5) > div:last-child[title]{
+    color: red;
+} */
+/* div:nth-last-of-type(3) > div:nth-child(3), div:nth-last-of-type(2) > div:nth-child(4){
+    color: red;
+} */
+/* div:nth-of-type(1) > div:nth-of-type(2) {
+    color: red;
+} */
+div > div:nth-child(n+2):nth-child(-n+3), p{
+    color: red;
+}
+

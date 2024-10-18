@@ -1,0 +1,16 @@
+/* 
+
+أولا Class بإسم “center-flex” عند وضعه على عنصر يقوم بتوسيط العناصر التي بداخله بطريقة طولية وعرضية بواسطة ال Flex
+ثانيا Class بإسم “center-position” عند وضعه على عنصر يقوم بتوسيط العنصر طوليا وعرضيا في العنصر الأب
+ثالثا Class بإسم “circle-100” عند وضعه على عنصر يقوم بجعل العرض والطول هو 100px ثم يقوم بتحويله إلى دائرة
+رابعا Class بإسم “circle-200” عند وضعه على عنصر يقوم بجعل العرض والطول هو 200px ثم يقوم بتحويله إلى دائرة
+التكليف 02
+قم بعمل Class بإسم arrow ومعه Classes تخص جميع الإتجاهات top, right, bottom, left
+تأكد أن كل Class خاص بإتجاه معين يظهر السهم في نفس الإتجاه
+تأكد أن Class الإتجاه لا يعمل إلا في وجود Class المسمى arrow
+تأكد أن السهم دائما في المنتصف بغض النظر عن طول وعرض العنصر
+<div class="arrow top">Elzero</div>
+<div class="arrow right">Elzero</div>
+<div class="arrow bottom">Elzero</div>
+<div class="arrow left">Elzero</div>
+*/
