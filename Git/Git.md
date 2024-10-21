@@ -235,11 +235,40 @@ In this case we're going to add this URL to the remote settings by using the com
 `git remote add` specifying a name and then passing in URI, the name that is typically used here is `origin`.
 So I'll stick with that. So again the full command with the URL should read `git remote add origin git@github.com:gittutorials101/myfirstrepo.git.`
 
-This time when I execute the `git remote -v command`. I have this set up against the gittutorials101 which sits up on Git hub. 
+This time when I execute the `git remote -v command`. I have this set up against the `gittutorials101` which sits up on Git hub. 
+
+What I'm going to do next is use the `git pull` command which will connect with 
+the GitHub server, and pull down all the changes from the repository. 
+
+So on my local I now have all the changes, but when I check the directory it's blank.   
+The reason for this is that I haven't set up a branch that matches with what I have on the server repository. Fortunately I can change that by performing the command. `git checkout main` **Which will set up a branch main on my local that tracks the branch main from the remote**.
+And now when I check my folder it confirms that I have files available on my local. 
+
+### Push and pull
+
+Before we begin, let's go over
+the command line and perform the command git status.
+Git tells me that I'm on the branch, main,
+but also the my branch is ahead
+of the origin main branch by one commit.
+What this means is that all the changes that I
+have on my local repository are currently
+ahead of what is stored in
+the remote repository on GitHub that ties into
+Git's distributed workflow in which you can
+work in an offline state and then only ever
+communicate with a remote repository when you
+use the commands of git push or git pull. 
 
 
 
-What I'm going to do next is use the `git pull` command which will connect with
-the GIT hub server, and pull down all the changes from the repository. 
+
+
+
+
+
+
+
+
 
 
