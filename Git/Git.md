@@ -247,23 +247,46 @@ And now when I check my folder it confirms that I have files available on my loc
 ### Push and pull
 
 Before we begin, let's go over
-the command line and perform the command git status.
-Git tells me that I'm on the branch, main,
-but also the my branch is ahead
-of the origin main branch by one commit.
-What this means is that all the changes that I
-have on my local repository are currently
-ahead of what is stored in
-the remote repository on GitHub that ties into
-Git's distributed workflow in which you can
-work in an offline state and then only ever
-communicate with a remote repository when you
-use the commands of git push or git pull. 
+the command line and perform the command git status. after committing changes and before push it to remote repo
+```
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+nothing to commit, working tree clean
+```
+Git tells me that my branch is ahead of the origin main branch by one commit. What this means is that all the changes that I have on my local repository are currently ahead of what is stored in the remote repository on GitHub that ties into Git's distributed workflow in which you can work in an offline state and then only ever communicate with a remote repository when you use the commands of git push or git pull. 
+
+```bash
+git push origin main
+
+# Enumerating objects: 7, done.
+# Counting objects: 100% (7/7), done.
+# Delta compression using up to 12 threads
+# Compressing objects: 100% (4/4), done.
+# Writing objects: 100% (4/4), 961 bytes | 961.00 KiB/s, done.
+# Total 4 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+# remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+# To github.com:omar-nafea/FullStack.git
+#    879b532..51b71ce  main -> main
+```
+
+After pushing  
+Let's refresh the page on the GitHub website. You can see that my changes now appears on github. That's taken the commit snapshots that I have in my local repository and pushed it up to the remote repository. Git has then compared those files with what's on the remote repository to find any conflicts or problems.  
+If none are found, it'll just merge them straight through, which is classed as an auto merge. If there are any conflicts, my push will fail.  
+Before doing a push, it's also good practice to perform a `git pull` in order to get the latest changes from the remote repository and reduce the odds of encountering a conflict. 
 
 
+Normally when you're working on a project, you could have several developers all submitting with different branches, different code, and different features. In order for you to get those changes, you need to use the git pull command. 
+
+If I do changes directly from github ui or other developer do changes and he pushed it remotely   
+The changes now appear on the UI. But because I haven't used the git pull command on my local machine yet, I should have no content on my local machine of the changes that happened remotely
 
 
-
+I need to run the command  
+```bash
+git pull
+```
+This will get the latest changes from the remote repository. If any new changes were added, it'll be reflected in the shell output. I run the command, and in this case, Git tells me that one file has changed with one insertion. 
 
 
 
