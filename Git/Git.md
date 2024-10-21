@@ -215,28 +215,31 @@ Fast-forward
 
 ## Remote vs. local
 
-pushing your changes from your local to a remote repository. 
-
 Remote refers to any other remote repository to which developers can push changes. This can be a centralized repository, such as one provided by Git hub or repositories on other developer devices. 
 
+The remote code is accessed through a URI which is unique and only accessible to those who have permission local.   
 local On the other hand refers to your machine which can be a laptop, desktop and is only accessible to you 
 
-if there is a project is stored on a remote server. When a user wants to copy this project to their local device, they need to either perform a clone if it's the first time or pull it to get the latest changes. 
+if there is a project is stored on a remote server. When a user wants to copy this project to their local device, they need to either perform a `clone` if it's the first time or pull it to get the latest changes. 
 
-To clone a project a user must first choose a folder on their local machine. Coding project one is then cloned from the server and copied into the chosen folder. The user can then make changes to the project and push those changes back to the server. Other users working on the code base won't see those changes on their local machines unless they pull the latest changes from the server. 
+The user can make changes to the project after clone it and push those changes back to the server. **Other users working on the code base won't see those changes on their local machines unless they pull the latest changes from the server**. 
 
 One of the advantages of it is that you can work offline and then commit your changes when you are ready. 
 
-if I initialized a local repo and 
-if I need to check the connection of a repo to github I type:
-`git remote -v`  
-In this case we're going to add this URL to the remote settings by using
-the command.
-Git remote add specifying a name and then passing in URI,
-the name that is typically used here is origin.
-So I'll stick with that.
-So again the full command with the URL should read `git remote add origin Git@Github.com:Gittutorials101/Myfirstrepo.Git.`
+if I need to check the connection of a repo to github I type: `git remote -v`  
+```
+origin	git@github.com:omar-nafea/FullStack.git (fetch)
+origin	git@github.com:omar-nafea/FullStack.git (push)
+```
+In this case we're going to add this URL to the remote settings by using the command.  
+`git remote add` specifying a name and then passing in URI, the name that is typically used here is `origin`.
+So I'll stick with that. So again the full command with the URL should read `git remote add origin git@github.com:gittutorials101/myfirstrepo.git.`
 
-This time when I execute the `git remote -v command`. I have this set up against the get tutorials 101 which sits up on Git hub. 
+This time when I execute the `git remote -v command`. I have this set up against the gittutorials101 which sits up on Git hub. 
+
+
+
+What I'm going to do next is use the `git pull` command which will connect with
+the GIT hub server, and pull down all the changes from the repository. 
 
 
