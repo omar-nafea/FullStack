@@ -259,15 +259,15 @@ Git tells me that my branch is ahead of the origin main branch by one commit. Wh
 ```bash
 git push origin main
 
-# Enumerating objects: 7, done.
-# Counting objects: 100% (7/7), done.
-# Delta compression using up to 12 threads
-# Compressing objects: 100% (4/4), done.
-# Writing objects: 100% (4/4), 961 bytes | 961.00 KiB/s, done.
-# Total 4 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
-# remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
-# To github.com:omar-nafea/FullStack.git
-#    879b532..51b71ce  main -> main
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 961 bytes | 961.00 KiB/s, done.
+Total 4 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To github.com:omar-nafea/FullStack.git
+   879b532..51b71ce  main -> main
 ```
 
 After pushing  
@@ -282,15 +282,116 @@ If I do changes directly from github ui or other developer do changes and he pus
 The changes now appear on the UI. But because I haven't used the git pull command on my local machine yet, I should have no content on my local machine of the changes that happened remotely
 
 
-I need to run the command  
+I need to run the command `git pull`  
+This will get the latest changes from the remote repository. If any new changes were added, it'll be reflected in the shell output. I run the command, and in this case, Git tells me that one file has changed with one insertion. 
 ```bash
 git pull
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (3/3), 973 bytes | 973.00 KiB/s, done.
+From github.com:omar-nafea/test
+   6e3e37b..3b9e05a  main       -> origin/main
+Updating 6e3e37b..3b9e05a
+Fast-forward
+ hello.txt | 1 +
+ 1 file changed, 1 insertion(+)
 ```
-This will get the latest changes from the remote repository. If any new changes were added, it'll be reflected in the shell output. I run the command, and in this case, Git tells me that one file has changed with one insertion. 
 
 
+### Resolving conflicts
 
+Conflicts will normally occur when you try to merge a branch that may have competing changes. Git will normally try to automatically merge (auto-merge), but in the case of a conflict, it will need some confirmation. The competing changes need to be resolved by the end user. This process is called merging or rebasing. 
 
+The developer must look at the changes on the server and their local and validate which changes should be resolved.
+
+A merge conflict example is when two developers work on their dependent branches. Both developers are working on the same file called Feature.js. Each of their tasks is to add a new feature to an existing method. Developer 1 has a branch called feature1, and developer 2 has a branch called feature2. 
+
+Developer 1 pushes the code with the changes to the remote repository. Developer 2 pushes their changes.
+Demonstration of the push pull method
+Demonstration of the push pull method
+
+Let's walk through how this would happen in Git. Both developers 1 and 2 check out the main repository on Monday morning. They both have the same copy. Both developers check out a new branch - feature 1 and 2.
+2
+1
+2
+
+Developer 1 makes their changes to a file called Feature.js and then commits the changes to the repository for approval via a PR (pull request)
+1
+2
+3
+4
+
+The PR is reviewed and then merged into the main branch. Meanwhile, Developer 2 is starting to code on his feature. Again, they go through the same process as Developer 1:
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+
+Git lets us know that a merge conflict has occurred and needs to be fixed before it can be pushed to the remote repo. Running git status will also give us the same level of detail:
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+
+In order to merge, Developer 2 needs to see and compare the changes from Developer 1. It is good practice to first see what branch is causing the merge issue. Developer 2 runs the following command:
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+
+We can see from the above code that the team's conflicting changes occurred in feature 1 and 2 branches. Developer 2 now wants to see the change that is causing the conflict.
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+
+The only difference is the wording in the return statement. Developer 1 added 'too much,' but Developer 2 added 'far too much. Everything else is identical in terms of merging and it's a pretty easy fix. Git will show arrows <<< >>> to signify the changes. Developer 2 removes the markers so the code is ready for submission:
+1
+2
+3
+4
+1
+2
+3
+
+Developer 2 has now fixed a merge conflict and can create their PR to get the code merged into the main line.
 
 
 
