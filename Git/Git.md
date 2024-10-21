@@ -443,7 +443,7 @@ On the landing page of the GitHub repository, it will show directly under the re
 Other subtle differences in the GitHub UI on a forked branch is the top information bar above the files.
 
 ![](https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/1sRIWQskQ0uESFkLJJNLbQ_81f3ffa032904b2f998af86cc23174e1_forked_ui_changes.png?expiry=1729641600000&hmac=KmEMhzEogCRNEceA2ZEvLhyr4zCHn-7rKHWMyQG3m_4)
-It now shows that the branch is up to date with forking-lesson:main. It also adds a Fetch upstream drop-down to allow you to pull and merge the latest changes from the original repository.
+It now shows that the branch is up to date with forking-lesson:main. It also adds a Fetch upstream drop-down to allow you to **pull and merge the latest changes from the original repository**.
 GitHub shows that the branch is up to date.
 Example
 
