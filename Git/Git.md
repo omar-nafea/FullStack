@@ -376,7 +376,7 @@ Date:   Sat Jan 29 16:53:40 2022 +0000
     chore: add feature 1
 ```
 We can see from the above code that the team's conflicting changes occurred in feature 1 and 2 branches. Developer 2 now wants to see the change that is causing the conflict.
-```
+```bash
 git diff
 
 diff --cc Feature.js
@@ -393,7 +393,7 @@ index 1b1136f,c3be92f..0000000
     return a + b;
   }
 ```
-The only difference is the wording in the return statement. Developer 1 added 'too much,' but Developer 2 added 'far too much. Everything else is identical in terms of merging and it's a pretty easy fix. Git will show arrows <<< >>> to signify the changes. Developer 2 removes the markers so the code is ready for submission:
+The only difference is the wording in the return statement. Developer 1 added 'too much,' but Developer 2 added 'far too much. Everything else is identical in terms of merging and it's a pretty easy fix. Git will show arrows `<<< >>>` to signify the changes. Developer 2 removes the markers so the code is ready for submission:
 ```
 let add = (a, b) => {
   if(a + b > 10) { return 'way too much'}
@@ -417,8 +417,7 @@ Let's take a simple example of how forking works. In the diagram below the coolg
 
 ![](https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/pRNgGcQwRbmTYBnEMAW5_Q_a37bd88a8c4d4d1589b6e04a2cf8b7e1_Fork.svg?expiry=1729641600000&hmac=HDmIJ8fVfLwEBei8cM9ZVestorjBas3MkY_YoZjOm1E)                 
 
-Joe created a new branch on his repository and added a new cool feature that he felt was needed. In order for Joe to get his feature back into the original repository, he will need to create a PR as normal but instead of comparing with the main branch, it needs to be compared with the original repository. Essentially the two repositories are compared against each other. The owner of the original repository can then review the PR and choose to accept of decline the new feature.
-Forking
+Joe created a new branch on his repository and added a new cool feature that he felt was needed. In order for Joe to get his feature back into the original repository, he will need to create a PR as normal but instead of comparing with the main branch, it needs to be compared with the original repository. Essentially the two repositories are compared against each other. The owner of the original repository can then review the PR and choose to accept or decline the new feature.
 
 Let us take a look at how you can fork an existing repository that is available on GitHub. For this example, we used a repository we can access on GitHub.
 
@@ -443,6 +442,7 @@ On the landing page of the GitHub repository, it will show directly under the re
 
 Other subtle differences in the GitHub UI on a forked branch is the top information bar above the files.
 
+![](https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/1sRIWQskQ0uESFkLJJNLbQ_81f3ffa032904b2f998af86cc23174e1_forked_ui_changes.png?expiry=1729641600000&hmac=KmEMhzEogCRNEceA2ZEvLhyr4zCHn-7rKHWMyQG3m_4)
 It now shows that the branch is up to date with forking-lesson:main. It also adds a Fetch upstream drop-down to allow you to pull and merge the latest changes from the original repository.
 GitHub shows that the branch is up to date.
 Example
