@@ -473,9 +473,17 @@ When the web server receives the request, it processes the data and sends back a
 
 
 
-However, as a front-end developer, it is essential to know that forms are not the only way to submit data to the web server. As you learn more about JavaScript and front-end libraries, you’ll discover that developers often submit HTTP requests directly via code and send data as part of the HTTP request body in a text format called JavaScript Object Notation, or JSON. But that is a topic for another course. 
+However, as a front-end developer, it is essential to know that forms are not the only way to submit data to the web server. As you learn more about JavaScript and front-end libraries, you’ll discover that developers often submit HTTP requests directly via code and send data as part of the HTTP request body in a JSON format
 
+### Browser differences
 
+There are many web browsers available today for browsing the World Wide Web. However, each one is developed by a different company using different technologies. As a result, you will find that your HTML forms will appear differently when you view them on different web browsers. But a form may even appear differently on the same browser when you view the form on a Windows PC or a Mac. This makes the creation of a consistent user experience challenging. 
+
+The same input type HTML code displays differently in web browsers such as Firefox, Microsoft Edge, Chrome, and Safari. For example, there are subtle differences in the height and corners of the input box. There is also a difference in the default input box widths of Firefox and Safari compared to other browsers like Microsoft Edge and Chrome. Safari on Mac OS differs a lot from the other browsers using a thinner border on regular corners. 
+
+And It applies in most elements
+
+how to solve appear inconsistently across different web browsers. As you know, CSS allows you to define the visual styling of HTML elements. Defining CSS rules for the different HTML form elements will ensure that your element is styled consistently across web browsers. For example, you can use elements selectors to select a different element types and apply CSS properties to them. It's also possible to study the individual input types using CSS rules. 
 
 
 
