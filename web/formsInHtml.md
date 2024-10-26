@@ -606,7 +606,7 @@ Used to group related input elements in a form. For instance, elements related t
 ##### `<legend>` 
 
 
-Defines a caption for the <fieldset> element. For example: 
+Defines a caption for the `<fieldset>` element. For example: 
 
 ```html
 <fieldset> 
@@ -630,7 +630,7 @@ Defines a caption for the <fieldset> element. For example:
 
 
 
-Specifies a list of pre-defined options for an input element. It differs from <select> since the user can still provide textual or numeric input other than the listed options. 
+Specifies a list of pre-defined options for an input element. It differs from `<select>` since the user can still provide textual or numeric input other than the listed options. 
  
 ```html
 <form action="/my_action_page"> 
