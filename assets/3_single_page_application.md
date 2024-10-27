@@ -46,7 +46,6 @@ A SPA allows the user to interact with the website without the application needi
 ### A SPA has two approaches to serving code and resources.
 
 ![spa_approaches](../Pics/spaApproaches.png "spa_approaches")  
- or .
 
 First is bundling, when the browser requests the application, the server returns and loads all necessary HTML, CSS, and JavaScript Delivering all resources immediately. 
 
@@ -96,12 +95,17 @@ This component model allows you to do several things
 
 Ex, Most Web applications have user profiles with pictures. Normally several parts of the application use a version of this profile picture, such as in the navigation bar beside the user's name. It could also show in a user search result along with several other user pictures and the user picture might also display an instant message notifications.  
 
-![profile](./Pics/profile.gif)  
+![profile](../Pics/profile.gif)  
 
 Instead of programming the logic for every instance of a user profile picture, React allows you to create a user icon component that displays a version of a profile picture every time it is used. You can then reuse this component throughout the application.
 
 There are many open source libraries that provide pre made components to add a video player or to embed a map. You can then reuse this component throughout the application
 
+React approaches building user interfaces differently by breaking them into components. This means React uses a real, full-featured programming language to render views, which we see as an advantage over templates for a few reasons:
+
+JavaScript is a flexible, powerful programming language with the ability to build abstractions. This is incredibly important in large applications.
+By unifying your markup with its corresponding view logic, React can actually make views easier to extend and maintain.
+By baking an understanding of markup and content into JavaScript, there’s no manual string concatenation and therefore less surface area for XSS vulnerabilities.
 
 ## How React Works
 
