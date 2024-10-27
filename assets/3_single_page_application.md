@@ -76,6 +76,32 @@ If all resources are delivered when the application is loaded, the single-page a
 
 ![](../Pics/loading.gif)
 
+## What is React
+
+React is focused on working with components, which makes it simple to build functional user interfaces on web and mobile.
+
+Developers use React to develop single page applications and you can also develop mobile applications with React native.
+
+### Reacts components
+
+The key concept behind React is that it allows you to define components that you can combine to build a web application.
+
+A component is basically a small piece of user interface, such as a music player or photo gallery.
+
+This component model allows you to do several things
+
+- Isolated Development
+- Isolated Testing
+- Re-useing components
+
+Ex, Most Web applications have user profiles with pictures. Normally several parts of the application use a version of this profile picture, such as in the navigation bar beside the user's name. It could also show in a user search result along with several other user pictures and the user picture might also display an instant message notifications.  
+
+![profile](./Pics/profile.gif)  
+
+Instead of programming the logic for every instance of a user profile picture, React allows you to create a user icon component that displays a version of a profile picture every time it is used. You can then reuse this component throughout the application.
+
+There are many open source libraries that provide pre made components to add a video player or to embed a map. You can then reuse this component throughout the application
+
 
 ## How React Works
 
