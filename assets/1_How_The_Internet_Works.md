@@ -133,7 +133,7 @@ They include the destination IP address and source IP address. These addresses a
 
 packet switching is a method of grouping data into short messages in fixed format (packets), that are transmitted over a digital network. Packet switching is the primary basis for data communications in computer networks worldwide.
 
-![packet_switching](https://upload.wikimedia.org/wikipedia/commons/f/f6/Packet_Switching.gif "packet_switching")
+![packet_switching](../Pics/Packet_Switching.gif "packet_switching")
 
 ##### Other protocols
 

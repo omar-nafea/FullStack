@@ -8,35 +8,44 @@ static content is files that the server transfers just as they are stored on the
 Dynamic content on the other hand, is generated when the `HTTP` request is made. For example, the content may be generated based on input from a user, or when you visit a news website, it would be based on the current date. What actually happens, is that the web server communicates with another kind of server called an application server or a back-end. The application server generates the dynamic content that the web server sends back to the user's browser.  
 
 Examples of how websites update static and dynamic content. Say for instance, you want to watch a video on a website, you click on the Play button and a request is sent to the web server.
-
-![static_content](../Pics/static_content.gif "static_content")  
-
-The web server responds by sending the file to your browser. Now, how does this compare to dynamic content? Because dynamic content is generated while you use a website, it typically takes longer to generate than it takes to send back static content.
+The web server responds by sending the file to your browser. Now, how does this compare to dynamic content, Because dynamic content is generated while you use a website, it typically takes longer to generate than it takes to send back static content.
 
 ![dynamic_content](../Pics/dynamic_content.gif "dynamic_content")  
 
-For example, when you log in to a website, the web server communicates with an application server to check that you are in fact you have account. The application server confirms your enrollment and specifies what content should show for your profile specifically. Application servers perform more complex processing than web servers. For instance, they have to run the application logic, communicate with the database, and check permissions.
+For example, when you log in to a website, the web server communicates with an application server to check that you are in fact you have account. The application server confirms your enrollment and specifies what content should show for your profile **specifically**.   
+Application servers perform more complex processing than web servers. For instance, they have to run the application logic, communicate with the database, and check permissions.
 
 ### Caching
 
 _Application servers typically have a limited capacity on how many requests they can process per second._
-
 But fortunately, this is where the web server can help out. Web servers use a process called caching instead of generating content dynamically for every request. Caching means the web server keeps a copy of dynamic content.
-
 If the content is requested again, the web server can immediately send this cached version instead of passing the request again to the application server.
 
-![caching](../Pics/caching.gif "caching")
+On the first request for dynamic content, the web server checks if the content exists in the cache.  
 
-On the first request for dynamic content, the web server checks if the content exists in the cache. If it does not exist, the content is requested from the application server and stored in the cache. The web server then sends back the dynamic content to the browser.
-On subsequent requests, the web server immediately sends back the content stored in the cache. This reduces the amount of dynamic content that the application server has to generate. Then, after a period of time or with the next user interaction, the web server updates the cache with the latest content.
+![](../Pics/caching_1.png)  
+
+**If it does not exist,**
+
+![](../Pics/caching_2.png)
+
+the content is requested from the application server and stored in the cache. The web server then sends back the dynamic content to the browser.
+
+![](../Pics/caching_3.gif)  
+
+On subsequent requests, the web server immediately sends back the content stored in the cache. This reduces the amount of dynamic content that the application server has to generate.  
+
+![](../Pics/caching_4.gif)  
+
+Then, after a period of time or with the next user interaction, the web server updates the cache with the latest content.
+
+![](../Pics/caching_5.gif)
 
 ## SPA
 
 How traditional website works. Before the advent of modern JavaScript frameworks, most websites were implemented as multi-page applications.
 
-![dynamic_web](../Pics/Pi.gif "dynamic_web")  
-
-But this makes traditional applications resource intensive to web servers.   because sending entire web pages for every request consumes excessive bandwidth and uses CPU time to generate dynamic pages.   
+But this makes traditional applications resource intensive to web servers. because sending entire web pages for every request consumes excessive bandwidth and uses CPU time to generate dynamic pages.   
 If your website is complex, the site browsing experience may appear slow to users. It will be even slower if they have a poor or limited internet connection. To solve this problem, many web developers build their web applications as SPAs.
 
 It's called single-page, but that doesn't mean your website has only one page of content. What it means is that there is only one HTML page that gets sent from the server to the browser, but that page will update its content as your users interact with your website.   
