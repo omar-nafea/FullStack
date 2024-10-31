@@ -18,42 +18,16 @@ You can connect multiple devices together to this network but this become very c
 
 ### Internet
 
-- the network switch can connect to other network switches
-
-![](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/How_does_the_Internet_work/internet-schema-4.png)  
-
-These network switches then connect to more network switches until you have something called an interconnected network. aka **Internet**  
+- The network switch can connect to other network switches, These network switches then connect to more network switches until you have something called an interconnected network. aka **Internet**  
 
 ![Interconnected Network](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/How_does_the_Internet_work/internet-schema-5.png "Interconnected_Network")  
-
-Now let's discover the difference between 
-
-- Website
-- Webpage
-- Web application
-
-##### Websites vs Webpages 
-
-A web page is a document that displays images, texts, videos and other content in the web browser, while website is a collection of webpages that link together.
-
-##### Website vs web application 
-
-The terms website and web application are often used interchangeably.  
-but The key difference between a website, and web application is the level of interactivity, and dynamic content. The easy way to remember this is that a website is more informative and a web application is more interactive.
 
 ### Web Server
 
 A server is a computer that runs applications and services.  
 It's called a `server` because it provides a service to another computer and, it's user (browser) called `client`.
 
-A web server has many functions which includes
-
-- Website storage 
-- Administration
-- Data storage
-- Security 
-- Managing email
-
+A web server has many functions which includes: Website storage, Administration, Security   
 The primary function is to handle web requests
 
 ### Web browser
@@ -77,7 +51,6 @@ If we have this URL `http://www.Meta.com/index.html` as an example
 - You open a web browser and type the name of your favorite search engine (domain name). When you press Enter,  
   - The web browser sends a request across a network and connects to another computer on the Internet called a web server. which allows to make requests for data.
   - This data is stored in something called a database, which is connected to the web server. The web server then picks up that data and sends it back to the browser.
-  - The web server responds by sending a webpage back to the browser. 
   - Once the browser receives all the response information, Search engine renders a visible webpage in the browser.
 
 ![webserver_database_relation](https://cdn.pressidium.com/wp-content/uploads/2023/09/web-part-2-diagram-1440x709.png "webserver_database_relation")
@@ -86,7 +59,7 @@ If we have this URL `http://www.Meta.com/index.html` as an example
 
 - When a copy of that webpage is sent from the **web server** to your **browser**, each line of code is processed in sequential order from first to last. As each line is interpreted, the browser creates the building blocks, which is the visual representation you see on the screen.
 
-- This creation process is known as _**page rendering**_, the response from the web server must be a complete web page in order to fulfill the request, to show the page in the browser.
+- This creation process is known as _**page rendering**_, the response from the web server must be a complete web page in order to fulfill the request (show the page in the browser).
 
 Some engines may begin rendering before a page's resources are downloaded (css, js, images). This can result in visual changes as more data is received, such as images being gradually filled in or a flash of unstyled content.
 
@@ -94,7 +67,10 @@ Some engines may begin rendering before a page's resources are downloaded (css, 
 
 - It's a core software component of every major web browser. also known as a layout engine or rendering engine The primary job of a browser engine is to transform HTML documents and other resources of a web page into an interactive visual representation on a user's device.
 
-- Every major browser supports JavaScript to provide a wide range of dynamic behavior for web pages. However, JavaScript is implemented as a separate JavaScript engine, which has enabled its usage elsewhere. In a browser, the two engines are coordinated via the DOM binding.
+- Every major browser supports JavaScript to provide a wide range of dynamic behavior for web pages.  
+
+However, JavaScript is implemented as a separate JavaScript engine, which has enabled its usage elsewhere. In a browser, the two engines are coordinated via the DOM binding.
+
 - The engine combines all relevant CSS rules to calculate precise graphical coordinates for the visual representation it will paint on the screen.
 
 # Web hosting
@@ -121,8 +97,6 @@ It will be running on a hardware server with other VPS instances but as the reso
 
 The next option up is to use dedicated hosting. This will be a hardware server that is dedicated to you only. All hardware, CPU, memory, and bandwidth resources are yours to use. Generally, this option is more expensive than a VPS hosting.
 
-
-
 ## Cloud Hosting.
 
 Cloud hosting and the Cloud has grown in popularity over the last decade and is often mentioned in various news and services you use. With Cloud hosting, your website is run in something called a Cloud environment, which spans across multiple physical and virtual servers.
@@ -138,8 +112,6 @@ The main advantage of Cloud hosting is that:
 For example, if you transfer a file from the Cloud to a web browser, you'll pay for the bandwidth used for that transfer at a fractional cent cost per megabyte.
 
 - While this can quickly become more expensive, is allows websites and web applications to scale their costs as popularity grows. This is how many of the major web applications operate.
-
-
 
 # Internet Protocols
 
@@ -157,11 +129,13 @@ They include the destination IP address and source IP address. These addresses a
 
 ![ipPackets](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBAElIEZYzxh6hZahlu5kl_ZKOjwdEecSZvg&s "IpPacktes")  
 
-### packet switching
+##### packet switching
 
 packet switching is a method of grouping data into short messages in fixed format (packets), that are transmitted over a digital network. Packet switching is the primary basis for data communications in computer networks worldwide.
 
 ![packet_switching](https://upload.wikimedia.org/wikipedia/commons/f/f6/Packet_Switching.gif "packet_switching")
+
+##### Other protocols
 
 When sending multiple letters to a friend it's possible they may:   
 
@@ -170,7 +144,7 @@ When sending multiple letters to a friend it's possible they may:
 - corrupted to in transit
 - be dropped or lost during transit.
 
-These issues can happen to IP packets too. To solve these problems, the payload part of the packets contains other protocols too. You can think of them as another message inside the payload of the IP packet.
+_**These issues can happen to IP packets too. To solve these problems, the payload part of the packets contains other protocols too. You can think of them as another message inside the payload of the IP packet.**_
 
 ### TCP | UDP
 

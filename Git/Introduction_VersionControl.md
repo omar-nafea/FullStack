@@ -1,37 +1,17 @@
 # Introduction to version control
-> Version control is a system that records
-all changes and modifications to
-files for tracking purposes. 
+
+Version control is a system that records all changes and modifications to files for tracking purposes. 
 
 
-The primary goal of
-any version control system is to keep track of changes.
-It achieves this by allowing developers
-access to the entire change history
-with the ability to revert or roll back
-to a previous state or point in time. 
+The primary goal of any version control system is to keep track of changes. It achieves this by allowing developers access to the entire change history with the ability to revert or roll back to a previous state or point in time. 
 
-There are different types of changes,
-such as  
-- Adding new files
-- Modifying 
-- Updating files  
-- Deleting files
+There are different types of changes such as: Adding new files, Modifying, Updating files, Deleting files.
 
 Benefits associated with version control.
-These include; 
-- Revision history
-- Identity 
-- Collaboration
-- Automation
-- Efficiency
+These include: Revision history, Identity, Collaboration, Automation, Efficiency.
 
 
-***Revision history*** provides a record
-of all changes in a project.
-It provides developers with the ability to revert to
-a stable point in time in cases where
-code edits cause issues or bugs
+***Revision history*** provides a record of all changes in a project. It provides developers with the ability to revert to a stable point in time in cases where code edits cause issues or bugs
 
 All changes made are always recorded with the ***Identity*** of the user that made them. Combining this feature with the revision history allows teams to see not only when the changes occurred, but also who made the changes. 
 
@@ -40,24 +20,26 @@ Version control system allows the team to submit their code and keep track of an
 Developers working on a task create a ***Peer review*** once the code is ready for inspection. The peer review aims to get other developers on your team to review the code and provide feedback where necessary. 
 
 You and your team may work using processes from the agile methodology. In an agile process, a team normally plan and execute two weeks of work to complete, which is called an iteration.   
-![Agile_Methodligy](../Pics/Agile_Methodligy.png "Agile_Methodligy")
+
+![Agile_Methodligy](../Pics/Agile_Methodligy.png "Agile_Methodligy")  
+
 Each iteration has a list of tasks to complete before the two weeks ends. These tasks, while complex in some cases, are aided by having version control in place. 
 
 ## Systems of version control and tools
 
-Version control systems can be
-split into two types or categories.
+Version control systems can be split into two types or categories.
+
 ### Centralized version control systems
+
 Centralized version control systems, or CVCS for short, contain a server and a client.
+
 - The server contains the main repository that houses the full history of versions of the code base.
-
 - Developers working on projects using a centralized system need to pull down the code from the server to their local machine. This gives the developer their own working copy of the code base.
-
 - The server holds the full history of changes. The client has the latest code, but every operation needs to have a connection to the server itself.  
+- In a centralized version control system, the server is the central copy of the project. After making changes to the code, the developer needs to push the changes to the central server so that other developers can see them.  
 
-- In a centralized version control system, the server is the central copy of the project. After making changes to the code, the developer needs to push the changes to the central server so that other developers can see them.
+![centeralized_versionControl_system](../Pics/centeralized_versionControl_system.png "centeralized_versionControl_system")  
 
-![centeralized_versionControl_system](../Pics/centeralized_versionControl_system.png "centeralized_versionControl_system") 
 - The advantage of CVCS is that they are considered easier to learn than their distributed counterparts. They also give more access controls to users.   
 - The disadvantage is that they can be slower given that you need to establish a connection to the server to perform any actions. 
 
@@ -109,7 +91,7 @@ After writing the code, After all the code changes, the developer will push thei
 When working on a single project, there's usually some level of crossover between the developers.  
 When this does occur, the history of revisions can help aid the developers in seeing the full life cycle of changes that have occurred.  
 It is also essential for merging conflicts where multiple developers have made changes that may need to be resolved prior to the code being approved.  
-The history will show who made the change, for what reason, the code itself and its changes, and the date and time of when they occurred. 
+The history will show who made the change, for what reason, the code itself and its changes, and the date and time of when they occurred.   
 
 ### Development Environments
 
