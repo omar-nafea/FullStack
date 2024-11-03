@@ -17,7 +17,8 @@ The main links of your website are then added inside the Nav element. It is comm
 Next is the main content of a web page. The two key semantic elements for your main content are the article and section elements.  
 
 Article can use to represent: Forum post, Article, Blog post, user comment, Interactive widget
-> The HTML specification states that according to the World Wide Web Consortium's (w3c) website, the article element indicates content which represents
+
+The HTML specification states that according to the World Wide Web Consortium's (w3c) website, the article element indicates content which represents
 
 
 - A complete.
@@ -327,9 +328,6 @@ Used to render 2D and 3D graphics on web pages.
 Your browser does not support the HTML canvas tag.
 </canvas>
 ```
-<canvas id="myCanvas" width="200" height="100" style="border:1px solid #ff0000;">
-Your browser does not support the HTML canvas tag.
-</canvas>
 
 `<embed>`
 

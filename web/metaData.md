@@ -1,7 +1,6 @@
 ## Metadata
 
-how search engines analyze web pages and
-how meta tags help provide information for search engines. 
+how search engines analyze web pages and how meta tags help provide information for search engines. 
 
 A major part of launching a website is a process called search engine optimization or SEO. This process involves making improvements to a website's content semantics and delivery to improve its ranking in search results. 
 
@@ -9,13 +8,12 @@ when a search engine visits your website, it analyzes the html document and medi
 
 ### How meta tags influence website ranking
 
-Metadata is data about other data which in this case is data about the web page.   
-**Meta tags define metadata about a web page.**
-Meta tags are added inside the head element of your html document and as you know, nothing inside the head element is displayed in the web browser.  
+Metadata is data about other data which in this case is data about the web page. **Meta tags define metadata about a web page.** Meta tags are added inside the head element of your html document and as you know, nothing inside the head element is displayed in the web browser.  
 
 The meta element has two attributes, name and content. The name attribute specifies the name of the metadata and the content attribute specifies the value of the metadata
 
 - The author metadata specifies the author of the web page.   
+
 ```html
 <html>
   <head>
@@ -25,6 +23,7 @@ The meta element has two attributes, name and content. The name attribute specif
 ```
 
 - The description metadata describes the content of the web page. This is often used by search engines as descriptive text in search results. 
+
 ```html
 <html>
   <head>
@@ -36,13 +35,16 @@ The meta element has two attributes, name and content. The name attribute specif
 - Another type of metadata is the robot's metadata and it tells search engines if and how they should analyze your web page.   
 
 The content attribute for Robots has four possible values.  
-  1- `index` tells the bot to analyze the page.  
-  2- `follow` tells the bot to also visit all links on the web page.   
-  3- `noindex` tells the bot not to analyze the page. **Some bots will ignore this so it's best not to rely on this to stop bots from analyzing your page**   
-  4- `nofollow` tells the bot not to visit links on the web page. **Again, some bots will ignore this value so it's best not to rely on it**.    
+
+1- `index` tells the bot to analyze the page.  
+2- `follow` tells the bot to also visit all links on the web page.   
+3- `noindex` tells the bot not to analyze the page. **Some bots will ignore this so it's best not to rely on this to stop bots from analyzing your page**   
+4- `nofollow` tells the bot not to visit links on the web page. **Again, some bots will ignore this value so it's best not to rely on it**.    
 
 - Finally, there's the viewports metadata. The viewport metadata is important when designing responsive web pages.
+
 Why you might ask because when a web pages viewed on a phone or tablet, the device will by default attempt to render the web page as if it is being viewed on a desktop. This results in a poor browsing experience for the user. The solution is to define viewports metadata. 
+
 ```html
 <html>
   <head>
@@ -53,9 +55,10 @@ Why you might ask because when a web pages viewed on a phone or tablet, the devi
 
 It's important to note that view port metadata does not solve all the issues with browsing websites on mobile devices.
 View port metadata is important for the user experience and it's also important for search engine optimization. This is because many search engines now include websites mobile experience as a part of their ranking algorithms
+
 ## Metadata cheat sheet
 
-### HTML <meta> tags
+### HTML `<meta>` tags
 
 Earlier in the course, you learned about meta tags and how you can leverage them to convey information to search engines to better categorize your pages. We recommend that you keep this cheat sheet handy when building your web applications. The structure of a meta tag is as follows.
 
@@ -65,7 +68,7 @@ The name of the property can be anything you like, although browsers usually exp
 
 #### Content
 
-The content field specifies the property's value. For example, you can use <meta name="language" content="english">, to specify the language of the webpage to search engines.
+The content field specifies the property's value. For example, you can use `<meta name="language" content="english">`, to specify the language of the webpage to search engines.
 
 #### Charset
 

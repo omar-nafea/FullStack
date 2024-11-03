@@ -197,33 +197,18 @@ index 6ad7048..1a24f47 100644
 
 ### Git Blame
 
-git has a
-very helpful command for keeping track of
-who did what and when. It's called git blame. 
+git has a very helpful command for keeping track of who did what and when. It's called git blame. One of the core functions of git is its ability to track and record the full history of changes for every file in the repository.  
 
-One of the core functions of git is its ability to track and record the full
-history of changes for every file in
-the repository.  
+In order to view and verify those changes, git provides a set of tools to allow users to step through the history and view the edits made to each file.
 
-In order to view and
-verify those changes, git provides a set of
-tools to allow users to step through the
-history and view the edits made to each file.
-
-The git blame command
-is used to look at changes of a specific
-file and show the dates, times, and users who
-made the changes.
-
-To run the git blame command, type git blame and the name of the file. git will returns a list of all changes on the file.
+The git blame command is used to look at changes of a specific file and show the dates, times, and users who made the changes. To run the git blame command, type git blame and the name of the file. git will returns a list of all changes on the file.
 
 ```bash
 git blame hello.txt
 3be1af58 (omar-nafea 2024-10-23 11:05:23 +0300 1) this is a change to use git pull and stuff
 3be1af58 (omar-nafea 2024-10-23 11:05:23 +0300 2) try diff command
 ```
-![](../Pics/gitBlameMessageFromat.png)
-
+![](../Pics/gitBlameMessageFromat.png)  
 
 - The ID is a reference ID of the commit. The same ID might appear in several lines. This happens when a single commit has been made by
 the same developer. 
@@ -277,15 +262,8 @@ fca0ff6f93b6478eac6f2a6d77f46bed5044750f (Tom Christie 2014-01-11 21:04:32 +0000
 fca0ff6f93b6478eac6f2a6d77f46bed5044750f (Tom Christie 2014-01-11 21:04:32 +0000 5) 
 ```
 
-You can also control if you want to show email addresses or change the date format.
-
-
-Secondly, another aspect of using git blame
-is that you can see detail changes or the
-actual commit changes of a specific hash dash ID.
-Now, I will use ID with a `git log -p ID` This gives you the actual
-change occurred in that commit.
-
+You can also control if you want to show email addresses or change the date format.  
+Secondly, another aspect of using git blame is that you can see detail changes or the actual commit changes of a specific hash dash ID. Now, I will use ID with a `git log -p ID` This gives you the actual change occurred in that commit.
 
 ##### conclusion
 
