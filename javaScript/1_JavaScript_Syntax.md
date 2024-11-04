@@ -21,7 +21,7 @@ There are also _high level languages_ such as JavaScript, that needs to be **int
 ##### Comments
 
 ```js
-// to write a single line of comment in js prefix it with double /
+// to write a single line of comment in js prefix it with //
 
 /*
 if you want to write multiple line comment
@@ -69,6 +69,7 @@ can only hold the value undefined and usually refers to a variable that has not 
 - BigInt  
 
 is an extra large box that can accommodate a much greater range of numbers than the number data type.
+
 - symbol  
  
 can be used as a unique identifier. Think of it as having multiple boxes with the same label and using different serial numbers to avoid mixing them up.
@@ -237,15 +238,15 @@ switch(light) {
 
 ##### Conditional (ternary) operator
 
-`condition ? exprIfTrue : exprIfFalse`
+```js
+condition ? exprIfTrue : exprIfFalse
+```
 
 **Its Parameters**
 
-`condition`: An expression whose value is used as a condition.
-
-`exprIfTrue`: An expression which is executed if the condition evaluates to a truthy value (one which equals or can be converted to true).
-
-`exprIfFalse`: An expression which is executed if the condition is falsy (that is, has a value which can be converted to false).
+- `condition`: An expression whose value is used as a condition.
+- `exprIfTrue`: An expression which is executed if the condition evaluates to a truthy value (one which equals or can be converted to true).
+- `exprIfFalse`: An expression which is executed if the condition is falsy (that is, has a value which can be converted to false).
 
 **Description**
 
@@ -256,7 +257,6 @@ const age = 26;
 const beverage = age >= 21 ? "Beer" : "Juice";
 console.log(beverage); // "Beer"
 ```
-
 
 ##### Handling null values
 One common usage is to handle a value that may be null:

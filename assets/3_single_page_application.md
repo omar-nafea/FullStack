@@ -3,7 +3,7 @@
 ## Static and dynamic content
 
 when you open a website, a web server sends the website's content to your browser. The content can be static or dynamic.  
-static content is files that the server transfers just as they are stored on the web server, such as videos ▶️ or images 🖼️.
+static content is files that the server transfers just as they are stored on the web server, such as videos or images.
 
 Dynamic content on the other hand, is generated when the `HTTP` request is made. For example, the content may be generated based on input from a user, or when you visit a news website, it would be based on the current date. What actually happens, is that the web server communicates with another kind of server called an application server or a back-end. The application server generates the dynamic content that the web server sends back to the user's browser.  
 
@@ -208,12 +208,3 @@ Therefore, you can reuse the shopping item component to display multiple items. 
 
 ![remove_corrosponding_item](../Pics/remove_corrosponding_item.png)  
 
-
-```react.js
-<app/>
-    <navBar>
-        <title>
-        <searchBar>
-    <main>
-</app>
-```
