@@ -17,6 +17,7 @@ Flex box is short for flexible box model and it was introduced before the grid l
 flex box adds responsiveness to CSS with float elements and positioning one dimensional refers to the fact that a given flex box container will arrange items in either a column or a row along its axis. The flex box container applied over an element can flex to shrink or expand.
 
 ### CSS grid
+
 CSS grid is similar to the flex box except it creates a two dimensional grid along both the row and column axes.
 
 the grid increases dimensionality and helps to create an advanced layout with relative ease. It can also lead to increased complications later. If the element rules are not systematically defined
@@ -31,12 +32,6 @@ Much like the div and box container that you can create using HTML, flexbox is a
 Before learning about the common layouts built using the flexbox, it is important to understand the properties inside it and how flexbox works. Let's examine some of the important characteristics of flexboxes and the properties that can be used to configure them.
 
 Flexbox is single-dimensional, which means you can align it either along a row or a column and it is set to row alignment by default. There are two axes, the main and cross-axis, much like the x and y-axis used in coordinate geometry. When aligned along the row, the horizontal axis is called the main axis and the vertical axis is called the cross axis. For the items present inside the flexbox container, the placement starts from the top-left corner moving along the main or horizontal axis. When the row is filled, the items continue to the next row. Note that with the help of a property called flex-direction, you can instead flip the main axis to run vertically and the cross axis will then be horizontal. In such a case, the items will start from top left and move down along the vertical main axis. The properties you choose will help better control alignment, spacing, direction and eventually styling of the container and items present inside it. 
-
-  
-Diagram of a flexbox and all its properties.
-
-https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-basics-and-terminology
-      
 
 Let's now examine some of the important properties that will allow you to configure a flexbox.
 
