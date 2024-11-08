@@ -9,16 +9,8 @@ React apps are built using modern JavaScript features, which are commonly known 
 Users need to be able to interact with elements on a web page. This means that an HTML document must be represented in a way that JavaScript code can query and update it. And that's the function of the DOM. It's a model of the objects in your HTML file. And web developers interact with the DOM through JavaScript to update content, set up events and animate HTML elements.
 
 
-JavaScript topics that you need to be comfortable with before you begin your journey learning React.
-
-- Data types 
-- Using var, let and const 
-- Conditionals and Loops 
-- Using objects, arrays and functions 
-- ES6 Arrow functions 
-- In-built functions such as map(), forEach() and promises. 
-- Destructuring Arrays and Objects 
-- Error Handling 
+JavaScript topics that you need to be comfortable with before you begin your journey learning React. 
+Data types - Using var, let and const, Conditionals and Loops, Using objects, arrays and functions, ES6 Arrow functions, In-built functions such as map(), forEach() and promises., Destructuring Arrays and Objects, Error Handling 
 
 You will need to add other packages to your React application. A package in JavaScript contains all the files needed for a module. To install these packages effectively and manage their dependencies you can use a package manager like NPM (Node Package Manager). You can install npm by installing Node.js, which will then automatically install npm
 
