@@ -36,7 +36,7 @@ function App(){
     )
 }
 ```
-If you're familiar with how array destructuring works in plain JavaScript. This line of code might've already make sense to you, but to make things clear, consider an example array called fruits, which contains the three strings, apple, pear, and plum. With its ES6 version, JavaScript introduced the concept of array destructuring, which allows you to assign several variables from the array using a single line of code.
+If you're familiar with how array destructuring works in plain JavaScript. This line of code might've already make sense to you, but to make things clear, consider an example array called fruits, which contains the three strings, apple, pear, and plum. With its ES6 version, JavaScript introduced the concept of array destructuring, which allows you to **assign several variables** from the array using a single line of code.
 ```jsx
 var fruits = ['apple', 'pear', 'plum']
 const fruits = ['apple', 'pear', 'plum']
@@ -61,7 +61,7 @@ length: 2
     [[Prototype]]: Array(0)
 
 ```
-In this case, Hello is the state value assigned to the word state variable. The function is a built-in one that is not declared. The function can be destructured with any name you'd like, but there is a convention to follow. If you set the States variable name to be Greet, then the destructured state function should be setGreet. This is because the second destructured variable is a function that will be used to update the state of a variable. 
+In this case, Hello is the state value assigned to the word state variable. The function is a built-in one that is not declared. The function can be destructured with any name you'd like, but there is a convention to follow. If you set the States variable name to be Greet, then the destructured state function should be setGreet. This is because the second destructured variable is a function ( its whole job ) that **will be used to update the state of a variable**. 
 ```jsx
 function App(){
     const [ greet, setGreet ] = React.useState("Hello")
