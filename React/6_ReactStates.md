@@ -149,9 +149,104 @@ This screenshot illustrates the boundaries of each component. The Main component
 Note that the string that was passed on and on through each of the children component’s props’ objects is not found anywhere. However, it will appear when you click the “Click me!” button, as an alert:
 ![](../Pics/popDrilling_1.png)
 
+### React state management
 
 While passing props helps to manage states, it is like taking a bus and going through each stop before you get off at the end. In comparison, using the context API is like teleporting to your destination instantly. It's a way to bypass the redundant passing of data through multiple levels of components.  
-![](../Pics/propsDrillingVScontextAPI.png) 
+![](../Pics/propsDrillingVScontextAPI.png)  
+
 To set it up, you need to add a piece of code that will be your context provider. It's also where the state will be stored. When a component needs to use the state, it becomes a context consumer. 
-Now let's examine a simple app that utilizes the context API to control state. In my app.js file, I'll use some code for a star to set up. You can also find this file in the additional resources if you'd like to use it to practice working with context API. In the app components, I have import statements for meals provider and meals list. The meals provider provides contexts state data and gives it to all the components it wrapped inside the app components. Currently, it wraps two components, the meals list components and the counter components, which are between the div tags of the return statements. The meals provide a component to holds all the states which is organized with the help of the context API. First I set the meals contexts variable using the React.createContext function. Next, I declare the today's meals array, which contains several food items saved as strings. I then coach the meals provider as an ES6 function that accepts the children value. This value holds everything that we wrapped into the meals provider component when it gets rendered inside the app component. The children value is just returned from the meals provider, wraps into the MealsContexts.Provider JSX elements. The MealsContexts.Provider JSX elements comes with the value attribute. This value attributes gets assigned the meals object, which is the value I sent to the use of state variable earlier. Before exporting the meals provider component at the bottom of the file, I'm also setting the use meals list contexts variable to the React.useContexts core and passing it to the meals contexts as its single argument. This makes it easier for me to destructure the meals objects from the use meals list context variable. Finally, in the meals list component, I'm accessing the context date by importing the use meals list context from the meals provider file. Let's break down how this component works in more detail. First, I'm destructuring the meals property from the objects returned from the use meals list context call. The original object has a single property named meals, which holds an array of three meals strings. Once I destructure the meals property from that object, all I have left is the array of three strings saved in the meals variable, which allows me to map over the meals value where I'm rendering an H2 for each member of the meals array. This code is probably more complex than most of what you have encountered. Don't worry if it takes time for you to understand how it works. Just remember the important parts, that this setup gives you a nice starting point for working with the context API. Lastly, let's examine the counter component. Note that it gets the context data in the same way that the meals list component does. This is the usefulness of having a centralized state store. It allows me to simply reach into the states provider directly from whatever components needed without having to do prop drilling or lifting upstate. Next, let me show you how the useReducer hook works. Let's move on to the useReducer hook. You can think of it as a superpower to use states. While the use state hook starts with an initial state, the useReducer also gets a reducer function in addition to the initial state. Let me illustrate that with a code example. Let's say I have a rideshare app that represents the amount of money in my wallet. The initial state is a value of 100 and the action of picking up a customer increases the value while the action of refueling my vehicle decreases it. I've applied to reduce a function which takes in the state and the action. Instead of using set states like in the use state hook, I'll use the dispatch method of the useReducer hook, which accepts an object literal with a single property type set to a matching action.type whose behavior is defined inside the reducer function. Now when I interact with this app in the browser, I can increase the money value by clicking the a new customer button or decrease it by clicking be refilled the tank button. In this video, you learned how the useContext and useReducer hooks can be used to manage state more efficiently across multiple levels of components.
+
+Now let's examine a simple app that utilizes the context API to control state. 
+```js
+// App.js
+import MealsProvider from './MealsProvider'
+import MealsList from './MealsList'
+import Counter from './Counter'
+
+function App() {
+  return (
+    <div>
+// MealsProvider provide context states data and gives to all commponents wrapped inside App component 
+// MealsProvider components holds all the states which is organize with help of context api 
+      <MealsProvider />
+        <MealsList />
+        <Counter />
+      <MealsProvider />
+    </div>
+
+  )
+}
+export default App
+```
+```jsx
+import React from 'react'
+
+const MealsContext = createContext()
+
+const todaysMeals = ['Backed Beans', 'Backed sweet Potatos', 'Backed Potatoes']
+
+const MealsProvider = ({children}) => {
+  const [meals, setMealsList] = useState(todaysMeals)
+  return (
+    <MealsContext.Provider value={{meals}}>
+    {children}
+    </MealsContext.Provider>
+  )
+}
+
+export const useMealsListContext = () => useContext(MealsContext)
+
+export default MealsProvider
+
+```
+First I set the meals contexts variable using the React.createContext function. 
+Next, I declare the today's meals array, which contains several food items saved as strings.  
+I then coach the meals provider as an ES6 function that accepts the children value. This value holds everything that we wrapped into the meals provider component when it gets rendered inside the app component.  
+The children value is just returned from the meals provider, wraps into the MealsContexts.Provider JSX elements.  
+The MealsContexts.Provider JSX elements comes with the value attribute. This value attributes gets assigned the meals object, which is the value I sent to the use of state variable earlier. 
+Before exporting the meals provider component at the bottom of the file, I'm also setting the use meals list contexts variable to the React.useContexts core and passing it to the meals contexts as its single argument.  
+This makes it easier for me to destructure the meals objects from the use meals list context variable. 
+Finally, in the meals list component, I'm accessing the context date by importing the use meals list context from the meals provider file. 
+```js
+// MealsList
+import {useMealsContext} from './MealsProvider'
+
+const MealsList = () => {
+  const {meals} = useMealsListContext()
+
+  return (
+    <div>
+      <h1>Meals List using Context API</h1>
+      {meals.map((meal, index) => (
+        <h2 key={index}>{meal}</h2>
+      ))}
+    </div>
+  )
+}
+export default MealsList
+```
+Let's break down how this component works in more detail. First, I'm destructuring the meals property from the objects returned from the use meals list context call.  
+The original object has a single property named meals, which holds an array of three meals strings.  
+Once I destructure the meals property from that object, all I have left is the array of three strings saved in the meals variable, which allows me to map over the meals value where I'm rendering an H2 for each member of the meals array.  
+Lastly, let's examine the counter component. Note that it gets the context data in the same way that the meals list component does. This is the usefulness of having a centralized state store. It allows me to simply reach into the states provider directly from whatever components needed without having to do prop drilling or lifting upstate. Next, let me show you how the useReducer hook works.   
+```js
+// App.js
+const reducer = {state, action} => {
+  if (action.type === 'ride') return {money: state.money + 10}
+  if (action.type === 'fuel') return {money: state.money - 50}
+}
+function App() {
+  const initialState = {money: 100}
+  const [state, dispatch] = useReducer(reducer, initialState)
+  return (
+      <div>
+        <button onClick={() => dispatch({type: 'ride'})}> new customer</button>
+        <button onClick={() => dispatch({type: 'fuel'})}> Refill tank</button>
+
+      </div>
+  )
+}
+
+```
+Let's move on to the useReducer hook. You can think of it as a superpower to use states. While the use state hook starts with an initial state, the useReducer also gets a reducer function in addition to the initial state. Let me illustrate that with a code example. Let's say I have a rideshare app that represents the amount of money in my wallet. The initial state is a value of 100 and the action of picking up a customer increases the value while the action of refueling my vehicle decreases it. I've applied to reduce a function which takes in the state and the action. Instead of using set states like in the use state hook, I'll use the dispatch method of the useReducer hook, which accepts an object literal with a single property type set to a matching action.type whose behavior is defined inside the reducer function. Now when I interact with this app in the browser, I can increase the money value by clicking the a new customer button or decrease it by clicking be refilled the tank button. In this video, you learned how the useContext and useReducer hooks can be used to manage state more efficiently across multiple levels of components.
 ​
