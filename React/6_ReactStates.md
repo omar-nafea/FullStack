@@ -155,6 +155,90 @@ While passing props helps to manage states, it is like taking a bus and going th
 
 To set it up, you need to add a piece of code that will be your **context provider**. It's also where the state will be stored. When a component needs to use the state, it becomes a **context consumer**. 
 
+
+
+### Using useContext in Practice
+
+Let’s dive into a simple example to illustrate how useContext works. Suppose we have a React application with a theme context that controls the appearance of our components. First, we’ll create a context using React.createContext():
+
+
+```js
+// ThemeContext.js
+import React from 'react';
+
+const ThemeContext = React.createContext('light');
+
+export default ThemeContext;
+```
+
+Now, we can create a provider component to wrap our application and supply the theme context:
+
+```js
+// ThemeProvider.js
+import React, { useState } from 'react';
+import ThemeContext from './ThemeContext';
+
+const ThemeProvider = ({ children }) => {
+  const [theme, setTheme] = useState('light');
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
+
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};
+
+export default ThemeProvider;
+```
+
+With the provider in place, any component nested within it can access the theme context using the useContext hook:
+```js
+// ThemedButton.js
+import React, { useContext } from 'react';
+import ThemeContext from './ThemeContext';
+
+const ThemedButton = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
+  return (
+    <button
+      onClick={toggleTheme}
+      style={{ background: theme === 'light' ? '#fff' : '#333', color: theme === 'light' ? '#333' : '#fff' }}
+    >
+      Toggle Theme
+    </button>
+  );
+};
+
+export default ThemedButton;
+```
+`useContext()` = React Hook that allows you to share values between multiple levels of components without passing props through each level
+
+In this example, ThemedButton component consumes the theme context using useContext hook, allowing it to access the current theme and toggle function directly.
+
+Let’s expand on the blog post with additional examples showcasing the versatility of the useContext hook.
+```js
+// PROVIDER COMPONENT
+import {createContext} from 'react';
+export const MyContext = createContext();
+<MyContext.Provider value={value}>
+<Child />
+</MyContext.Provider>
+
+// CONSUMER COMPONENTS
+import React, { useContext } from 'react';
+import { MyContext } from './ComponentA';
+const value = useContext(MyContext);
+```
+### Another Example could be
+`MealsProvider` provide context states data and gives to all commponents wrapped inside App component  
+`MealsProvider` components holds all the states which is organized with help of context API 
+
+
 ```js
 // App.js
 import MealsProvider from './MealsProvider'
@@ -174,26 +258,6 @@ function App() {
 }
 export default App
 ```
-`MealsProvider` provide context states data and gives to all commponents wrapped inside App component  
-`MealsProvider` components holds all the states which is organized with help of context API 
-
-`useContext()` = React Hook that allows you to share values between multiple levels of components without passing props through each level
-
-```js
-// PROVIDER COMPONENT
-import {createContext} from 'react';
-export const MyContext = createContext();
-<MyContext.Provider value={value}>
-<Child />
-</MyContext.Provider>
-
-// CONSUMER COMPONENTS
-import React, { useContext } from 'react';
-import { MyContext } from './ComponentA';
-const value = useContext(MyContext);
-```
-
-
 ```jsx
 // MealsProvider.js
 import React from 'react'
@@ -293,7 +357,6 @@ return (
     <h1>Wallet: {state.money}</h1>
       <button onClick={() => dispatch({type: 'ride'})}> new customer</button>
       <button onClick={() => dispatch({type: 'fuel'})}> Refill tank</button>
-
     </div>
 )
 ```
