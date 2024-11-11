@@ -153,5 +153,139 @@ function App() {
 export default App
 ```
 
-### Conditional rendering
+## Conditional rendering
 
+### Applying conditional rendering
+State is all the data your app is currently working with. With this in mind, you can decide to conditionally render specific components in your app, based on whether specific state data has specific values. To make this possible, React works with the readily available JavaScript syntax and concepts.
+
+Consider a minimalistic productivity app.
+
+The app takes the client computer’s current datetime, and based on the data, displays one of two messages on the screen:
+
+- For workdays, the message is: “Get it done” 
+- For weekends, the message is: “Get some rest” 
+
+There are a few ways you can achieve this in React.
+
+One approach would include setting a component for each of the possible messages, which means you’d have two components. Let’s name them Workdays and Weekends.
+
+Then, you’d have a CurrentMessage component, which would render the appropriate component based on the value returned from the getDay() function call.
+
+Here’s a simplified CurrentMessage component:
+```js
+function CurrentMessage() {
+    const day = new Date().getDay();
+    if (day >= 1 && day <= 5) {
+        return <Workdays />
+    }
+    return <Weekends />
+}
+```
+Instead of calculating it directly, you could use some historical data instead, and perhaps get that data from a user via an input, from a parent component.
+
+In that case, the `CurrentMessage` component might look like this:
+```js
+function CurrentMessage(props) {
+    if (props.day >= 1 && props.day <= 5) {
+        return <Workdays />
+    }
+    return <Weekends />
+}
+```
+```js
+function CurrentImage() {    
+    const time = new Date().getHours();    
+    return (  
+        {hour >= 6 && hour <= 18    
+            ? <Daytime />  
+              : <Nighttime />  
+          }  
+)}
+```
+### Conditional rendering using the logical AND operator
+
+Another interesting approach in conditional rendering is the use of the logical AND operator `&&`.
+
+In the following component, here's how the && operator is used to achieve conditional rendering:
+```js
+function LogicalAndExample() {
+    const val = prompt('Anything but a 0')
+
+    return (
+        <div>
+            <h1>Please don't type in a zero</h1>
+            {val &&
+                <h2>Yay, no 0 was typed in!</h2>
+            }
+        </div>
+    )
+}
+```
+There are a few things to unpack here, so here is the explanation of the `LogicalAndExample` component, top to bottom:
+
+- First, you ask the user to type into the prompt, specifying that you require anything other than a zero character; and you save the input into the val value.
+- In the return statement, an h1 heading is wrapped inside a div element, and then curly braces are used to include a JSX expression. Inside this JSX expression is a single && operator, which is surrounded by some code both on its left and on its right sides; on the left side, the val value is provided, and on the right, a piece of JSX is provided. 
+
+To understand what will be output on screen, consider the following example in standard JavaScript:
+```js
+true && console.log('This will show')
+```
+If you ran this command in the browser’s console, the text ‘This will show’ will be output.
+
+On the flip side, consider the following example:
+```js
+false && console.log('This will never show')
+```
+
+If you ran this command, the output will just be the boolean value of false.
+
+In other words, if a prop gets evaluated to true, using the && operator, you can render whatever JSX elements you want to the right of the && operator
+
+
+### Conditional components
+
+Have you ever visited a website that required a user account? To log in you click on a Log in button and once you’ve logged in, the Log in button changes to a Log out button.
+
+This is often done using something called conditional rendering.
+
+In a previous course, you’ve already learned about simple conditions using if and switch statements.
+
+Using these statements allows you to change the behaviour of code based on certain conditions being met.
+
+For example, you can set a variable to a different value based on the result of a condition check.
+```js
+let name; 
+let newUser = true; 
+if (Math.random() > 0.5 && newUser) { 
+	name = "Mike" 
+} else { 
+	name = "Susan" 
+} 
+```
+Conditional rendering is built on the same principle. By using conditions, you can return different child components. This is often done using the props that are passed into the parent component, but can also be done based on component state.
+
+Let’s take a look at a simple example.
+
+Let’s say you have two child components called LoginButton and LogoutButton; each displaying their corresponding button.
+
+In the parent component, named LogInOutButton, you can check the props passed into the parent component and return a different child component based on the value of the props.
+
+In this example, the props contains a property named isLoggedIn. When this is set to true, the LogoutButton component is returned. Otherwise, the LoginButton component is returned.
+```js
+function LogInOutButton(props) {
+const isLoggedIn = props.isLoggedIn;
+  if (isLoggedIn) {
+    return <LogoutButton />;
+  } else {
+  return <LoginButton />;
+}
+```
+
+Then when the LogInOutButton parent component is used, the prop can be passed in.
+```js
+<LogInOutButton isLoggedIn={false} />
+```
+
+This is a simple example showing how you can change what is displayed based on a condition check. You will use this often when developing React applications.
+
+The logical AND operator is used to conditionally render some JSX elements based on whether a value to the LEFT of the AND operator evaluates to true.
