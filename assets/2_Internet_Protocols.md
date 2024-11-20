@@ -1,18 +1,6 @@
-# HTTP
 
-HTTP is a core operational protocol of the world wide web. It is what enables your web browser to communicate with a web server that hosts a website.   
-HTTP stands for Hypertext Transfer Protocol. It is a protocol used for transferring web resources such as HTML documents, images, styles, and other files.  
-HTTP is a request response based protocol. A web browser or client sends an HTTP request to a server and the web server sends the HTTP response back to the browser.
 
-##### HTTPS is the secure version of HTTP
 
-It is used for secure communication between two computers so that nobody else can see the information being sent and received. It does this by using something called encryption.
-
-Like in HTTP, the requests and responses still behave in the same way and have the same content. The big difference is that before the content is sent, it is turned into a `secret code`. Only the other computer can turn the secret code back into its original content. If someone else was to look at the code, it wouldn't be understandable.  
-
-![secure_code](../Pics/secureHTTP.png "secure_code")  
-
-You use HTTPS every day. This is the lock icon you see beside the URL in your web browser.
 
 # Request and Response Cycle
 
@@ -57,7 +45,7 @@ Content-type: text/json
 
 ### HTTP Request Body
 
-HTTP requests can optionally include a request body. A request body is often included when using the HTTP POST and PUT methods to transmit data.
+HTTP requests can optionally include a request body. A request body is often included when using the HTTP `POST` and `PUT` methods to transmit data.
 
 ```HTTP
 POST /users HTTP/1.1
@@ -70,8 +58,6 @@ Host: example.com
 ```
 
 ![http_request](../Pics/HTTPrequest.png)  
-
-For certain requests methods, the request will also contain a body of content that the client is sending. 
 
 ## HTTP Responses
 
@@ -118,7 +104,7 @@ The common status codes you'll encounter for each category are:
 ##### `3XX Redirection`
 
 Redirection responses indicate to the web client that the requested resource has been moved to a different path. The most common response codes used are `301 moved permanently` and `302 found`.   
-The difference them is that `302` indicates a temporary redirection. The resource has been temporarily moved. while `301` is moved permenently
+The difference between them is that `302` indicates a temporary redirection. The resource has been temporarily moved. while `301` is moved permenently
 
 ```HTTP
 HTTP/1.1 302 Found
@@ -186,87 +172,83 @@ Content-Type: text/html
   <body>Test HTML page.</body>
 </html>
 ```
-## Internet Protocols
+### Other Internet Protocols
 
-Hypertext Transfer Protocols (HTTP) are used on top of Transmission Control Protocol (TCP) to transfer webpages and other content from websites.
+Hypertext Transfer Protocols (HTTP) are used on top of Transmission Control Protocol (TCP) to transfer webpages and other content from websites. but there are other protocols used with http
 
-### Dynamic Host Configuration Protocol (DHCP)
+#### Dynamic Host Configuration Protocol (DHCP)
 
-You've learned that computers need IP addresses to communicate with each other. When your computer connects to a network, the Dynamic Host Configuration Protocol or DHCP as it is commonly known, is used to assign your computer an IP address.
+As we said, computers need IP addresses to communicate with each other. When your computer connects to a network DHCP is used to assign your computer an IP address. Your computer communicates over User Datagram Protocol (UDP) using the protocol with a type of server called a DHCP server. The server keeps track of computers on the network and their IP addresses. It will assign your computer an IP address and respond over the protocol to let it know which IP address to use. 
 
-Your computer communicates over User Datagram Protocol (UDP) using the protocol with a type of server called a DHCP server. The server keeps track of computers on the network and their IP addresses. It will assign your computer an IP address and respond over the protocol to let it know which IP address to use. Once your computer has an IP address, it can communicate with other computers on the network.
-
-### Domain Name System Protocol (DNS)
+#### Domain Name System Protocol (DNS)
 
 Your computer needs a way to know with which IP address to communicate when you visit a website in your web browser, for example, meta.com. The Domain Name System Protocol, commonly known as DNS, provides this function. Your computer then checks with the DNS server associated with the domain name and then returns the correct IP address.
 
-### Internet Message Access Protocol (IMAP)
+#### Internet Message Access Protocol (IMAP)
 
 Your device needs a way to download emails and manage your mailbox on the server storing your emails. This is the purpose of the Internet Message Access Protocol or IMAP.
 
-### Simple Mail Transfer Protocol (SMTP)
+#### Simple Mail Transfer Protocol (SMTP)
 
 Now that your emails are on your device, you need a way to send emails. The Simple Mail Transfer Protocol, or SMTP, is used. It allows email clients to submit emails for sending via an SMTP server. You can also use it to receive emails from an email client, but IMAP is more commonly used.
 
-### Post Office Protocol (POP)
+#### Post Office Protocol (POP)
 
 The Post Office Protocol (POP) is an older protocol used to download emails to an email client. The main difference in using POP instead of IMAP is that POP will delete the emails on the server once they have been downloaded to your local device. Although it is no longer commonly used in email clients, developers often use it to implement email automation as it is a more straightforward protocol than IMAP.
 
-### File Transfer Protocol (FTP)
+#### File Transfer Protocol (FTP)
 
 When running your websites and web applications on the Internet, you'll need a way to transfer the files from your local computer to the server they'll run on. The standard protocol used for this is the File Transfer Protocol or FTP. FTP allows you to list, send, receive and delete files on a server. Your server must run an FTP Server and you will need an FTP Client on your local machine. You'll learn more about these in a later course.
 
-### Secure Shell Protocol (SSH)
+#### Secure Shell Protocol (SSH)
 
 When you start working with servers, you'll also need a way to log in and interact with the computer remotely. The most common method of doing this is using the Secure Shell Protocol, commonly referred to as SSH. Using an SSH client allows you to connect to an SSH server running on a server to perform commands on the remote computer.
 All data sent over SSH is encrypted. This means that third parties cannot understand the data transmitted. Only the sending and receiving computers can understand the data.
 
-### SSH File Transfer Protocol (SFTP)
+#### SSH File Transfer Protocol (SFTP)
 
 The data is transmitted insecurely when using the File Transfer Protocol. This means that third parties may understand the data that you are sending. This is not right if you transmit company files such as software and databases. To solve this, the SSH File Transfer Protocol, alternatively called the Secure File Transfer Protocol, can be used to transfer files over the SSH protocol. This ensures that the data is transmitted securely. Most FTP clients also support the SFTP protocol.
 
-# APIs and services
 
-An API is a set of functions and procedures for creating applications that access the features or data of an operating system, application or other service.
+## Web hosting
 
-In Software development, API's are often the bridge between different components or systems. This earns them names like gateway or middleware. The term is used widely to represent many different tools and systems.
+Web hosting is a service where you place your website and files on the hosting companies web server. You're essentially renting the space in return for stable and secure storage.
 
-### Browser or Web APIs
+## Shared Hosting
 
-They extend the functionality of the browser by adding new services and are designed to simplify complex functions and provide easy syntax for building advanced features. Let's take DOM API as an example:  
+The cheapest form of web hosting is known as shared hosting. You pay for a location on a web server containing many web hosting accounts with shared hosting.
 
-The DOM API turns the html document into a tree of nodes that are represented as JavaScript objects.  
-Another example, is the geolocation API that returns coordinates of where the browser is located. There are also other API's available for
+This means that you also share the service processing, power, memory, and bandwidth with other websites that might slow your performance.
 
-- Fetching data known as Fetch API
-- Drawing graphics or Canvas API
-- Keeping history or history API.
-- Client side storage or Web Storage API.
+- This option is best for a small website with a small number of visitors. Many developers also use this as a low-cost sandbox environment to practice deploying or hosting their personal websites. Some companies offer free shared hosting but with limitations and often have advertisements embedded in the webpages.
 
-## REST API.
+![shared_hostingVSvps](https://verpex.com/assets/uploads/images/blog/VPS-vs-Shared-Hosting.webp?v=1665751748 "shared_hostingVSvps")
 
-REST or representational state transfer, is a set of principles that help build highly efficient API's.
+## Virtual Private Hosting
 
-![rest_api](../Pics/restAPI.gif "rest_api")  
+Sites with more considerable demands use virtual private surface or VPS. A VPS is a virtual server with dedicated CPU, memory, and bandwidth resources.
 
-One of the main responsibilities of these kinds of API's is sending and receiving data to and from a centralized database. We can query our own REST API or third party ones.
+It will be running on a hardware server with other VPS instances but as the resources are fixed per VPS instance, your website is unlikely to be impacted by the performance of other VPS instances. A VPS instance will be more expensive than shared hosting.
 
-These API web servers are designed to provide the data backbone for a web client like a web page or mobile app. This means that these API's must be able to accomplish things like `get`, `post`, `put`, `delete` data
+## Dedicated Hosting
 
-##### Sensor-Based API.
+The next option up is to use dedicated hosting. This will be a hardware server that is dedicated to you only. All hardware, CPU, memory, and bandwidth resources are yours to use. Generally, this option is more expensive than a VPS hosting.
 
-This is what the internet of things or IOT is based on. These are actual physical senses that are interconnected with each other. The sensors can communicate through API and track and respond to physical data. Some examples are smart lights and node bots.
+## Cloud Hosting.
 
-These API's use endpoints to specify how different resources can be accessed. The endpoint is built into the URL when accessing the API. Once the endpoint is hit, the API performs whatever service side processing is needed to build the response. Two common forms of response are, full web pages and data form i.e. `Json`.
+Cloud hosting and the Cloud has grown in popularity over the last decade and is often mentioned in various news and services you use. With Cloud hosting, your website is run in something called a Cloud environment, which spans across multiple physical and virtual servers.
 
-![api_mechanism](../Pics/API_mech.gif "api_mechanism")
+If a physical or virtual server fails, your website will run on a different server and stay online.
 
-### Back-end framework
+![Physical_Virtual_server](../Pics/permutaion.gif "Physical_Virtual_server")  
 
-it handles functionality that is common to all web applications such as `receiving HTTP requests` and `sending HTTP responses`. The developer then adds their own code that implements the functionality of the web application.   For instance with the e-commerce website example, a framework would handle receiving `HTTP` requests. The developer would implement code that processes the request and returns a response from which the framework would send a response over `HTTP`.
+The main advantage of Cloud hosting is that: 
+- You can use as many resources as you need without hardware limitations.
+- However, you pay based on resource use.
 
+For example, if you transfer a file from the Cloud to a web browser, you'll pay for the bandwidth used for that transfer at a fractional cent cost per megabyte.
 
-
+- While this can quickly become more expensive, is allows websites and web applications to scale their costs as popularity grows. This is how many of the major web applications operate.
 
 
 

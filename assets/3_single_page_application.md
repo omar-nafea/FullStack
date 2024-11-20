@@ -52,7 +52,9 @@ It's called single-page, but that doesn't mean your website has only one page of
 
 A SPA allows the user to interact with the website without the application needing to download entire new web pages. Instead, it rewrites the current web page as the user interacts with it. The result is a browsing experience that feels faster and more responsive to user input. When the user navigates to the web application in the browser, the web server returns the necessary resources to run the application.
 
-### A SPA has two approaches to serving code and resources.
+An SPA has two approaches to serving code and resources.
+
+### Bundling VS Lazy Loading 
 
 ![spa_approaches](../Pics/spaApproaches.png "spa_approaches")  
 
@@ -104,7 +106,7 @@ Ex, Most Web applications have user profiles with pictures. Normally several par
 
 Instead of programming the logic for every instance of a user profile picture, React allows you to create a user icon component that displays a version of a profile picture every time it is used. You can then reuse this component throughout the application.
 
-There are many open source libraries that provide pre made components to add a video player or to embed a map. You can then reuse this component throughout the application
+There are many open source libraries that provide pre-made components to add a video player or to embed a map. You can then reuse this component throughout the application
 
 React approaches building user interfaces differently by breaking them into components. This means React uses a real, full-featured programming language to render views, which we see as an advantage over templates for a few reasons:
 
@@ -135,31 +137,19 @@ The virtual DOM is a representation of the browser DOM that is kept in memory. R
 
 jsx is an optional syntax extension, in case you prefer the readability of HTML to raw JavaScript. React updates are dead simple. React really shines when your data changes over time.
 
-When your component is first initialized, the render method is called,
-generating a lightweight representation of your view. From that representation, a string of markup is produced and injected into the document. When your data changes, the render method is called again.
+### This is the core concept of how react works
+
+*When your component is first initialized, the render method is called,  generating a lightweight representation of your view. From that representation, a string of markup is produced and injected into the document. When your data changes, the render method is called again.*
 
 In order to perform updates as efficiently as possible, we diff the return value from the previous call to render with the new one and generate a minimal set of changes to be applied to the DOM.
 
-React updates the virtual DOM and compares it to the previous version of the virtual DOM. If a change has occurred, only that element is updated in the browser DOM. Changes on the browser DOM cause the displayed webpage to change.
+_**First, the virtual DOM is updated. Then React, compares the virtual DOM to the previous version of the virtual DOM, and determines which elements have changed. The changed elements, and only those elements are updated in the browser DOM. Changes on the browser DOM, cause the displayed web page to change.**_
 
-
-React checks to see if the HTML components in the virtual DOM matches the browser DOM. If a change is required, the browser dome is updated. If nothing has changed, then no update is performed. This process is called reconciliation.
-
-![virtual_vs_browser](../Pics/virtual_vs_browser.png)  
-
-The data returned from render is neither a string nor a DOM node it’s a lightweight description of what the DOM should look like.
-
-**We call this process reconciliation.**
-
-Firstly, the virtual DOM is updated. Then React, compares the virtual DOM to the previous version of the virtual DOM, and determines which elements have changed. The changed elements, and only those elements are updated in the browser DOM. Changes on the browser DOM, cause the displayed web page to change.
+*React checks to see if the HTML components in the virtual DOM matches the browser DOM. If a change is required, the browser dom is updated. If nothing has changed, then no update is performed. This process is called reconciliation. The data returned from render is neither a string nor a DOM node it’s a lightweight description of what the DOM should look like.*
 
 Because this re-render is so fast (around 1ms for TodoMVC), the developer doesn’t need to explicitly specify data bindings. We’ve found this approach makes it easier to build apps. HTML is just the beginning.
 
-Because React has its own lightweight representation of the document, we can do some pretty cool things with it:
-
-- Facebook has dynamic charts that render to `<canvas>` instead of HTML.
-- Instagram is a “single page” web app built entirely with React and Backbone.Router. Designers regularly contribute React code with JSX.
-- We’ve built internal prototypes that run React apps in a web worker and use React to drive native iOS views via an Objective-C bridge.
+![virtual_vs_browser](../Pics/virtual_vs_browser.png)  
 
 ## Summary: The Virtual DOM
 
@@ -173,6 +163,8 @@ Step 1: The virtual DOM is updated.
 Step 2: The virtual DOM is compared to the previous version of the virtual DOM and checks which elements have changed.  
 Step 3: The changed elements are updated in the browser DOM.  
 Step 4: The displayed webpage updates to match the browser DOM.  
+
+## React Fiber Architecture
 
 As updating the browser DOM can be a slow operation, this process helps to reduce the number of updates to the browser DOM by only updating when it is necessary.
 

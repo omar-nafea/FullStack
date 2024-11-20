@@ -73,45 +73,6 @@ However, JavaScript is implemented as a separate JavaScript engine, which has en
 
 - The engine combines all relevant CSS rules to calculate precise graphical coordinates for the visual representation it will paint on the screen.
 
-# Web hosting
-
-Web hosting is a service where you place your website and files on the hosting companies web server. You're essentially renting the space in return for stable and secure storage.
-
-## Shared Hosting
-
-The cheapest form of web hosting is known as shared hosting. You pay for a location on a web server containing many web hosting accounts with shared hosting.
-
-This means that you also share the service processing, power, memory, and bandwidth with other websites that might slow your performance.
-
-- This option is best for a small website with a small number of visitors. Many developers also use this as a low-cost sandbox environment to practice deploying or hosting their personal websites. Some companies offer free shared hosting but with limitations and often have advertisements embedded in the webpages.
-
-![shared_hostingVSvps](https://verpex.com/assets/uploads/images/blog/VPS-vs-Shared-Hosting.webp?v=1665751748 "shared_hostingVSvps")
-
-## Virtual Private Hosting
-
-Sites with more considerable demands use virtual private surface or VPS. A VPS is a virtual server with dedicated CPU, memory, and bandwidth resources.
-
-It will be running on a hardware server with other VPS instances but as the resources are fixed per VPS instance, your website is unlikely to be impacted by the performance of other VPS instances. A VPS instance will be more expensive than shared hosting.
-
-## Dedicated Hosting
-
-The next option up is to use dedicated hosting. This will be a hardware server that is dedicated to you only. All hardware, CPU, memory, and bandwidth resources are yours to use. Generally, this option is more expensive than a VPS hosting.
-
-## Cloud Hosting.
-
-Cloud hosting and the Cloud has grown in popularity over the last decade and is often mentioned in various news and services you use. With Cloud hosting, your website is run in something called a Cloud environment, which spans across multiple physical and virtual servers.
-
-If a physical or virtual server fails, your website will run on a different server and stay online.
-
-![Physical_Virtual_server](../Pics/permutaion.gif "Physical_Virtual_server")  
-
-The main advantage of Cloud hosting is that: 
-- You can use as many resources as you need without hardware limitations.
-- However, you pay based on resource use.
-
-For example, if you transfer a file from the Cloud to a web browser, you'll pay for the bandwidth used for that transfer at a fractional cent cost per megabyte.
-
-- While this can quickly become more expensive, is allows websites and web applications to scale their costs as popularity grows. This is how many of the major web applications operate.
 
 # Internet Protocols
 
@@ -156,3 +117,52 @@ The two most common protocols are the **Transmission Control Protocol** referred
 
 - TCP/IP protocol form the basic communication language of the internet which labels the packets of data and makes sure that even though some pieces of the same data take a different route, they all arrive at their destination and can be reassembled.
 
+# HTTP
+
+HTTP is a core operational protocol of the world wide web. It is what enables your web browser to communicate with a web server that hosts a website.   
+HTTP stands for Hypertext Transfer Protocol. It is a protocol used for transferring web resources such as HTML documents, images, styles, and other files.  
+HTTP is a request response based protocol. A web browser or client sends an HTTP request to a server and the web server sends the HTTP response back to the browser.
+
+##### HTTPS is the secure version of HTTP
+
+It is used for secure communication between two computers so that nobody else can see the information being sent and received. It does this by using something called encryption.  
+
+![secure_code](../Pics/secureHTTP.png "secure_code")  
+
+Like in HTTP, the requests and responses still behave in the same way and have the same content. The big difference is that before the content is sent, it is turned into a `secret code`. Only the other computer can turn the secret code back into its original content. If someone else was to look at the code, it wouldn't be understandable.  
+
+## APIs and services
+
+An API is a set of functions and procedures for creating applications that access the features or data of an operating system, application or other service.
+
+In Software development, API's are often the bridge between different components or systems. This earns them names like gateway or middleware. The term is used widely to represent many different tools and systems.
+
+### Web APIs
+
+They extend the functionality of the browser by adding new services and are designed to simplify complex functions and provide easy syntax for building advanced features. Let's take DOM API as an example:  
+
+The DOM API turns the html document into a tree of nodes that are represented as JavaScript objects.  
+Another example, is the geolocation API that returns coordinates of where the browser is located. There are also other API's available for
+
+- Fetching data known as Fetch API
+- Drawing graphics or Canvas API
+- Keeping history or history API.
+- Client side storage or Web Storage API.
+
+## REST API.
+
+REST or representational state transfer, is a set of principles that help build highly efficient API's.
+
+![rest_api](../Pics/restAPI.gif "rest_api")  
+
+One of the main responsibilities of these kinds of API's is sending and receiving data to and from a centralized database. We can query our own REST API or third party ones.
+
+These API web servers are designed to provide the data backbone for a web client like a web page or mobile app. This means that these API's must be able to accomplish things like `get`, `post`, `put`, `delete` data
+
+These API's use endpoints to specify how different resources can be accessed. The endpoint is built into the URL when accessing the API. Once the endpoint is hit, the API performs whatever service side processing is needed to build the response. Two common forms of response are, full web pages and data form i.e. `Json`.
+
+![api_mechanism](../Pics/API_mech.gif "api_mechanism")
+
+### Back-end framework
+
+it handles functionality that is common to all web applications such as `receiving HTTP requests` and `sending HTTP responses`. The developer then adds their own code that implements the functionality of the web application.   For instance with the e-commerce website example, a framework would handle receiving `HTTP` requests. The developer would implement code that processes the request and returns a response from which the framework would send a response over `HTTP`.
