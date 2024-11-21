@@ -30,6 +30,16 @@ It's called a `server` because it provides a service to another computer and, it
 A web server has many functions which includes: Website storage, Administration, Security   
 The primary function is to handle web requests
 
+A web server stores and delivers the content for a website – such as text, images, video, and application data – to clients that request it. The most common type of client is a web browser program, which requests data from your website when a user clicks on a link or downloads a document on a page displayed in the browser.
+
+A web server communicates with a web browser using the Hypertext Transfer Protocol (HTTP). The content of most web pages is encoded in Hypertext Markup Language (HTML). The content can be static (for example, text and images) or dynamic (for example, a computed price or the list of items a customer has marked for purchase). To deliver dynamic content, most web servers support server‑side scripting languages to encode business logic into the communication. Commonly supported languages include Active Server Pages (ASP), Javascript, PHP, Python, and Ruby.
+
+A web server might also cache content to speed delivery of commonly requested content. This process is also known as web acceleration.
+
+A web server can host a single website or multiple websites using the same software and hardware resources, which is known as virtual hosting. Web servers can also limit the speed of response to different clients so as to prevent a single client from dominating resources that are better used to satisfy requests from a large number of clients.
+
+While web servers typically host websites that are accessible on the Internet, they can also be used to communicate between web clients and servers in local area networks such as a company’s intranet. A web server can even be embedded in a device such a digital camera so that the users can communicate with the device via any commonly available Web browser.
+
 ## Web browser
 
 Browser is a software application that you use to browse the World Wide Web.
