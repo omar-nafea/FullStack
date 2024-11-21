@@ -67,12 +67,11 @@ Some engines may begin rendering before a page's resources are downloaded (css, 
 
 - It's a core software component of every major web browser. also known as a layout engine or rendering engine The primary job of a browser engine is to transform HTML documents and other resources of a web page into an interactive visual representation on a user's device.
 
-- Every major browser supports JavaScript to provide a wide range of dynamic behavior for web pages.  
+In addition to layout and rendering, a browser engine enforces the security policy between documents, handles navigation through hyperlinks and data submitted through forms, and implements the Document Object Model (DOM) exposed to scripts associated with the document.
 
-However, JavaScript is implemented as a separate JavaScript engine, which has enabled its usage elsewhere. In a browser, the two engines are coordinated via the DOM binding.
+_**Every major browser supports JavaScript to provide a wide range of dynamic behavior for web pages. However, JavaScript is implemented as a separate JavaScript engine, which has enabled its usage elsewhere. In a browser, the two engines are coordinated via the DOM bindings.**_
 
-- The engine combines all relevant CSS rules to calculate precise graphical coordinates for the visual representation it will paint on the screen.
-
+The layout of a web page is typically specified by Cascading Style Sheets (CSS). Each style sheet is a series of rules for how the page should be presented. The engine combines all relevant CSS rules to calculate precise graphical coordinates for the visual representation it will paint on the screen.
 
 # Internet Protocols
 
