@@ -1,12 +1,6 @@
-### JSX syntax and the arrow function
+# JSX syntax
 
-##### Components as Function Expressions
-
-Up to this point, you’ve likely only observed ES5 function declarations used to define components in React. However, this is not the only way to do it.
-
-In this reading, you learn about some alternative approaches, specifically by using function expressions and arrow functions.
-
-##### Function Expressions
+## Arrow function
 
 Let’s start with a function declaration used as a component in React:
 ```js
@@ -18,9 +12,7 @@ function Nav(props) {
     )
 }
 ```
-This component's code returns a list item containing the value of the ‘first’ prop.
-
-Now, let's change this function declaration to a function expression:
+This component's code returns a list item containing the value of the 'first' prop. Now, let's change this function declaration to a function expression:
 ```js
 const Nav = function(props) {
     return (
@@ -31,21 +23,18 @@ const Nav = function(props) {
 }
 ```
 
-The component is, for the most part, the same. The only thing that's changed is that you’re now using an anonymous (nameless) function, and assigning this anonymous function declaration to a variable declared using the const keyword, and the name Nav. The rest of the code is identical.
+The component is, for the most part, the same. The only thing that's changed is that you’re now using an anonymous (nameless) function, and assigning this anonymous function declaration to a variable declared using the const keyword but The rest of the code is identical.
 
 Changing a component from a function declaration to a function expression doesn't change its behavior, or how you write the code to render the Nav component. It's still the same:
 ```jsx
 <Nav first="Home" />
 ```
-
 You can also take this concept a step further, using arrow functions.
 
-##### Components as Arrow Functions
+### Components as Arrow Functions
 
 Arrow functions are a core feature of the ES6 version of JavaScript.
-
 One of the main benefits of using arrow functions is its shorter syntax.
-
 Consider the Nav function expression written as an arrow function:
 ```js
 const Nav = (props) => {
@@ -65,15 +54,12 @@ To reiterate, take the smallest possible anonymous ES5 function:
 ```js
 const example = function() {}
 ```
-
 And then observe how this is written as an arrow function:
 ```js
 const example = () => {}
 ```
 
-Another important rule regarding arrow functions is that using the parentheses is optional if there's a single parameter that a function accepts.
-
-In other words, another correct way to write the previous Nav arrow function component would be to drop the parentheses around ‘props’:
+Another important rule regarding arrow functions is that using the parentheses is optional if there's a single parameter that a function accepts. In other words, another correct way to write the previous Nav arrow function component would be to drop the parentheses around ‘props’:
 ```js
 const Nav = props => {
     return (
@@ -84,9 +70,7 @@ const Nav = props => {
 }
 ```
 
-In all other cases, when you write arrow functions, for any number of parameters other than a single parameter, using parentheses around parameters is compulsory.
-
-For example, if your Nav component wasn't accepting any parameters, you'd code it with empty parentheses:
+In all other cases, when you write arrow functions, for any number of parameters other than a single parameter, using parentheses around parameters is compulsory. For example, if your Nav component wasn't accepting any parameters, you'd code it with empty parentheses:
 ```js
 const Nav = () => {
     return (
@@ -100,28 +84,25 @@ Another interesting thing about arrow functions is the implicit return. However,
 
 To demonstrate how this works, let’s re-write the Nav component as a one-liner:
 
-```
+```jsx
 const Nav = () => <ul><li>Home</li></ul>
 ```
 
 Note that with the implicit return, you don't even have to use the curly braces that are compulsory function body delimiters in all other cases.
-Using Arrow Functions in Other Situations
 
-In React, just like in plain JavaScript, arrow functions can be used in many different situations. One such situation is using it with, for example, the forEach() built-in array method.
+### Using Arrow Functions in Other Situations
+
+In React, just like in plain JavaScript, arrow functions can be used in many different situations. One such situation is using it with, for example, the `forEach()` built-in array method.
 
 For example:
 ```js
 [10, 20, 30].forEach(item => item * 10)
-```
-
-The output of the above vanilla JavaScript line of code would be three number values:
-
-**100**
-**200**
-**300**
-
-As a side-note, the term "vanilla JavaScript" is often used to describe the plain, regular JavaScript language syntax, without any framework-specific or library-specific code. For example, React is a library, so in this context, saying that a piece of code is "vanilla JavaScript" means that it doesn't need any special library to run. It can run in "plain" JavaScript without any additional dependencies.
-
+// The output of the above vanilla JavaScript line of code would be three number values:
+100
+200
+300
+``` 
+As a side-note, the term "vanilla JavaScript" is often used to describe the plain, regular JavaScript language syntax, without any framework-specific or library-specific code. For example, React is a library, so in this context, saying that a piece of code is "vanilla JavaScript" means that it doesn't need any special library to run. It can run in "plain" JavaScript without any additional dependencies.  
 You could also write this code in ES5 syntax:
 ```js
 [10, 20, 30].forEach(function(item) {
@@ -130,7 +111,9 @@ You could also write this code in ES5 syntax:
 )
 ```
 
-Regardless of how you write it, the forEach() method can be run on an array. The forEach() method accepts a single parameter: an anonymous function. If you write this anonymous function in ES5 syntax, then it would contain a return statement:
+Regardless of how you write it, the `forEach()` method can be run on an array.  
+**The `forEach()` method accepts a single parameter: an anonymous function.**  
+If you write this anonymous function in ES5 syntax, then it would contain a return statement:
 ```js
 function(item) {
     return item * 10
@@ -151,7 +134,7 @@ Arrow functions are used extensively in JSX in React, and getting used to their 
 
 Now that you have completed this reading, you’ve learned about some alternative approaches, specifically by using function expressions and arrow functions.
 
-##### Embedded expressions
+## Embedded expressions
 
 Embedded expressions allow developers to insert the values of JavaScript variables into the HTML of the resulting React elements. Embedded expressions can also embed the outputs of functions. 
 
@@ -174,13 +157,12 @@ const result = <img src={url}></img>;
 ```
 
 Note that the double-quotes are not needed for the attribute value as JSX will automatically add these. 
+
 ## Ternary operators and functions in JSX
 
-In this reading, you will become familiar with how to use ternary expressions to achieve a random return, as well as how to invoke functions inside of JSX expressions.
+how to use ternary expressions to achieve a random return, as well as how to invoke functions inside of JSX expressions? 
 
-### A different way of writing an if...else conditional
-
-You are likely familiar with the structure of an if...else conditional. Here is a quick refresher:
+Here is a structure of an if...else conditional 
 
 ```js
 let name = 'Bob';
@@ -200,11 +182,11 @@ condition ? exprIfTrue : exprIfFalse
 **Parameters**
 
 `condition`  
-An expression whose value is used as a condition.
+An expression whose value is used as a condition.  
 `exprIfTrue`  
-An expression which is executed if the condition evaluates to a truthy value (one which equals or can be converted to true).
+An expression which is executed if the condition evaluates to a truthy value (one which equals or can be converted to true).  
 `exprIfFalse`  
-An expression which is executed if the condition is falsy (that is, has a value which can be converted to false).
+An expression which is executed if the condition is falsy (that is, has a value which can be converted to false).  
 
 so If I'd apply to our first example would be
 ```js
@@ -224,8 +206,7 @@ function Example() {
     );
 };
 ```
-Inside the <h1> element, the curly braces signal to React that you want it to parse the code inside as regular JavaScript.
-
+Inside the `<h1>` element, the curly braces signal to React that you want it to parse the code inside as regular JavaScript.
 
 ### Using function calls in JSX
 
@@ -243,7 +224,7 @@ function Example2() {
     );
 };
 ```
-In the Example2 component, built-in Math.floor() and Math.random() methods are being used, as well as some number values and arithmetic operators, to display a random number between 0 and 10. You can also extract this functionality into a separate function
+In the `Example2` component, built-in `Math.floor()` and `Math.random()` methods are being used, as well as some number values and arithmetic operators, to display a random number between 0 and 10. You can also extract this functionality into a separate function
 ```jsx
 function Example3() {
 
@@ -257,7 +238,7 @@ function Example3() {
 };
 ```
 
-The getRandomNum() function can also be written as a function declaration, or as a function expression. It does not have to be an arrow function.
+The `getRandomNum()` function can also be written as a function declaration, or as a function expression. It does not have to be an arrow function.
 
 But let's observe both alternatives: the function expression and the function declaration.
 
@@ -274,7 +255,7 @@ function getRandomNum() {
 };
 ```
 
-### Expressions as props
+## Expressions as props
 
 You've already learned a bit about using expressions as props. These can be, among other things, ternary operators, function calls, or some arithmetic operations.
 
@@ -296,11 +277,8 @@ export default function App() {
 ```
 In the example above, you' re using the `!bool`, that is, the NOT operator, which evaluates to true, since `!false` is true.
 
-Also, for the toggleBoolean prop to be rendered on the page, you're converting its boolean value to a string using the JavaScript's built-in toString method. 
-
+Also, for the `toggleBoolean` prop to be rendered on the page, you're converting its boolean value to a string using the JavaScript's built-in toString method.   
 Here's an extension of the above code which shows more ways to work with expressions as props in React.
-
-What is happening here is several props are being passed to the Example component, and rendering each of these props' values to the screen.
 ```jsx
 const bool = false;
 const str1 = "just";
@@ -327,11 +305,7 @@ export default function App() {
     );
 };
 ```
-In this improvement to the Example component, three props are being passed to it: toggleBoolean, math, and str. The toggleBoolean is unchanged, and the math prop and the str prop have been added.
-
-The math prop is there to show that you can add arithmetic operators and numbers inside JSX, and it will be evaluated just like it does in plain JavaScript. 
-
-The str prop is there to show that you can concatenate strings, as well as strings and variables - which is shown by adding string literals of “ another ” and “string” to the str1 variable.
+What is happening here is several props are being passed to the Example component, and rendering each of these props' values to the screen.
 
 In summary, just like you can use expressions inside function components, you can also use them as prop values inside JSX elements, when rendering those function components.
 
