@@ -1,4 +1,4 @@
-# Dynamic Events and How to handle them
+ Dynamic Events and How to handle them
 
 ### Type of Events
 in JSX click handling that is equevilent to html `onclick` is `onClick` is camelCase 
@@ -31,7 +31,6 @@ function Btn() {
         </div>
     );
 }
-```
 
 ### Eventful issues
 
