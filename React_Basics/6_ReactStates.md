@@ -49,7 +49,7 @@ function App(){
 ```
 Let's examine an updated version of this stateful function component. Notice that the `setGreet` variable is not actually run, that is something that is done elsewhere. 
 
-<b style="color: #EE5355">You can't use the state's setting variable (setVar) from your state directly. Instead of updating it directly, I can update it based on a click event. you must make sure that you use event handling attributes in JSX syntax or use it in function that is refrenced by event handling</b>
+**You can't use the state's setting variable (setVar) from your state directly. Instead of updating it directly, I can update it based on a click event. you must make sure that you use event handling attributes in JSX syntax or use it in function that is refrenced by event handling**
 
 ### Prop drilling
 
@@ -98,28 +98,14 @@ function App() {
 
 export default App;
 ```
-This app is simple enough that you should be able to understand it on your own. Let’s address the main points to highlight what is happening in the code above.
-
-The top-most component of this app is the App component. The App component returns the Main component. The Main component accepts a single attribute, named msg, as in “message”.
-
-At the very top of the app, the Main function declares how the Main component should behave. The Main component is responsible for rendering the Header component. Note that when the Header component is rendered from inside Main, it also receives the msg prop.
-
-The Header component’s function declaration renders an h1 that reads “Header here”, then another component named Wrapper. Note that the naming here is irrelevant – the components Header and Wrapper are named to make it a bit more like it might appear in a real app – but ultimately, the focus is on having multiple components, rather than describing specific component names properly.
-
-So, the Header component’s function declaration has a return statement, which renders the Wrapper component with the msg prop passed to it.
-
-In the Wrapper component’s function declaration, there’s an h2 that reads “Wrapper here”, in addition to the rendering of the Button component, which also receives the msg attribute.
-
-Finally, the Button component’s function declaration is coded to receive the props object, then inside of the wrapping div, show an h3. The h3 reads “This is the Button component”, and then, under that, there’s a button element with an onClick event-handling attribute. This is passed to an arrow function which should alert the string that comes from the props.msg prop.
-
-All this code results in the following UI rendered on the screen:
-The three components rendered on screen.
+This app is simple enough that you should be able to understand it on your own. 
 
 ![](../Pics/propDrilling_2.png)
 
 This screenshot illustrates the boundaries of each component. The Main component can’t be found in the UI because it’s just rendering the Header component. The Header component then renders the Wrapper component, and the Wrapper component then renders the Button component.
 
 Note that the string that was passed on and on through each of the children component’s props’ objects is not found anywhere. However, it will appear when you click the “Click me!” button, as an alert:
+
 ![](../Pics/popDrilling_1.png)
 
 ## React state management
@@ -134,20 +120,16 @@ To set it up, you need to add a piece of code that will be your **context provid
 
 ### Using useContext in Practice
 
-Let’s dive into a simple example to illustrate how useContext works. Suppose we have a React application with a theme context that controls the appearance of our components. First, we’ll create a context using React.createContext():
+Let’s dive into a simple example to illustrate how `useContext` works. Suppose we have a React application with a `themeContext` that controls the appearance of our components. First, we’ll create a context using `createContext()`:
 
 
 ```js
 // ThemeContext.js
 import React from 'react';
-
-const ThemeContext = React.createContext('light');
-
+const ThemeContext = createContext('light');
 export default ThemeContext;
 ```
-
-Now, we can create a provider component to wrap our application and supply the theme context:
-
+Now, we can create a provider component to wrap our application and supply the `themeContext`:
 ```js
 // ThemeProvider.js
 import React, { useState } from 'react';
@@ -155,7 +137,6 @@ import ThemeContext from './ThemeContext';
 
 const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState('light');
-
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
@@ -166,11 +147,9 @@ const ThemeProvider = ({ children }) => {
     </ThemeContext.Provider>
   );
 };
-
 export default ThemeProvider;
 ```
-
-With the provider in place, any component nested within it can access the theme context using the useContext hook:
+With the provider in place, any component nested within it can access the theme context using the `useContext` hook:
 ```js
 // ThemedButton.js
 import React, { useContext } from 'react';
@@ -178,24 +157,19 @@ import ThemeContext from './ThemeContext';
 
 const ThemedButton = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
-
   return (
     <button
       onClick={toggleTheme}
-      style={{ background: theme === 'light' ? '#fff' : '#333', color: theme === 'light' ? '#333' : '#fff' }}
-    >
+      style={{ background: theme === 'light' ? '#fff' : '#333', color: theme === 'light' ? '#333' : '#fff' }}>
       Toggle Theme
     </button>
   );
 };
-
 export default ThemedButton;
 ```
-`useContext()` = React Hook that allows you to share values between multiple levels of components without passing props through each level
+`useContext()`: React Hook that allows you to share values between multiple levels of components without passing props through each level
 
-In this example, ThemedButton component consumes the theme context using useContext hook, allowing it to access the current theme and toggle function directly.
-
-Let’s expand on the blog post with additional examples showcasing the versatility of the useContext hook.
+In this example, `ThemedButton` component consumes the `themeContext` using `useContext` hook, allowing it to access the current theme and toggle function directly. Let’s expand on the blog post with additional examples showcasing the versatility of the `useContext` hook.
 ```js
 // PROVIDER COMPONENT
 import {createContext} from 'react';
@@ -203,7 +177,8 @@ export const MyContext = createContext();
 <MyContext.Provider value={value}>
 <Child />
 </MyContext.Provider>
-
+```
+```js
 // CONSUMER COMPONENTS
 import React, { useContext } from 'react';
 import { MyContext } from './ComponentA';
@@ -212,8 +187,6 @@ const value = useContext(MyContext);
 ### Another Example could be
 `MealsProvider` provide context states data and gives to all commponents wrapped inside App component  
 `MealsProvider` components holds all the states which is organized with help of context API 
-
-
 ```js
 // App.js
 import MealsProvider from './MealsProvider'
@@ -228,7 +201,6 @@ function App() {
         <Counter />
       <MealsProvider />
     </div>
-
   )
 }
 export default App
@@ -252,11 +224,10 @@ function App() {
         <Counter />
       <MealsProvider />
     </div>
-
   )
 }
 ```
-The children value is just returned from the `mealsProvider`, wraps into the   `MealsContexts.Provider` JSX elements.   
+The children value is just returned from the `mealsProvider`, wraps into the `MealsContexts.Provider` JSX elements.   
 The `MealsContexts.Provider` JSX elements comes with the `value` attribute. This value attributes gets assigned the `meals` object, which is the value I sent to the `useState` variable earlier. 
 **All `children` has access to the `value` prop**
 ```JS
