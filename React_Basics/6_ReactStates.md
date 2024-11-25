@@ -118,58 +118,78 @@ To set it up, you need to add a piece of code that will be your **context provid
 
 
 
-### Using useContext in Practice
+React Context is a way to manage state globally. It can be used together with the useState Hook to share state between deeply nested components more easily than with useState alone.  
+The Problem State should be held by the highest parent component in the stack that requires access to the state. To illustrate, we have many nested components. The component at the top and bottom of the stack need access to the state. To do this without Context, we will need to pass the state as "props" through each nested component. This is called "prop drilling".
 
-Let’s dive into a simple example to illustrate how `useContext` works. Suppose we have a React application with a `themeContext` that controls the appearance of our components. First, we’ll create a context using `createContext()`:
+### The Problem
 
-
+State should be held by the highest parent component in the stack that requires access to the state. To illustrate, we have many nested components. The component at the top and bottom of the stack need access to the state. To do this without Context, we will need to pass the state as "props" through each nested component. This is called "prop drilling".
 ```js
-// ThemeContext.js
-import React from 'react';
-const ThemeContext = createContext('light');
-export default ThemeContext;
+function Component1() {
+  const [user, setUser] = useState("Jesse Hall");
+  return (
+    <>
+      <h1>{`Hello ${user}!`}</h1>
+      <Component2 user={user} />
+    </>
+  );
+}
+function Component2({ user }) {
+  return (
+    <>
+      <h1>Component 2</h1>
+      <Component3 user={user} />
+    </>
+  );
+}
+function Component3({ user }) {
+  return (
+    <>
+      <h1>Component 3</h1>
+      <h2>{`Hello ${user} again!`}</h2>
+    </>
+  );
+}
 ```
-Now, we can create a provider component to wrap our application and supply the `themeContext`:
-```js
-// ThemeProvider.js
-import React, { useState } from 'react';
-import ThemeContext from './ThemeContext';
+### The Solution
 
-const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState('light');
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
+The solution is Create Context To create context, you must Import createContext and initialize it
+```js
+import { useState, createContext } from "react";
+import ReactDOM from "react-dom/client";
+const UserContext = createContext()
+```
+Next we'll use the Context Provider to wrap the tree of components that need the state Context.
+Context Provider Wrap child components in the Context Provider and supply the state value.
+```js
+function Component1() {
+  const [user, setUser] = useState("Jesse Hall");
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
+    <UserContext.Provider value={user}>
+      <h1>{`Hello ${user}!`}</h1>
+      <Component2 user={user} />
+    </UserContext.Provider>
   );
-};
-export default ThemeProvider;
+}
 ```
-With the provider in place, any component nested within it can access the theme context using the `useContext` hook:
+Now, all components in this tree will have access to the `userContext`. Use the `useContext` Hook In order to use the Context in a child component, we need to access it using the `useContext` Hook. First, include the useContext in the import statement:
 ```js
-// ThemedButton.js
-import React, { useContext } from 'react';
-import ThemeContext from './ThemeContext';
-
-const ThemedButton = () => {
-  const { theme, toggleTheme } = useContext(ThemeContext);
-  return (
-    <button
-      onClick={toggleTheme}
-      style={{ background: theme === 'light' ? '#fff' : '#333', color: theme === 'light' ? '#333' : '#fff' }}>
-      Toggle Theme
-    </button>
-  );
-};
-export default ThemedButton;
+import { useState, createContext, useContext } from "react";
 ```
-`useContext()`: React Hook that allows you to share values between multiple levels of components without passing props through each level
+Then you can access the user Context in all components:
+```js
+function Component5() {
+  const user = useContext(UserContext);
 
-In this example, `ThemedButton` component consumes the `themeContext` using `useContext` hook, allowing it to access the current theme and toggle function directly. Let’s expand on the blog post with additional examples showcasing the versatility of the `useContext` hook.
+  return (
+    <>
+      <h1>Component 5</h1>
+      <h2>{`Hello ${user} again!`}</h2>
+    </>
+  );
+}
+```
 ```js
 // PROVIDER COMPONENT
 import {createContext} from 'react';
@@ -184,7 +204,8 @@ import React, { useContext } from 'react';
 import { MyContext } from './ComponentA';
 const value = useContext(MyContext);
 ```
-### Another Example could be
+### Real-world Implementation
+
 `MealsProvider` provide context states data and gives to all commponents wrapped inside App component  
 `MealsProvider` components holds all the states which is organized with help of context API 
 ```js
@@ -214,19 +235,7 @@ const MealsContext = createContext()
 const todaysMeals = ['Backed Beans', 'Backed sweet Potatos', 'Backed Potatoes']
 ```   
 I then code the `mealsProvider` as an ES6 function that accepts the children value. **This value holds everything that we wrapped into the `mealsProvider` component when it gets rendered inside the `App` component.**    
-which in this case it `MealsList` and `Counter` components as a children of `MealsProvider` component
-```js
-function App() {
-  return (
-    <div>
-      <MealsProvider />
-        <MealsList />
-        <Counter />
-      <MealsProvider />
-    </div>
-  )
-}
-```
+which in this case it `MealsList` and `Counter` components as a children of `MealsProvider` component  
 The children value is just returned from the `mealsProvider`, wraps into the `MealsContexts.Provider` JSX elements.   
 The `MealsContexts.Provider` JSX elements comes with the `value` attribute. This value attributes gets assigned the `meals` object, which is the value I sent to the `useState` variable earlier. 
 **All `children` has access to the `value` prop**
@@ -244,7 +253,7 @@ export const useMealsListContext = () => useContext(MealsContext)
 export default MealsProvider
 ``` 
 Before exporting the `mealsProvider` component, set a `useMealsListContexts` variable to the `useContext` and passing the `mealsContexts` as its single argument.   
-This makes it easier for me to destructure the meals objects from the use meals list context variable.  
+This makes it easier for me to destructure the meals objects from the `useMealsListContext` variable.  
 
 Finally, in the `mealsList` component,   I'm accessing the context date by importing the `useMealsListContext` from the `mealsProvider` file.   
  
@@ -273,6 +282,8 @@ Once I destructure the `meals` property from that object, all I have left is the
 
 Lastly, let's examine the `Counter` component. Note that it gets the context data in the same way that the `mealsList` component does. This is the usefulness of having a centralized state store. It allows me to simply reach into the states provider directly from whatever components needed without having to do prop drilling or lifting upstate. 
 
+![](../Pics/mealsListContextAPI.png)
+
 Next, let me show you how the `useReducer` hook works. You can think of it as a superpower to `useStates`. While the `useStates` hook starts with an initial state, the `useReducer` also gets a reducer function in addition to the initial state. 
 ```js
 // App.js
@@ -285,26 +296,35 @@ function App() {
   const initialState = {money: 100}
   const [state, dispatch] = useReducer(reducer, initialState)
 ```
-Let's say I have a rideshare app that represents the amount of money in my wallet. The initial state is a value of `100` and the action of picking up a customer increases the value while the action of refueling my vehicle decreases it. I've applied to `reducer` a function which takes in the `state` and the `action`. Instead of using `setState` like in the `useState` hook, I'll use the `dispatch` method of the `useReducer` hook, which accepts an object literal with a single property `type` set to a matching `action.type` whose behavior is defined inside the reducer function. 
-if we console.log `useReducer` 
-```
+Let's say I have a rideshare app that represents the amount of money in my wallet. The initial state is a value of `100` and the action of picking up a customer increases the value while the action of refueling my vehicle decreases it. I've applied to `reducer` a function which takes in the `state` and the `action`. Instead of using `setState` like in the `useState` hook, I'll use the `dispatch` method of the `useReducer` hook, which accepts an object literal with a single property `type` set to a matching `action.type` whose behavior is defined inside the reducer function.  if we console.log `useReducer` 
+```js
 Array(2)
 0: {money: 100}
     money: 100
 1: ƒ ()
     length: 1
-    name: "bound dispatchReducerAction"
-    arguments: []
-[[Prototype]]: Array(0)
 ```
 ```js
-return (
+import react from 'react'
+import { useReducer } from 'react'
+const reducer = (state, action) => {
+  if (action.type === 'ride') return {money: state.money + 10}
+  if (action.type === 'fuel') return {money: state.money - 50}
+  return new Error()
+}
+function App() {
+  const initialState = {money: 100}
+  const [state, dispatch] = useReducer(reducer, initialState)
+    return (
     <div>
     <h1>Wallet: {state.money}</h1>
       <button onClick={() => dispatch({type: 'ride'})}> new customer</button>
       <button onClick={() => dispatch({type: 'fuel'})}> Refill tank</button>
     </div>
 )
+    }
+
+export default App
 ```
 
 
