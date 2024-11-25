@@ -1,4 +1,4 @@
-# Dynamic Events and How to handle them
+ Dynamic Events and How to handle them
 
 ### Type of Events
 in JSX click handling that is equevilent to html `onclick` is `onClick` is camelCase 
@@ -31,7 +31,7 @@ function Btn() {
         </div>
     );
 }
-
+```
 ### Eventful issues
 
 You’re now aware that React can work with most of the same events found in HTML, although React handles them differently.
