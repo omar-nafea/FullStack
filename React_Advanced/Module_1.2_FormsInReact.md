@@ -150,8 +150,295 @@ The below table summarizes the features that each one supports:
 | Several inputs for one piece of data      | No           | Yes        |
 | Dynamic inputs                            | No           | Yes        |
 
+
 ## Create a controlled form component in React. 
 
-## Share component state by lifting state up to the closest common ancestor. 
+```js
+function App(){
+    return (
+        <div>
+            <form>
+                <fieldset>
+                    <div className="field">
+                        <label>Name:</label>
+                        <input type="text"  name="name" />
+                    </div>
+                    <button type="submit">Submit</button>
+                </fieldset>
+            </form>
+        </div>
+    )
+}
 
-## Share global state using React Context
+export default App
+```  
+| inserting | after submitting |
+|-----------|------------------|
+| ![](../Pics/johnCreatingFromComponent.png) | ![](../Pics/afterSubmitionFormInReact.png) |
+
+I type John as the name and click on the Submit button. By doing so, the default action of the form kicks in, which is a get request to the root and a page refresh. In React, this current implementation is considered an uncontrolled form, having all the states living in the DOM. 
+
+```js
+function App(){
+    const [name, setName] = useState("")
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        setName("")
+    }
+    return (
+        <div>
+            <form onSubmit={handleSubmit}>
+                <fieldset>
+                    <div className="field">
+                        <label htmlFor="name">Name:</label>
+                        <input 
+                        type="text" id="name"  name="name"
+                        value={name} onChange={(e) => setName(e.target.value)}/>
+                    </div>
+                    <button disabled={!name} type="submit">Submit</button>
+                </fieldset>
+            </form>
+        </div>
+    )
+}
+
+export default App
+```  
+
+**General Overview**
+
+- Controlled Components: A React form element whose value is controlled by React state using the value and onChange props.
+- Benefits:
+    - Keeps form state in sync with React state.
+    - Allows enhanced control over form submission and validation.
+    - Enables easier integration of dynamic form behavior.
+
+##### Steps for Creating a Controlled Form
+
+**Connect State to Input:**
+
+- Use the value prop to bind the input to the state.
+- Use the onChange prop to update the state on each keystroke.
+```js
+<input 
+  type="text" 
+  id="name" 
+  name="name"
+  value={name} 
+  onChange={(e) => setName(e.target.value)} 
+/>
+```
+**Form Submission Control:**
+
+- Use the onSubmit event to handle form submission.
+- Prevent the default page reload behavior using e.preventDefault().
+```js
+const handleSubmit = (e) => {
+  e.preventDefault();
+  console.log("Form submitted successfully");
+  setName(""); // Clear input after submission
+}
+```
+**Preventing Empty Submissions:**
+
+- Disable the submit button when the input is empty.
+```js
+<button disabled={!name} type="submit">Submit</button>
+```
+**Accessibility Improvement:**
+
+- Connect the label to the input using the `htmlFor` attribute.
+```js
+<label htmlFor="name">Name:</label>
+```
+
+**Key Concepts**
+
+- Preventing Default Behavior:
+    - Use `e.preventDefault()` in onSubmit to stop page refresh or form submission to the server.
+
+- Button Disabling Logic:
+    - If name is empty, disabled is `true`, preventing the form from submitting.
+
+- Accessibility via Label-Input Association:
+    - In React, use `htmlFor` instead of for to associate labels with their respective inputs, improving accessibility and usability.
+
+**Common Mistakes to Avoid**
+
+- Forgetting to call `preventDefault()` in the `handleSubmit` function can cause unexpected page reloads.
+- Not binding value and `onChange` can result in an uncontrolled component warning.
+- Using for instead of `htmlFor` will result in errors since for is reserved in JavaScript.
+
+```js
+import react from 'react'
+import { useState } from "react"
+
+function App(){
+    const [score, setScore] = useState("10");
+    const [comment, setComment] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (Number(score) <= 5 && comment.length <= 10) {
+      alert("please provide a comment explaining why the experience was poor.")
+      return
+
+    }
+      console.log("Form submitted")
+      setComment("")
+      setScore("10")
+  }
+    
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <fieldset>
+          <div>
+            <label>Score: {score}</label>
+            <input type="range" max="10" min="0" 
+            value={score} onChange={e => setScore(e.target.value)}/>
+          </div>
+          <div>
+            <label>Comment</label>
+            <textarea  
+            value={comment} onChange={e => setComment(e.target.value)}/>
+          </div>
+          <button type="submit">Submit</button>
+        </fieldset>
+      </form>
+    </div>
+  )
+}
+
+export default App
+```
+
+<button type="submit" disabled={!getIsFormValid()}>
+
+Breakdown:
+
+`<button>`
+- This is an HTML button element. In this case, it is being used for form submission.
+
+`type="submit"`
+- Specifies that the button is of type "submit," meaning clicking it will trigger the form's onSubmit event.
+
+`disabled` Attribute
+- Determines whether the button is enabled or disabled. A disabled button cannot be interacted with or clicked by the user.
+
+`!getIsFormValid()`
+- `getIsFormValid()` is likely a function that returns a boolean value indicating whether the form is valid or not.
+- The `!` operator negates the result of getIsFormValid(), meaning:
+  - If `getIsFormValid()` returns true (form is valid), !true becomes false, and the button is enabled.
+  - If `getIsFormValid()` returns false (form is invalid), !false becomes true, and the button is disabled.
+
+```js
+import "./App.css";
+import { useState } from "react";
+import { validateEmail } from "./utils";
+
+const PasswordErrorMessage = () => {
+  return (
+    <p className="FieldError">Password should have at least 8 characters</p>
+  );
+};
+
+function App() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState({
+    value: "",
+    isTouched: false,
+  });
+  const [role, setRole] = useState("role");
+
+  const getIsFormValid = () => {
+    // Implement this function
+    if (firstName && password.value.length >= 8 &&
+      (role === "individual" || role === "business") &&
+      validateEmail(email)) {
+      return true;
+    } else {
+        return false;
+      }
+  };
+  const clearForm = () => {
+    // Implement this function
+    setFirstName("")
+    setLastName("")
+    setEmail("")
+    setPassword({
+    value: "",
+    isTouched: false,
+  })
+    setRole("role")
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    alert("Account created!");
+    clearForm();
+  };
+
+
+  return (
+    <div className="App">
+      <form onSubmit={handleSubmit}>
+        <fieldset>
+          <h2>Sign Up</h2>
+          <div className="Field">
+            <label>
+              First name <sup>*</sup>
+            </label>
+            <input placeholder="First name" value={firstName}
+            onChange={e => setFirstName(e.target.value)}
+            />
+          </div>
+          <div className="Field">
+            <label>Last name</label>
+            <input placeholder="Last name" value={lastName}
+            onChange={e => setLastName(e.target.value)} />
+          </div>
+          <div className="Field">
+            <label>
+              Email address <sup>*</sup>
+            </label>
+            <input type="email" placeholder="Email address" value={email}
+            onChange={e => 
+              setEmail(e.target.value)
+              } />
+          </div>
+          <div className="Field">
+            <label>
+              Password <sup>*</sup>
+            </label>
+            <input placeholder="Password" type="password" value={password.value}
+              onChange={(e) => {
+                setPassword({...password, value: (e.target.value)})
+              }}
+              onBlur={() => {
+                setPassword({ ...password, isTouched: true })
+              }} />
+{password.isTouched && password.value.length < 8 && <PasswordErrorMessage />}          </div>
+          <div className="Field">
+            <label>
+              Role <sup>*</sup>
+            </label>
+            <select value={role}
+            onChange={e => setRole(e.target.value)}>
+              <option value="role">Role</option>
+              <option value="individual">Individual</option>
+              <option value="business">Business</option>
+            </select>
+          </div>
+          <button type="submit" disabled={!getIsFormValid()}>
+            Create account
+          </button>
+        </fieldset>
+      </form>
+    </div>
+  );
+}
+
+export default App;
+```
