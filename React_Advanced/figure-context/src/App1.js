@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {useState} from "react"
 
 function GoalForm(props){
@@ -46,6 +46,10 @@ export default function App() {
     function addGoal(goal) {
         updateAllGoals([...allGoals, goal])
     }
+    useEffect(()=>{
+        console.log(allGoals)
+    },[allGoals
+    ])
     return (
         <div>
             <GoalForm onAdd={addGoal}  />
