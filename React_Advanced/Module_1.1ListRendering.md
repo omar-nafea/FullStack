@@ -205,6 +205,37 @@ console.log(kvArray);
 // ]
 ```
 
+**Optional Chaining**
+
+The `?` in `data?.map(...)` is part of optional chaining, a feature introduced in JavaScript (ES2020). It provides a safe way to access properties or call methods on objects that may be `null` or `undefined` without throwing an error. 
+
+Breaking Down `data?.map(...)`
+
+1. `data`:
+    - This is a variable, likely holding an array (e.g., a list of users). If data is `null` or `undefined`, attempting to call `data.map(...)` would throw an error because you can't invoke methods on `null` or `undefined`.
+
+2. `?.` (Optional Chaining):
+        - This checks whether data is not `null` or `undefined` before attempting to access `.map(...)`.
+        - If data is `null` or `undefined`, the expression `data?.map(...)` will return `undefined` instead of throwing an `error`.
+
+**Why Use Optional Chaining?**
+
+It helps to avoid runtime errors and makes code more concise and readable when working with **objects** or **arrays** that might not always be defined.
+
+**Without Optional Chaining**
+
+```js
+if (data && Array.isArray(data)) {
+  data.map((user) => console.log(user.name));
+}
+```
+
+**With Optional Chaining**
+
+```js
+data?.map((user) => console.log(user.name));
+```
+Both examples achieve the same goal, but the second one is shorter and cleaner.
 
 ### Keys in React
 
