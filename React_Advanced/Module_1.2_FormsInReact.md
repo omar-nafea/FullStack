@@ -150,9 +150,6 @@ The below table summarizes the features that each one supports:
 | Several inputs for one piece of data      | No           | Yes        |
 | Dynamic inputs                            | No           | Yes        |
 
-<<<<<<< HEAD
-
-=======
 Step 1
 
 The first step involves converting all form elements into controlled components. Since the pieces of local state have been already defined at the top of the component, you just have to assign each state piece to the value prop from each input element. To be able to account for state updates, each input should also define the onChange prop and call the state setter with the value property from the event target as parameter.
@@ -177,7 +174,6 @@ const getIsFormValid = () => {
    role !== "role" 
 )}
 ```
->>>>>>> de7cbca75bf4f7b0f4c2d173dda9629af20a244f
 ## Create a controlled form component in React. 
 
 ```js
