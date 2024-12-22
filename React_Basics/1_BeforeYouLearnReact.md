@@ -292,13 +292,13 @@ In this reading, you’ll use a transpiler to break JSX code to plain JavaScript
 Remember first that JSX code in React is just syntactic sugar - meaning, a nicer way to write some hard-to-read code.
 
 For the browser to understand this syntactic sugar, you need to transpile JSX down to plain JavaScript code.
-```jsx
+```js
 function App() {
   return <h1>Hello there</h1>
 }
 ```
 … if you used the Babel transpiler to transpile this JSX syntactic sugar code down to plain JavaScript code, you’d get back some unusual code:
-```jsx
+```js
 "use strict";
 function App() {
     return /*#__PURE__*/React.createElement("h1", null, "Hello there");
@@ -316,7 +316,7 @@ This means that the createElement function receives three arguments:
 
 Interestingly, the inner content that will go inside the wrapping element can also be a call to the `createElement` function.
 
-```jsx
+```js
 function App() { 
   return (
     <div>
