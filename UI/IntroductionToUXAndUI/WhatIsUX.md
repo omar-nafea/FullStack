@@ -1,4 +1,6 @@
 
+# What Is UX
+
 UX is about a customer or user experience UX is about asking questions, questions like what are the customers' needs? What's stopping them from achieving their goals? How intuitive is the website to use? Can users order food easily? Can customers get from one section to another quickly and efficiently, like selecting dishes and customizing their order? And it's about providing answers to those questions in the product.
 
 UI provides information that users first see and then interact with, elements like type, color buttons, shapes, icons and images. Successful UI design has to do with grouping and assembling these elements in a way that helps users achieve their goals quickly and efficiently while looking beautiful and adhering
@@ -15,10 +17,10 @@ The process is **iterative**, you may have to go back to previous steps to adjus
 - You then may have some ideas to work on. 
 - Then you prototype your intended solution and test it
 
-### usability
+### Usability
 an essential concept in UX and UI design
 
-Usability measures how intuitive or easier product is to use.it's proposed to evaluate usability through five usability components.
+Usability measures how intuitive or easier product is to use. Jakob Nielsen proposes to evaluate usability through five usability components.
 - **learnability**: When the customers are trying to order for delivery, we wants the process to be easy to learn from the first time they do it. 
 - **efficiency**: What if users want to change their order? Is it easy to do, and can they do it quickly and efficiently? 
 - **memorability**: What if a user gets distracted? Is it easy to remember where they were when they return? How quickly can they find where they were?  
@@ -41,7 +43,7 @@ In this reading, you will learn about artifacts in the UX process. Artifacts are
 
 ## User personas
 
-A user persona is a model or character that portrays a possible user of your website or app. Personas aid the design team in focusing on the end users while designing a product. Personas have been used in marketing since the middle of the 1990s. They are essential to the software development process's user experience research stage. Personas help a product team constantly focus on their target users, ensuring that the designed product fits their needs and requirements. 
+A user persona is a model or character that portrays a possible user of your website or app. Personas aid the design team in focusing on the end users while designing a product. Personas have been used in marketing since the middle of the 1990's. They are essential to the software development process's user experience research stage. Personas help a product team constantly focus on their target users, ensuring that the designed product fits their needs and requirements. 
 
 Multiple user types can engage with a website or app. Developing user personas helps determine the range of users, their age group, sociometric position etc. User research is the first step in creating a user persona. UX designers can understand users' behavior and motivations by observing them and designing accordingly. A few user research methods are conducting customer interviews, making assumptions, and using web analytics, all of which are described in the next section. 
 
@@ -65,7 +67,7 @@ Once your research is complete, you divide the information into customer persona
 
 First, add a header to your persona; this includes a fictional name, an image, a demographic profile and a quote that summarizes what matters most to your persona. These features ensure your persona is memorable and helps the design team focus on whom they're designing for. Add a personal background, a mini-biography of sorts. Then you create a psychological profile such as the user's needs, interests, motivations, and pain points. 
 
-This allows you to understand better why your user behaves in a certain way, including why they need or want to use your product. For Tilly, in the above example, it would be for expediency. When creating user personas, remember to focus on the context of the product you're designing while you want to build up a realistic character. There's no need to include pointless details that won't influence the final design. 
+This allows you to understand better why your user behaves in a certain way, including why they need or want to use your product. For Tilly, in the above example, it would be for expediency. When creating user personas, remember to focus on the context of the product you're designing while you want to build up a realistic character. **There's no need to include pointless details that won't influence the final design**. 
 
 ## User stories
 
@@ -93,9 +95,7 @@ Scenario mapping is the first step in scenario planning. The design team, develo
 
 ## Storyboards
 
-A storyboard is a visual representation of how a user will interact with a product. Designers can create different storyboards: sketches, illustrations and screenshots, slideshows and animations, or live demos. Here's a sketched storyboard example:
-
-![Creating a customer persona group](../Pics/)
+A storyboard is a visual representation of how a user will interact with a product. Designers can create different storyboards: sketches, illustrations and screenshots, slideshows and animations, or live demos. 
 
 Storyboarding is an excellent method for visually communicating design concepts to teams, stakeholders, and end users. Visualizing a design idea with an interactive storyboard, like high-fidelity prototypes closely resembling the final product, will help the audience remember, empathize, and connect with it. 
 
@@ -111,4 +111,39 @@ Then you begin to sketch out the basic idea for each scene and build it up with 
 
 ## Summary
 
-In this reading, you learned that the first step in designing for your users is to conduct user research, typically through user interviews, observations and other quantitative methods. You focused on empathy tools as artifacts in the UX process and how they are used. You specifically learned about user personas, scenarios, user stories, and storyboards. Remember that with each of these tools, it is essential to document the data you gather so you can use it as you create your artifacts in the UX process. It will also serve to back up your decision-making. Utilizing user personas, user stories, scenarios, and storyboards will assist you in identifying essential information about your users. They will help you create products that will delight them time and again. Everything you do to get closer to the user is a positive step towards a usable and enjoyable product.
+In this reading, you learned that the first step in designing for your users is to conduct user research, typically through user interviews, observations and other quantitative methods. You focused on empathy tools as artifacts in the UX process and how they are used. You specifically learned about user personas, scenarios, user stories, and storyboards. 
+Remember that with each of these tools, it is essential to **document** the data you gather so you can use it as you create your artifacts in the UX process. It will also serve to back up your decision-making. Utilizing user personas, user stories, scenarios, and storyboards will assist you in identifying essential information about your users. They will help you create products that will delight them time and again. Everything you do to get closer to the user is a positive step towards a usable and enjoyable product.
+
+
+
+
+### Overview of the UX process
+
+UX is a very process driven discipline. There are several different models that you can follow in carrying out a UX design or redesign. While there is no one size fits all approach, following some key steps will help ensure the successful implementation of a rich user experience design. 
+
+The five stages of the UX process are 
+- empathize
+- define 
+- ideate
+- prototype 
+- test
+
+It is important to keep in mind that UX is an iterative process which means you may have to go back to the previous stage to adjust and refine it.
+
+
+Let's start with the empathize stage. You get permission to interview and observe Adrian's customers at various stages of trying to complete tasks on the restaurant website like ordering a meal for delivery. You want to listen to their frustrations. The key here is to understand your user's needs. From the results of this research, you can create a persona that you can then reference throughout the design process. You will also create an empathy, map a scenario and journey map to empathize more with this persona. This will also keep your ideas grounded so to avoid making assumptions. 
+
+
+The second stage in the process you will follow is the defined stage. You collate and distill all of the information collected from your users and identify the key problems and needs that they are having. You also prioritize these frustrations or pain points by importance. You now know who your users are, what their frustrations are and what problems you need to solve. You will create a user needs statement that clearly outlines the needs your users have. 
+
+Once you know the issues and who you're solving for, you can ideate. Ideating is about generating ideas. You can do this by sketching, brainstorming, mind mapping and even handwriting notes. The key here is to keep an open mind and not commit to one specific idea and this may be iterated throughout the design process. To iterate is to reflect on your work and refine and improve your design. You will sketch out your ideas into something that will address the little lemon customers needs. 
+
+You will then develop them into wire frames. A wire frame is a two dimensional representation of the user interface which is concerned with the placement and hierarchy of content the functionalities that are offered. And the expected actions that users will take. 
+
+Next comes the prototype, which is a simulation of the final product. You have iterated and refined your ideas into a fresh new solution but you cannot assume it will work for everyone and release it just yet. You should simulate how it will behave first with a prototype, take your wire frame and flesh it out. Give it some color, put in some buttons and text and make it interactive. You can simulate a real scenario for your customers to help them achieve their required goals. 
+
+Since UX is an iterative process based on user and client feedback, you may also have to iterate at this stage. So your ideas are constantly being refined into something approaching a final design solution. 
+
+Then you will test your design, the testing stages where you present your solution to users and get their feedback. You create a test script with some clear instructions focusing on achieving a task or tasks. Your test participants, customers in this case, interact with your prototype while trying to achieve the task at hand. Any frustrations can be communicated and highlighted at this stage and you can go back and address them before the next stage of the process. 
+
+The final stages, the build stage, you have listened to users empathize with them and aim to solve their needs through iterative design techniques. You've watched them use your product and have tweeted to make it easier and more intuitive. Now it's time to build, ensuring you follow these steps can help ensure you are going to build a product that addresses the needs of your users and offers a great user experience. 
