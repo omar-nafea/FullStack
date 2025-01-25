@@ -2,25 +2,22 @@
 
 ### Network
 
-- Two devices connected via wire or wireless connection forming a Network  
-
-![](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/How_does_the_Internet_work/internet-schema-1.png)  
+Two devices connected via wire or wireless connection forming a Network  
 
 You can connect multiple devices together to this network but this become very complicated very quickly as each device need to connect to each device
 
-![Network of multiple devices](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/How_does_the_Internet_work/internet-schema-2.png "Network_of_multiple_devices")
 
 ### Network Switch
 
 - this problem is solved by Network switch that connect multiple devices and allow them to communicate with each other
 
-![Network Switch](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/How_does_the_Internet_work/internet-schema-3.png "Network_Switch")
+![Network Switch](../Pics/switch.png "Network_Switch")
 
 ### Internet
 
 - The network switch can connect to other network switches, These network switches then connect to more network switches until you have something called an interconnected network. aka **Internet**  
 
-![Interconnected Network](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/How_does_the_Internet_work/internet-schema-5.png "Interconnected_Network")  
+![Interconnected Network](../Pics/internet-schema-5.png "Interconnected_Network")  
 
 ### Web Server
 
@@ -50,7 +47,8 @@ A web browser takes you anywhere on the internet. It retrieves information from 
 
 Sadly, not all browser makers choose to interpret the format in the same way. For users, this means that a website can look and function differently. Creating consistency between browsers, so that any user can enjoy the internet, regardless of the browser they choose, is called web standards.
 
-When the web browser fetches data from an internet connected server, it uses a piece of software called a rendering engine to translate that data into text and images. This data is written in Hypertext Markup Language (HTML) and web browsers read this code to create what we see, hear and experience on the internet.
+When the web browser fetches data from an internet connected server,   
+**It uses a piece of software called a rendering engine to translate that data into text and images.** This data is written in Hypertext Markup Language (HTML) and web browsers read this code to create what we see, hear and experience on the internet.
 
 Hyperlinks allow users to follow a path to other pages or sites on the web. Every webpage, image and video has its own unique Uniform Resource Locator (URL), which is also known as a web address. When a browser visits a server for data, the web address tells the browser where to look for each item that is described in the html, which then tells the browser where it goes on the web page.
 

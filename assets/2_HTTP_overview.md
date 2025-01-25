@@ -4,7 +4,8 @@ HTTP is a protocol for fetching resources such as HTML documents. It is the foun
 
 ![](https://mdn.github.io/shared-assets/images/diagrams/http/overview/fetching-a-page.svg)
 
-Clients and servers communicate by exchanging individual messages (as opposed to a stream of data). The messages sent by the client are called requests and the messages sent by the server as an answer are called responses. 
+Clients and servers 
+communicate by exchanging individual messages (as opposed to a stream of data). The messages sent by the client are called requests and the messages sent by the server as an answer are called responses. 
 
 ![](https://mdn.github.io/shared-assets/images/diagrams/http/overview/http-layers.svg)
 
