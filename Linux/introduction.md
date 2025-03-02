@@ -301,3 +301,837 @@ cry0l1t3@htb[/dev]$ cd shm && clear
 ```
 
 Another way to clean up our terminal is to use the shortcut [Ctrl] + [L]. We can also use the arrow keys (↑ or ↓) to scroll through the command history, which will show us the commands that we have used before. But we also can search through the command history using the shortcut [Ctrl] + [R] and type some of the text that we are looking for
+
+In Linux, files in a directory are assigned an inode number by the filesystem. To get the inode number (index number) of a file, you can use the ls command with the -i flag
+
+```bash
+ls -i
+
+# 123456 file1.txt
+# 123457 file2.txt
+# 123458 file3.txt
+```
+
+To get the inode number of a specific file:
+
+```bash
+ls -i file1.txt 
+
+# 123456 file1.txt
+```
+
+**Alternative: Using stat**
+
+The stat command can also show the inode number of a file:
+
+**stat filename**
+
+Look for the line starting with Inode in the output:
+```bash
+~/Fullstack stat GYM.md
+  File: GYM.md
+  Size: 0               Blocks: 0          IO Block: 4096   regular empty file
+Device: 8,1     Inode: 25165825    Links: 1
+Access: (0644/-rw-r--r--)  Uid: ( 1000/    omar)   Gid: (  984/   users)
+Access: 2025-01-26 17:29:15.533721577 +0200
+Modify: 2025-01-26 17:29:14.577011109 +0200
+Change: 2025-01-26 17:29:14.577011109 +0200
+ Birth: 2025-01-26 17:29:14.577011109 +0200
+```
+
+Here, the Inode value is 123456.
+
+Create an Empty File
+
+`omarNafea@htb[/htb]$ touch info.txt`
+
+Create a Directory
+
+`omarNafea@htb[/htb]$ mkdir Storage`
+
+When organizing your system, you may need to create multiple directories within other directories. Manually running the mkdir command for each one would be time-consuming. Fortunately, the mkdir command has the -p (parents) option, which allows you to create parent directories automatically.
+
+```bash
+omarNafea@htb[/htb]$ mkdir -p Storage/local/user/documents
+```
+We can look at the whole structure after creating the parent directories with the tool tree.
+
+```bash
+omarNafea@htb[/htb]$ tree .
+```
+```bash
+.
+├── info.txt
+└── Storage
+    └── local
+        └── user
+            └── documents
+
+4 directories, 1 file
+```
+
+You can create files directly within specific directories by specifying the path where the file should be stored, and you can use the single dot (.) to indicate that you want to start from the current directory. This is a convenient way to work within your current location, without needing to type the full path. Therefore, the command for creating another empty file looks like this:
+
+**Create userinfo.txt**
+
+```bash
+omarNafea@htb[/htb]$ touch ./Storage/local/user/userinfo.txt
+
+omarNafea@htb[/htb]$ tree .
+
+.
+├── info.txt
+└── Storage
+    └── local
+        └── user
+            ├── documents
+            └── userinfo.txt
+
+4 directories, 2 files
+```
+With the command mv, we can move and also rename files and directories. The syntax for this looks like this:
+
+```bash
+omarNafea@htb[/htb]$ mv <file/directory> <renamed file/directory>
+```
+
+First, let us rename the file info.txt to information.txt and then move it to the directory Storage.
+
+**Rename File**
+
+```bash
+omarNafea@htb[/htb]$ mv info.txt information.txt
+```
+
+Now let us create a file named readme.txt in the current directory and then copy the files information.txt and readme.txt into the Storage/ directory.
+
+```bash
+omarNafea@htb[/htb]$ touch readme.txt
+```
+**Move Files to Specific Directory**
+```bash
+omarNafea@htb[/htb]$ mv information.txt readme.txt Storage/
+omarNafea@htb[/htb]$ tree .
+.
+└── Storage
+    ├── information.txt
+    ├── local
+    │   └── user
+    │       ├── documents
+    │       └── userinfo.txt
+    └── readme.txt
+
+4 directories, 3 files
+```
+
+Let us assume we want to have the `readme.txt` in the `local/` directory. Then we can copy them there with the paths specified.
+
+**Copy readme.txt**
+```bash
+omarNafea@htb[/htb]$ cp Storage/readme.txt Storage/local/
+```
+Now we can check if the file is thereby using the tool tree again.
+```bash
+omarNafea@htb[/htb]$ tree .
+
+.
+└── Storage
+    ├── information.txt
+    ├── local
+    │   ├── readme.txt
+    │   └── user
+    │       ├── documents
+    │       └── userinfo.txt
+    └── readme.txt
+
+4 directories, 4 files
+```
+
+On Linux systems, there are several files that can be tremendously beneficial for penetration testers, due to misconfigured permissions or insufficient security settings by the administrators. One such important file is the /etc/passwd file. This file contains essential information about the users on the system, such as their usernames, user IDs (UIDs), group IDs (GIDs), and home directories.
+
+Historically, the /etc/passwd file also stored password hashes, but now those hashes are typically stored in /etc/shadow, which has stricter permissions. However, if the permissions on /etc/passwd or other critical files are not set correctly, it may expose sensitive information or lead to privilege escalation opportunities.
+
+As penetration testers, identifying files with improper rights or permissions can provide key insights into potential vulnerabilities that might be exploited, such as weak user accounts or misconfigured file access that should otherwise be restricted. Understanding these files is vital when assessing the security posture of a system.
+
+## Find Files and Directories
+
+### Which
+
+One of the common tools is which. This tool returns the path to the file or link that should be executed. This allows us to determine if specific programs, like cURL, netcat, wget, python, gcc, are available on the operating system. Let us use it to search for Python in our interactive instance.
+Find Files and Directories
+
+```bash
+omarNafea@htb[/htb]$ which python
+
+# /usr/bin/python
+```
+If the program we search for does not exist, no results will be displayed.
+
+### Find
+
+Another handy tool is find. Besides the function to find files and folders, this tool also contains the function to filter the results. We can use filter parameters like the size of the file or the date. We can also specify if we only search for files or folders.
+
+```bash
+omarNafea@htb[/htb]$ find <location> <options>
+```
+Let us look at an example of what such a command with multiple options would look like.
+```bash
+omarNafea@htb[/htb]$ find / -type f -name *.conf -user root -size +20k -newermt 2020-03-03 -exec ls -al {} \; 2>/dev/null
+
+-rw-r--r-- 1 root root 136392 Apr 25 20:29 /usr/src/linux-headers-5.5.0-1parrot1-amd64/include/config/auto.conf
+-rw-r--r-- 1 root root 82290 Apr 25 20:29 /usr/src/linux-headers-5.5.0-1parrot1-amd64/include/config/tristate.conf
+-rw-r--r-- 1 root root 95813 May  7 14:33 /usr/share/metasploit-framework/data/jtr/repeats32.conf
+-rw-r--r-- 1 root root 60346 May  7 14:33 /usr/share/metasploit-framework/data/jtr/dynamic.conf
+-rw-r--r-- 1 root root 96249 May  7 14:33 /usr/share/metasploit-framework/data/jtr/dumb32.conf
+-rw-r--r-- 1 root root 54755 May  7 14:33 /usr/share/metasploit-framework/data/jtr/repeats16.conf
+-rw-r--r-- 1 root root 22635 May  7 14:33 /usr/share/metasploit-framework/data/jtr/korelogic.conf
+-rwxr-xr-x 1 root root 108534 May  7 14:33 /usr/share/metasploit-framework/data/jtr/john.conf
+-rw-r--r-- 1 root root 55285 May  7 14:33 /usr/share/metasploit-framework/data/jtr/dumb16.conf
+-rw-r--r-- 1 root root 21254 May  2 11:59 /usr/share/doc/sqlmap/examples/sqlmap.conf
+-rw-r--r-- 1 root root 25086 Mar  4 22:04 /etc/dnsmasq.conf
+-rw-r--r-- 1 root root 21254 May  2 11:59 /etc/sqlmap/sqlmap.conf
+```
+Now let us take a closer look at the options we used in the previous command. If we hover the mouse over the respective options, a small window will appear with an explanation. These explanations will also be found in other modules, which should help us if we are not yet familiar with one of the tools.
+
+| Option              | Description                                                                                                                                                                                                                                                                    |
+|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `-type f`             | Hereby, we define the type of the searched object. In this case, 'f' stands for 'file'.                                                                                                                                                                                        |
+| `-name *.conf`        | With '-name', we indicate the name of the file we are looking for. The asterisk (*) stands for 'all' files with the '.conf' extension.                                                                                                                                         |
+| `-user root`          | This option filters all files whose owner is the root user.                                                                                                                                                                                                                    |
+| `-size +20k`          | We can then filter all the located files and specify that we only want to see the files that are larger than 20 KiB.                                                                                                                                                           |
+| `-newermt 2020-03-03` | With this option, we set the date. Only files newer than the specified date will be presented.                                                                                                                                                                                 |
+| `-exec ls -al {} \;`  | This option executes the specified command, using the curly brackets as placeholders for each result. The backslash escapes the next character from being interpreted by the shell because otherwise, the semicolon would terminate the command and not reach the redirection. |
+| `2&gt;/dev/null`      | This is a STDERR redirection to the 'null device', which we will come back to in the next section. This redirection ensures that no errors are displayed in the terminal. This redirection must not be an option of the 'find' command.                                        |
+
+### Locate
+
+It will take much time to search through the whole system for our files and directories to perform many different searches. The command locate offers us a quicker way to search through the system. In contrast to the find command, locate works with a local database that contains all information about existing files and folders. We can update this database with the following command.
+
+```bash
+omarNafea@htb[/htb]$ sudo updatedb
+```
+
+If we now search for all files with the ".conf" extension, you will find that this search produces results much faster than using find.
+
+```bash
+omarNafea@htb[/htb]$ locate *.conf
+
+/etc/GeoIP.conf
+/etc/NetworkManager/NetworkManager.conf
+/etc/UPower/UPower.conf
+/etc/adduser.conf
+<SNIP>
+```
+However, this tool does not have as many filter options that we can use. So it is always worth considering whether we can use the locate command or instead use the find command. It always depends on what we are looking for.
+
+## File Descriptors in Linux
+
+**What are File Descriptors?**
+
+A file descriptor (FD) is a unique integer that the operating system uses to identify an open file or device. When you open a file, the OS returns a file descriptor, which you can then use to read, write, or perform other operations on the file.
+Think of a file descriptor like a ticket to a concert. Just as a ticket gives you access to the concert, a file descriptor gives **your program** access to the file.
+
+**How File Descriptors Work**
+
+Here's a step-by-step explanation of how file descriptors work:
+
+- `Open`: When you open a file, the OS checks if the file exists and if you have the necessary permissions to access it. If everything checks out, the OS creates a new file descriptor and returns it to your program.
+- `Assign`: The OS assigns the file descriptor to the file, and your program can use this FD to interact with the file.
+- `Use`: Your program can now use the file descriptor to read, write, or perform other operations on the file.
+- `Close`: When you're done with the file, your program closes the file descriptor, and the OS releases the resources associated with the file.
+
+These file descriptors are inherited by child processes and are used for input/output operations
+
+A file descriptor (FD) in Unix/Linux operating systems is a reference, maintained by the kernel, that allows the system to manage Input/Output (I/O) operations. It acts as a unique identifier for an open file, socket, or any other I/O resource. In Windows-based operating systems, this is known as a file handle. 
+
+**Essentially, the file descriptor is the system's way of keeping track of active I/O connections, such as reading from or writing to a file.**
+
+Think of it as a ticket number you get when checking in your coat at a coatroom. The ticket (file descriptor) represents your connection to your coat (file or resource), and whenever you need to retrieve your coat (perform I/O), you present the ticket to the attendant (operating system) who knows exactly where your coat is stored (which resource the file descriptor refers to). Without the ticket, you'd have no way of efficiently accessing your coat among the many others stored, just as without a file descriptor, the operating system wouldn't know which resource to interact with. 
+
+By default, the first three file descriptors in Linux are:
+
+1. Data Stream for Input
+    - <a style="color: #9fef00">STDIN – 0</a>
+2. Data Stream for Output
+    - <a style="color: #9fef00">STDOUT – 1</a>
+3. Data Stream for Output that relates to an error occurring.
+    - <a style="color: #9fef00">STDERR – 2</a>
+
+### STDIN and STDOUT
+
+Let us see an example with cat. When running cat, we give the running program our standard input (STDIN - FD 0), marked green, wherein this case "SOME INPUT" is. As soon as we have confirmed our input with [ENTER], it is returned to the terminal as standard output (STDOUT - FD 1), marked red.
+
+![alt text](../Pics/stdin_stdout.png)
+
+### STDOUT and STDERR
+
+In the next example, by using the find command, we will see the standard output (STDOUT - FD 1) marked in green and standard error (STDERR - FD 2) marked in red.
+File Descriptors and Redirections
+```bash
+omarNafea@htb[/htb]$ find /etc/ -name shadow
+```
+![](../Pics/stdout_stderr.png)
+
+In this case, the error is marked and displayed with "Permission denied". We can check this by redirecting the file descriptor for the errors (FD 2 - STDERR) to "/dev/null." This way, we redirect the resulting errors to the "null device," which discards all data.
+
+```bash
+omarNafea@htb[/htb]$ find /etc/ -name shadow 2>/dev/null
+```
+![](../Pics/STDERR.png)
+
+### Redirect STDOUT to a File
+
+Now we can see that all errors (STDERR) previously presented with "Permission denied" are no longer displayed. The only result we see now is the standard output (STDOUT), which we can also redirect to a file with the name results.txt that will only contain standard output without the standard errors.
+File Descriptors and Redirections
+
+```bash
+omarNafea@htb[/htb]$ find /etc/ -name shadow 2>/dev/null > results.txt
+```
+![](../Pics/Redirect_STDOUT.png)
+
+### Redirect STDOUT and STDERR to Separate Files
+
+We should have noticed that we did not use a number before the greater-than sign (>) in the last example. That is because we redirected all the standard errors to the "null device" before, and the only output we get is the standard output (FD 1 - STDOUT). To make this more precise, we will redirect standard error (FD 2 - STDERR) and standard output (FD 1 - STDOUT) to different files.
+
+```bash
+omarNafea@htb[/htb]$ find /etc/ -name shadow 2> stderr.txt 1> stdout.txt
+```
+![](../Pics/Redirect_STDOUT&STDERR_Separately.png)
+
+### Redirect STDIN
+
+As we have already seen, in combination with the file descriptors, we can redirect errors and output with greater-than character (>). This also works with the lower-than sign (<). However, the lower-than sign serves as standard input (FD 0 - STDIN). These characters can be seen as "direction" in the form of an arrow that tells us "from where" and "where to" the data should be redirected. We use the cat command to use the contents of the file "stdout.txt" as STDIN.
+File Descriptors and Redirections
+
+```bash
+omarNafea@htb[/htb]$ cat < stdout.txt
+```
+![](../Pics/Redirect_STDIN.png)
+
+### Redirect STDOUT and Append to a File
+
+When we use the greater-than sign (>) to redirect our STDOUT, a new file is automatically created if it does not already exist. If this file exists, it will be overwritten without asking for confirmation. If we want to append STDOUT to our existing file, we can use the double greater-than sign (>>).
+File Descriptors and Redirections
+
+```bash
+omarNafea@htb[/htb]$ find /etc/ -name passwd >> stdout.txt 2>/dev/null
+```
+![](../Pics/Redirect_STDOUT&AppendToFile.png)
+
+### Redirect STDIN Stream to a File
+
+We can also use the double lower-than characters (<<) to add our standard input through a stream. We can use the so-called End-Of-File (EOF) function of a Linux system file, which defines the input's end. In the next example, we will use the cat command to read our streaming input through the stream and direct it to a file called "stream.txt."
+File Descriptors and Redirections
+
+```bash
+omarNafea@htb[/htb]$ cat << EOF > stream.txt
+```
+![](../Pics/Redirect_STDIN_StreamToFile.png)
+
+### Pipes
+
+Another way to redirect STDOUT is to use pipes (|). These are useful when we want to use the STDOUT from one program to be processed by another. One of the most commonly used tools is grep, which we will use in the next example. Grep is used to filter STDOUT according to the pattern we define (filter we specify). In the next example, we use the find command to search for all files in the "/etc/" directory with a ".conf" extension. Any errors are redirected to the "null device" (/dev/null). Using grep, we filter out the results and specify that only the lines containing the pattern "systemd" should be displayed.
+File Descriptors and Redirections
+
+```bash
+omarNafea@htb[/htb]$ find /etc/ -name *.conf 2>/dev/null | grep systemd
+```
+![](../Pics/pipes.png)
+
+The redirections work, not only once. We can use the obtained results to redirect them to another program. For the next example, we will use the tool called wc, which should count the total number of obtained results.
+File Descriptors and Redirections
+
+```bash
+omarNafea@htb[/htb]$ find /etc/ -name *.conf 2>/dev/null | grep systemd | wc -l
+```
+
+![](../Pics/WC_pipes.png)
+
+## Filter Contents
+
+There are two powerful tools for this - more and less. These are known as pagers, and they allow you to view the contents of a file interactively, one screen at a time. While both tools serve a similar purpose, they have some differences in functionality, which we'll touch on later.
+
+Using more and less, you can easily scroll through large files, search for text, and navigate forward or backward without modifying the file itself. This is especially useful when you're working with large logs or text files that don't fit neatly into one screen
+
+### More
+
+```bash
+omarNafea@htb[/htb]$ cat /etc/passwd | more
+```
+The /etc/passwd file in Linux is like a phone directory for users on the system. It includes details such as the username, user ID, group ID, home directory, and the default shell they use.
+
+After we read the content using cat and redirected it to more, the already mentioned pager opens, and we will automatically start at the beginning of the file.
+
+```
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+<SNIP>
+--More--
+```
+With the [Q] key, we can leave this pager. We will notice that the output remains in the terminal.
+
+### "Group" in linux system
+
+A Linux system, a "group" is a collection of users who share common access rights and permissions to certain files, directories, and resources. Groups are used to manage user access and permissions in a more efficient and organized way.
+Here's a brief overview:
+
+**Why Groups?**
+
+Imagine you have a team of developers working on a project, and you want to give them all access to a specific directory without giving them root access or individual ownership. That's where groups come in.
+
+**How Groups Work**
+
+**Group Creation**: A group is created by the system administrator using the groupadd command.
+**Group Membership**: Users are added to a group using the usermod command. A user can be a member of multiple groups.
+**Group Ownership**: A group can own files, directories, and resources. When a user creates a file, the file's group ownership is set to the user's primary group.
+**Permissions**: Group permissions determine what actions members of the group can perform on files, directories, and resources owned by the group.
+
+**Types of Groups**
+
+**Primary Group**: A user's primary group is the default group they belong to. When a user creates a file, the file's group ownership is set to the user's primary group.
+**Secondary Group**: A user can be a member of multiple secondary groups, which provide additional access rights and permissions.
+
+**Commands for Managing Groups**
+
+- `groupadd`: Create a new group
+- `groupdel`: Delete a group
+- `groupmod`: Modify a group's properties
+- `usermod`: Add or remove users from a group
+- `groups`: Display a user's group membership
+- `id`: Display a user's group ID and name
+
+**Example**
+
+Suppose you want to create a group called devteam and add users john, jane, and bob to it. You can use the following commands:
+```Bash
+sudo groupadd devteam
+sudo usermod -aG devteam john
+sudo usermod -aG devteam jane
+sudo usermod -aG devteam bob
+```
+In Linux, a group is a collection of users. Groups are used to organize and manage user permissions more efficiently. Instead of assigning permissions to individual users, you can assign permissions to a group, and all members of that group will inherit those permissions.
+
+Key Concepts About Groups
+Purpose of Groups:
+
+Simplify permission management: Instead of setting permissions for each user, you can set them for a group.
+
+Control access to files, directories, and resources: Only members of a specific group can access certain files or directories.
+
+Types of Groups:
+
+Primary Group: Every user has one primary group. When a user creates a file, the file's group is set to the user's primary group by default.
+
+Secondary Groups: Users can belong to multiple secondary groups. These are used to grant additional permissions.
+
+Group Information:
+
+Groups are defined in the /etc/group file.
+
+Each line in the /etc/group file represents a group and has the following format:
+
+Copy
+group_name:x:group_id:user1,user2,user3
+group_name: The name of the group.
+
+x: Placeholder for the group password (rarely used).
+
+group_id (GID): A unique number identifying the group.
+
+user1,user2,user3: A comma-separated list of users who belong to the group.
+
+How Groups Work with Permissions
+In Linux, every file and directory has permissions for three entities:
+
+Owner: The user who owns the file.
+
+Group: The group associated with the file.
+
+Others: Everyone else.
+
+When you run ls -l, you’ll see something like this:
+
+Copy
+-rw-r--r-- 1 alice developers 4096 Oct 10 12:34 file.txt
+alice is the owner of the file.
+
+developers is the group associated with the file.
+
+rw-r--r-- are the permissions for the owner, group, and others, respectively.
+
+Managing Groups
+Here are some common commands for working with groups:
+
+Create a Group:
+
+bash
+Copy
+sudo groupadd group_name
+Add a User to a Group:
+
+bash
+Copy
+sudo usermod -aG group_name username
+-aG: Append the user to the specified group (without removing them from other groups).
+
+Remove a User from a Group:
+
+bash
+Copy
+sudo gpasswd -d username group_name
+List Groups a User Belongs To:
+
+bash
+Copy
+groups username
+Delete a Group:
+
+bash
+Copy
+sudo groupdel group_name
+View the /etc/group File:
+
+bash
+Copy
+cat /etc/group
+Example Use Case
+Let’s say you have a directory /var/www that should only be accessible to web developers:
+
+Create a group called webdev:
+
+bash
+Copy
+sudo groupadd webdev
+Add users to the webdev group:
+
+bash
+Copy
+sudo usermod -aG webdev alice
+sudo usermod -aG webdev bob
+Change the group ownership of the directory:
+
+bash
+Copy
+sudo chgrp webdev /var/www
+Set the directory permissions so that only the owner and group can access it:
+
+bash
+Copy
+sudo chmod 770 /var/www
+770 means:
+
+Owner: read, write, execute (7)
+
+Group: read, write, execute (7)
+
+Others: no permissions (0)
+
+Now, only members of the webdev group (and the owner) can access /var/www.
+
+
+
+### Less
+
+If we now take a look at the tool less, we will notice on the man page that it contains many more features than more.
+```bash
+omarNafea@htb[/htb]$ less /etc/passwd
+```
+The presentation is almost the same as with more.
+```bash
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+<SNIP>
+:
+```
+When closing less with the [Q] key, we will notice that the output we have seen, unlike more, **does not remain in the terminal**.
+
+### Head
+
+Sometimes we will only be interested in specific issues either at the beginning of the file or the end. If we only want to get the first lines of the file, we can use the tool head. By default, head prints the first ten lines of the given file or input, if not specified otherwise.
+
+```bash
+omarNafea@htb[/htb]$ head /etc/passwd
+
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+```
+
+### Tail
+
+If we only want to see the last parts of a file or results, we can use the counterpart of head called tail, which returns the last ten lines.
+
+```bash
+omarNafea@htb[/htb]$ tail /etc/passwd
+
+miredo:x:115:65534::/var/run/miredo:/usr/sbin/nologin
+usbmux:x:116:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
+rtkit:x:117:119:RealtimeKit,,,:/proc:/usr/sbin/nologin
+nm-openvpn:x:118:120:NetworkManager OpenVPN,,,:/var/lib/openvpn/chroot:/usr/sbin/nologin
+nm-openconnect:x:119:121:NetworkManager OpenConnect plugin,,,:/var/lib/NetworkManager:/usr/sbin/nologin
+pulse:x:120:122:PulseAudio daemon,,,:/var/run/pulse:/usr/sbin/nologin
+beef-xss:x:121:124::/var/lib/beef-xss:/usr/sbin/nologin
+lightdm:x:122:125:Light Display Manager:/var/lib/lightdm:/bin/false
+do-agent:x:998:998::/home/do-agent:/bin/false
+user6:x:1000:1000:,,,:/home/user6:/bin/bash
+```
+It would be highly beneficial to explore the available options these tools offer and experiment with them.
+
+### Sort
+
+Depending on which results and files are dealt with, they are rarely sorted. Often it is necessary to sort the desired results alphabetically or numerically to get a better overview. For this, we can use a tool called sort.
+
+```bash
+omarNafea@htb[/htb]$ cat /etc/passwd | sort
+
+_apt:x:104:65534::/nonexistent:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+cry0l1t3:x:1001:1001::/home/cry0l1t3:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+dnsmasq:x:107:65534:dnsmasq,,,:/var/lib/misc:/usr/sbin/nologin
+dovecot:x:114:117:Dovecot mail server,,,:/usr/lib/dovecot:/usr/sbin/nologin
+dovenull:x:115:118:Dovecot login user,,,:/nonexistent:/usr/sbin/nologin
+ftp:x:113:65534::/srv/ftp:/usr/sbin/nologin
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+htb-student:x:1002:1002::/home/htb-student:/bin/bash
+<SNIP>
+```
+As we can see now, the output no longer starts with root but is now sorted alphabetically.
+
+### Grep
+
+In many cases, we will need to search for specific results that match patterns we define. One of the most commonly used tools for this purpose is grep, which provides a wide range of powerful features for pattern searching. For instance, we can use grep to search for users who have their default shell set to /bin/bash.
+
+```bash
+omarNafea@htb[/htb]$ cat /etc/passwd | grep "/bin/bash"
+
+root:x:0:0:root:/root:/bin/bash
+mrb3n:x:1000:1000:mrb3n:/home/mrb3n:/bin/bash
+cry0l1t3:x:1001:1001::/home/cry0l1t3:/bin/bash
+htb-student:x:1002:1002::/home/htb-student:/bin/bash
+```
+This is just one example of how grep can be applied to efficiently filter data based on predefined patterns. Another possibility is to **exclude** specific results. For this, the option "-v" is used with grep. In the next example, we exclude all users who have disabled the standard shell with the name "/bin/false" or "/usr/bin/nologin".
+
+```bash
+omarNafea@htb[/htb]$ cat /etc/passwd | grep -v "false\|nologin"
+
+root:x:0:0:root:/root:/bin/bash
+sync:x:4:65534:sync:/bin:/bin/sync
+postgres:x:111:117:PostgreSQL administrator,,,:/var/lib/postgresql:/bin/bash
+user6:x:1000:1000:,,,:/home/user6:/bin/bash
+```
+
+### Cut
+
+Specific results with different characters may be separated as delimiters. Here it is handy to know how to remove specific delimiters and show the words on a line in a specified position. One of the tools that can be used for this is cut. Therefore we use the option "-d" and set the delimiter to the colon character (:) and define with the option "-f" the position in the line we want to output.
+
+```bash
+omarNafea@htb[/htb]$ cat /etc/passwd | grep -v "false\|nologin" | cut -d":" -f1
+
+root
+sync
+postgres
+mrb3n
+cry0l1t3
+htb-student
+```
+
+### Tr
+
+Another possibility to replace certain characters from a line with characters defined by us is the tool tr. As the first option, we define which character we want to replace, and as a second option, we define the character we want to replace it with. In the next example, we replace the colon character with space.
+
+```bash
+omarNafea@htb[/htb]$ cat /etc/passwd | grep -v "false\|nologin" | tr ":" " "
+
+root x 0 0 root /root /bin/bash
+sync x 4 65534 sync /bin /bin/sync
+postgres x 111 117 PostgreSQL administrator,,, /var/lib/postgresql /bin/bash
+mrb3n x 1000 1000 mrb3n /home/mrb3n /bin/bash
+cry0l1t3 x 1001 1001  /home/cry0l1t3 /bin/bash
+htb-student x 1002 1002  /home/htb-student /bin/bash
+```
+
+### Column
+
+Since search results can often have an unclear representation, the tool column is well suited to display such results in tabular form using the "-t."
+
+```bash
+omarNafea@htb[/htb]$ cat /etc/passwd | grep -v "false\|nologin" | tr ":" " " | column -t
+
+root         x  0     0      root               /root        		 /bin/bash
+sync         x  4     65534  sync               /bin         		 /bin/sync
+postgres     x  111   117    PostgreSQL         administrator,,,    /var/lib/postgresql		/bin/bash
+mrb3n        x  1000  1000   mrb3n              /home/mrb3n  	     /bin/bash
+cry0l1t3     x  1001  1001   /home/cry0l1t3     /bin/bash
+htb-student  x  1002  1002   /home/htb-student  /bin/bash
+```
+
+### Awk
+
+As we may have noticed, the line for the user "postgres" has one column too many. To keep it as simple as possible to sort out such results, the (g)awk programming is beneficial, which allows us to display the first ($1) and last ($NF) result of the line.
+
+```bash
+omarNafea@htb[/htb]$ cat /etc/passwd | grep -v "false\|nologin" | tr ":" " " | awk '{print $1, $NF}'
+
+root /bin/bash
+sync /bin/sync
+postgres /bin/bash
+mrb3n /bin/bash
+cry0l1t3 /bin/bash
+htb-student /bin/bash
+```
+
+### Sed
+
+There will come moments when we want to change specific names in the whole file or standard input. One of the tools we can use for this is the stream editor called sed. One of the most common uses of this is substituting text. Here, sed looks for patterns we have defined in the form of regular expressions (regex) and replaces them with another pattern that we have also defined. Let us stick to the last results and say we want to replace the word "bin" with "HTB."
+
+The "s" flag at the beginning stands for the substitute command. Then we specify the pattern we want to replace. After the slash (/), we enter the pattern we want to use as a replacement in the third position. Finally, we use the "g" flag, which stands for replacing all matches.
+
+```bash
+omarNafea@htb[/htb]$ cat /etc/passwd | grep -v "false\|nologin" | tr ":" " " | awk '{print $1, $NF}' | sed 's/bin/HTB/g'
+
+root /HTB/bash
+sync /HTB/sync
+postgres /HTB/bash
+mrb3n /HTB/bash
+cry0l1t3 /HTB/bash
+htb-student /HTB/bash
+```
+### Wc
+
+Last but not least, it will often be useful to know how many successful matches we have. To avoid counting the lines or characters manually, we can use the tool wc. With the "-l" option, we specify that only the lines are counted.
+Filter Contents
+
+```bash
+omarNafea@htb[/htb]$ cat /etc/passwd | grep -v "false\|nologin" | tr ":" " " | awk '{print $1, $NF}' | wc -l
+6
+```
+
+### How many services are listening on the target system on all interfaces? (Not on localhost and IPv4 only) 
+
+```bash
+netstat -tunleep4 | grep -v "127\.0\.0" | grep "LISTEN" | wc -l
+```
+
+**Explanation:**
+
+1. netstat -tunleep4:
+    - `-t`: Show TCP connections.
+    - `-u`: Show UDP connections.
+    - `-n`: Show numeric addresses (avoid resolving hostnames).
+    - `-l`: Show listening services.
+    - `-e`: Show extended information (not essential here but sometimes useful).
+    - `-p`: Show the process using the port.
+    - `-4`: Limit to IPv4 addresses.
+
+2. grep -v "127\.0\.0":
+    Excludes any services bound to 127.0.0.x, which is localhost.
+
+3. grep "LISTEN":
+    Filters only services in the LISTEN state (i.e., actively listening for connections).
+
+4. wc -l:
+    Counts the number of lines output, i.e., the number of matching services.
+
+Why This Works:
+
+This command specifically focuses on:
+
+- IPv4 services.
+- Services bound to interfaces other than localhost (127.0.0.x).
+- Services in the LISTEN state, ensuring we count only active listeners.
+
+
+The curl command is a powerful tool in Linux (and other operating systems) used to transfer data to or from a server. It supports a wide range of protocols, including HTTP, HTTPS, FTP, SFTP, and more. It’s commonly used for downloading files, testing APIs, scraping web pages, and interacting with web services.
+
+**What Does curl Stand For?**
+curl stands for Client URL. It’s a command-line tool that allows you to interact with URLs (web addresses) and retrieve or send data.
+
+**Common Uses of curl**
+
+Download Files:
+You can use curl to download files from the internet. For example:
+
+```bash
+curl -O https://example.com/file.zip
+-O: Saves the file with its original name.
+
+Fetch Web Pages:
+You can retrieve the HTML source code of a website:
+
+bash
+Copy
+curl https://example.com
+Test APIs:
+curl is often used to send requests to APIs (e.g., GET, POST, PUT, DELETE):
+
+```bash
+curl -X GET https://api.example.com/data
+curl -X POST -d '{"key":"value"}' https://api.example.com/data
+```
+Follow Redirects:
+If a URL redirects to another location, you can use the -L flag to follow the redirect:
+
+```bash
+curl -L https://example.com
+```
+Send Headers:
+You can include custom headers in your request:
+
+```bash
+curl -H "Authorization: Bearer token" https://api.example.com/data
+```
+Save Output to a File:
+You can save the output of a curl request to a file:
+
+```bash
+curl -o output.txt https://example.com
+```
+
+Fetch Only Headers:
+
+```bash
+curl -I https://example.com
+```
+
+**Why Use curl?**
+
+- Versatility: It supports many protocols and use cases.
+- Scripting: It’s commonly used in scripts to automate tasks like downloading files or interacting with APIs.
+- Debugging: It’s a great tool for testing and debugging web servers and APIs.
+
+**Summary**
+
+- curl is a command-line tool for transferring data to or from a server.
+- It supports multiple protocols like HTTP, HTTPS, FTP, etc.
+- It’s commonly used for downloading files, testing APIs, and interacting with web services.
+- You can customize requests with options like -O, -L, -H, and -X.
+
+
+
+## Regular Expressions
+
+Regular expressions (RegEx) are like the art of crafting precise blueprints for searching patterns in text or files. They allow you to find, replace, and manipulate data with incredible precision. Think of RegEx as a highly customizable filter that lets you sift through strings of text, looking for exactly what you need—whether it's analyzing data, validating input, or performing advanced search operations.
+
+At its core, a regular expression is a sequence of characters and symbols that together form a search pattern. These patterns often involve special symbols called metacharacters, which define the structure of the search rather than representing literal text. For example, metacharacters allow you to specify whether you're searching for digits, letters, or any character that fits a certain pattern.
+
+RegEx is available in many programming languages and tools, such as grep or sed, making it a versatile and powerful tool in a our toolkit.
+
+### Grouping
+
+Among other things, regex offers us the possibility to group the desired search patterns. Basically, regex follows three different concepts, which are distinguished by the three different brackets:

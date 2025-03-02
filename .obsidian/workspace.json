@@ -11,17 +11,14 @@
             "id": "07cc1626775eef67",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "brainStorming.canvas",
-                "viewState": {
-                  "x": 243.52660012721992,
-                  "y": 0,
-                  "zoom": 0
-                }
+                "file": "UI/IntroductionToUXAndUI/WhatIsUI.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-layout-dashboard",
-              "title": "brainStorming"
+              "icon": "lucide-file",
+              "title": "WhatIsUI"
             }
           }
         ]
@@ -43,7 +40,8 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "alphabetical",
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -163,6 +161,7 @@
   },
   "active": "07cc1626775eef67",
   "lastOpenFiles": [
+    "UI/IntroductionToUXAndUI/User_Centered_Design.md",
     "Untitled.md",
     "brainStorming.canvas"
   ]
