@@ -236,6 +236,19 @@ However, if I try to use a non-existing number system, such as an imaginary Base
 (10).toString(100); 
 // Uncaught RangeError: toString() radix argument must be between 2 and 36`
 ```
+If a piece of code throws an error, it can get wrapped inside a `try block`.
+Then you can catch the error with the `catch block`, and use it to do something.
+For example, output the error message to the console.  
+
+Another key word that you need to be aware of is that `throw` keyword.
+Using the `throw` keyword, you can force an error to be thrown from the `try block to the catch block`.
+It's important to remember that you can use the `throw`
+keyword outside the `try block`, but it **will not be possible** to catch it.  
+
+The catch block accepts something called an `error` which is an **object**.  
+**This is the actual error that is thrown from the try block.**
+While you can name it anything you like, it's best to keep it short and meaningful
+
 
 ## try-catch statement
 
