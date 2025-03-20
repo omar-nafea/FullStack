@@ -129,7 +129,7 @@ If you run the testBracketsDynamicAccess() function a few times, you'll notice t
 Since the value of the dynamicKey is populated on the Math.random() invocation, sometimes that expression evaluates to drone["speed"], and other times that expression evaluates to drone["color"].  
 
 ### For of loops vs For in loops on objects
-
+Unlike for...of, which works on values, for...in works on keys of objects or indices of arrays.
 - For in loops iterate over not only the specified object, but also its prototype.(Iterating over object AND its prototype)
 - For of loops Iterating over object's OWN PROPERTIES only
 
