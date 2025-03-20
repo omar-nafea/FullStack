@@ -121,6 +121,66 @@ console.log(a > 5 && a < 10); // true
 console.log(a > 5 || a > 10); // true
 console.log(!(a > 5)); // false
 ```
+### Precedence and associativity
+
+Consider an expression describable by the representation below, where both OP1 and OP2 are fill-in-the-blanks for OPerators.
+
+a OP1 b OP2 c
+
+The combination above has two possible interpretations:
+
+(a OP1 b) OP2 c
+a OP1 (b OP2 c)
+
+Which one the language decides to adopt **depends on the identity of OP1 and OP2**.
+
+If OP1 and OP2 have different precedence levels (see the table below), the operator with the higher precedence goes first and associativity does not matter. Observe how multiplication has higher precedence than addition and executed first, even though addition is written first in the code.
+js
+
+console.log(3 + 10 * 2); // 23
+console.log(3 + (10 * 2)); // 23, because parentheses here are superfluous
+console.log((3 + 10) * 2); // 26, because the parentheses change the order
+
+**Within operators of the same precedence, the language groups them by associativity. Left-associativity (left-to-right) means that it is interpreted as (a OP1 b) OP2 c, while right-associativity (right-to-left) means it is interpreted as a OP1 (b OP2 c). *Assignment operators are right-associative,* so you can write:**
+
+```js
+a = b = 5; // same as writing a = (b = 5);
+```
+
+with the expected result that a and b get the value 5. This is because the assignment operator returns the value that is assigned. First, b is set to 5. Then the a is also set to 5 — the return value of b = 5, a.k.a. right operand of the assignment.
+
+As another example, the unique exponentiation operator has right-associativity, whereas other arithmetic operators have left-associativity.
+```js
+
+const a = 4 ** 3 ** 2; // Same as 4 ** (3 ** 2); evaluates to 262144
+const b = 4 / 3 / 2; // Same as (4 / 3) / 2; evaluates to 0.6666...
+```
+Operators are first grouped by precedence, and then, for adjacent operators that have the same precedence, by associativity. So, when mixing division and exponentiation, the exponentiation always comes before the division. For example, 2 ** 3 / 3 ** 2 results in 0.8888888888888888 because it is the same as (2 ** 3) / (3 ** 2).
+
+Operator precedence and associativity
+
+Operator precedence is a set of rules that determines which operator should be evaluated first.
+
+Consider the following example:
+1
+
+The result of the above code is 5, because the multiplication operator has precedence over the addition operator.
+
+Operator associativity determines how the precedence works when the code uses operators with the same precedence.
+
+There are two kinds: 
+
+- left-to-right associativity
+
+- right-to-left associativity
+
+For example, the assignment operator is right-to-left associative, while the greater than operator is left-to-right associative:
+
+```js
+var num = 10; // the value on the right is assigned to the variable name on the left
+5 > 4 > 3; // the 5 > 4 is evaluated first (to `true`), then true > 3 is evaluated to `false`, because the `true` value is coerced to `1`
+```
+
 ##### Equality operator
 
 has two equal signs and it checks only for value. Additionally, there's also the strict equality operator that has three equal signs and it checks for both the value and type.
@@ -235,6 +295,9 @@ switch(light) {
     break;
     }
 ```
+
+**JavaScript as a language is not a completely separate, stand-alone entity. It only exists as an implementation. This implementation is known as a JavaScript engine.**
+
 
 ##### Conditional (ternary) operator
 
