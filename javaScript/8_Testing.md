@@ -2,13 +2,13 @@
 
 ## Node and NPM
 
-JavaScript's home is in the browser. Essentially, it was a front end only language. Then in 2009, a developer named Ryan Dao decided to **use Google's JavaScript V8 engine and make it work on the server.**
+JavaScript's home is in the browser. Essentially, it was a frontEnd only language. Then in 2009, a developer named Ryan Dao decided to **use Google's JavaScript V8 engine and make it work on the server.**
 
-JavaScript became a language for both front-end and back-end.   Node.js is a separate standalone environment. This means that Node.js can run in multiple settings. For example,
+JavaScript became a language for both front-end and back-end. Node.js is a separate standalone environment. This means that Node.js can run in multiple settings. For example,
 
 - on the command line,
 - in a desktop application,
-- or on the back end of a web app.
+- on the back end of a web app.
 
 Before the introduction of Node.js, developers had to build backends in other technologies and languages such as PHP, Python, C-sharp, Ruby, and Java.
 
@@ -16,19 +16,14 @@ After Node.js became available, it was possible to use JavaScript on the backend
 
 ```js
 var http = require("http");
-http
-  .createServer(function (req, res) {
+http.createServer(function (req, res) {
     res.writeHead(200);
     res.end("Hello World!");
   })
   .listen(8080);
 ```
 
-This means that today you can write full-stack JavaScript programs. In other words, you can write JavaScript on the client and on the server. Node.js comes with a package manager called npm, which stands for Node Package Manager.
-
-The package manager allows you to use a large number of libraries and frameworks as Node.js modules.  
-
-An npm module is a standalone piece of code that has been published on the npm website.
+Node.js comes with a package manager called npm, which stands for Node Package Manager. The package manager allows you to use a large number of libraries and frameworks as Node.js modules. An npm module is a standalone piece of code that has been published on the npm website.
 
 #### why you need to run npm and node commands.
 
@@ -60,16 +55,52 @@ These projects can be different shapes and sizes, but they all have at least one
   }
 }
 ```
-
 Examples of libraries you can install include `React`, `Webpack`, `Bootstrap`, and `Angular Core`.  
-
-![Reactjs_package_json_file](https://miro.medium.com/v2/resize:fit:828/format:webp/1*SJ63Txi-IBaEKi0BTyKELw.png)  
-
-The package.json file updates when you install a new package.   **It keeps track of everything you need to have installed in your project. This makes such projects easily portable.**
+```json
+{
+  "name": "figure-context",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-scripts": "6.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
+```
+The `package.json` file updates when you install a new package. **It keeps track of everything you need to have to install in your project.** This makes such projects easily portable.
 
 For example, if you have built a project with a specific number of different node packages, they're all listed inside the `package.json` file. All you need to do is share this file with, for example, your co-workers. They can have the exact same setup on their machines simply by running the command npm install.
 
-This install command reads the contents of the `package.json` and installs all the necessary packages, also referred to as dependencies.
+**`npm install` install command reads the contents of the `package.json` and installs all the necessary packages, also referred to as dependencies.**
 
 ## What is testing?
 
@@ -81,7 +112,7 @@ Adding comments is a step in the right direction, but it has downsides. It allow
 
 The test syntax itself becomes expectation documenting. When I write tests, those tests are a better alternative to comments in my source code because they specify what expectations my source code is trying to satisfy.
 
-**Tests are also callable, meaning I can execute tests to check if expectations are met.** To write an expectation statement JEST:
+Tests are also callable, meaning I can execute tests to check if expectations are met. To write an expectation statement in JEST (javascript testing library):
 
 ```JS
 function concatStrings(strA, strB){
@@ -90,9 +121,9 @@ function concatStrings(strA, strB){
 expect(concatStrings("abc", "def")).toBe("abcdef");
 ```
 
-I can use the function that has the name `expect`. I then pass the call to the concatStrings function with the specific arguments. Then I add `toBe` function, which is another testing function, and I pass it the value of what I'm expecting this code to produce.
+I can use the function that has the name `expect`. I then pass the call to the `concatStrings` function with the specific arguments. Then I add `toBe` function, which is another testing function, and I pass it the value of what I'm expecting this code to produce.
 
-I'm essentially stating that I expect the calling concatStrings with abc and def, will return the value abcdef.
+I'm essentially stating that I expect the calling `concatStrings` with "abc" and "def", will return the value "abcdef".
 
 Testing in JavaScript lets me verify that the function is behaving in the way I intended. Testing code in this way ensures three things.
 
@@ -107,17 +138,14 @@ function concatStrings(strA, strB) {
 }
 expect(concatStrings("123", "456")).toBe("123456");
 ```
-
-and in each instance, the expectations will be correct, and the code will behave as expected. It's still possible from my code to fail an expectation. For example, if I run the expect method and pass it an invocation of the concatStrings function with numbers `1` and `2` as arguments, my expectation of `12` being the results will `fail`.
+And in each instance, the expectations will be correct, and the code will behave as expected. It's still possible from my code to fail an expectation. For example, if I run the expect method and pass it an invocation of the `concatStrings` function with numbers `1` and `2` as arguments, my expectation of `12` being the results will `fail`.
 
 ```js
 expect(concatStrings("1", "2")).toBe("12");
 ```
+This is because when I use the `+` operator with two values of the number type, it performs the mathematical operation of addition, instead of joining the two numbers together to form the number `12`, like it would form `abcdef`. If I gave it the arguments of "abc" and "def".
 
-This is because when I use the `+` operator with two values of the number type, it performs the mathematical operation of addition, instead of joining the two numbers together to form the number `12`, like it would form `abcdef`. If I gave it the arguments of abc and def.
-
-When tests fail, you say that they are red <span style="color: red">✗</span>, and when they pass, you say that they are green <span style="color: green">✔</span> If a test fails, then it's a sign that I need to write the code in such a way that it passes its test. Once my test passes, I need to improve both the app's code and the test code, but without changing the behavior of either.
-This is known as refactoring.
+When tests fail, you see that they are red <span style="color: red">✗</span>, and when they pass, you see that they are green <span style="color: green">✔</span> If a test fails, then it's a sign that I need to write the code in such a way that it passes its test. Once my test passes, I need to improve both the app's code and the test code, but without changing the behavior of either. This is known as refactoring.
 
 ### Refactoring
 
@@ -134,17 +162,11 @@ This cycle is the basis of the test-driven development or TDD approach to progra
 - First, you write a failing test, then you write your source code so that the previously failing test now passes.
 - Finally, you optimize your source code without changing its results.
 
-There are many advantages of having code that tests other code. For example, 
-- you can run it as many times as you want.
-- You can run the testing code automatically.
-- The tests can be repeated without
-significant cost in time or effort. 
-
 ## Types of testing
 
 There are many aspects of software testing, but for now let's think of it as the act of confirming that it works as outlined in the software's requirements. 
 
-#### There arethree types of testing 
+#### There are three types of testing 
 
 ##### End to End (e2e)
 
@@ -152,11 +174,11 @@ e2e testing tries to imitate how a user might interact with your app. you're tes
 
 ##### Integration testing 
 
-Integration testing is testing how parts of your system interact with other parts of your system. In other words, it's testing how separate parts of your apps work together. integration tests are faster and cheaper than E two E tests but not as fast or as cheap as unit testing. 
+Integration testing is testing how parts of your system interact with other parts of your system. In other words, it's testing how separate parts of your apps work together. integration tests are faster and cheaper than e2e tests but not as fast or as cheap as unit testing. 
 
 ##### Unit testing. 
 
-Unit testing is the process of testing the smallest units of your source code in isolation. A good example of this is functions. A unit is the smallest piece of code that you can test separately from the rest of the app.   
+Unit testing is the process of testing the smallest units of your source code in isolation. A good example of this is "functions". A unit is the smallest piece of code that you can test separately from the rest of the app.   
 
 Unit tests are self contained. They're meant to test code in isolation, preferably separate from the rest of your app. This makes unit tests fast to run and easy to write. 
 
