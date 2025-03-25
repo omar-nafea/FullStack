@@ -213,11 +213,11 @@ Finally, Jest allows you to perform snapshot testing. Snapshot testing is used b
 
 ##### how to install jest 
 
-I'll install Jest using only NPM, since jest needs NodeJS to run and NPM as a way to install Node modules. First type `npm init` to add a package.json file Now I have my package.json file. In other words, I have a way to keep track of node modules that this project depends on. Since I want to use the jest testing library, I'll need to install it locally, which means installing it for this project.
+I'll install Jest using only NPM, since jest needs NodeJS to run and NPM as a way to install Node modules. First type `npm init` to add a `package.json` file Now I have my `package.json` file. In other words, **I have a way to keep track of node modules that this project depends on**. Since I want to use the jest testing library, I'll need to install it locally, which means installing it for this project.
 ```bash
 npm install --save-dev jest
 ```
-It will add Jest as a devDependency inside package.json. the package.json file will be updated with the addition of the jest testing library. in package.json I need to assign jest to test 
+It will add Jest as a devDependency inside `package.json`. the `package.json` file will be updated with the addition of the jest testing library. in `package.json` I need to assign jest to test 
 ```json
 "script":{
     "test": "jest"
@@ -228,7 +228,6 @@ Now when I run the command `npm run test`, it will run the Jest command in this 
 const {default: TestRunner} = require('jest-runner')
 const addFive = require('./addFive')
 ```
-
 To check, I'll use the test method with a string as a parameter that describes the test. This string will be output in the command line when I run the test along with the words pass or fail, and the function to run when I execute the NPM run test command. The function will check if my expectation is correct.  
 
 ```js
@@ -239,9 +238,8 @@ test('returns the number plus 5', () => {
 
 ## TDD (Test-Driven Development)
 
-Every piece of software is built according to requirements. The purpose of the requirements is to explain, in human language the intricacies(complexities) of what the piece of software does.  
+Every piece of software is built according to requirements. The purpose of the requirements is to explain, in human language the intricacies (complexities) of what the piece of software does.  
 TDD for short is a streamlined process of writing code that will satisfy some requirements. 
-
 
 A software development teams work consists of the following: 
 - receiving requirements which will become a feature of the app that's being developed.  
@@ -252,7 +250,7 @@ In comparison with the traditional development process, that TDD approach might 
 - Receive requirements
 - Write failing test
 - Write code to make test pass
-- Wode passes test
+- Code passes test
 - Improve workable code 
 
 To understand how TDD works. Consider the following real life situation. Suppose you have to perform a task, drive your car to work. You leave your house and walk up to your car, only to find out that you don't have your car keys with you. Then you remember you left your car keys in the cabinet and you simply forgot to take them.   
@@ -263,7 +261,7 @@ _**What you did there. In this imagined scenario is the opposite of TDD.**_  You
 - They're in the cabinet. Then you perform the action of getting your keys from the cabinet.  
 - Finally, you check or test if you have your keys this time you have them. So your test now passes.  
 
-What is described here is the essence of TDD  Imagine that you need to write code in a test driven way. Since your coding the TDD way you:  
+What is described here is the essence of TDD, Imagine that you need to write code in a test driven way. Since your coding the TDD way you:  
 
 - first write the test, even before you've written any actual implementation for example:
 
@@ -272,11 +270,10 @@ test('returns true if statusOfKeys exists', function(){
     expect(statusOfKeys).toBeDefined()
 })
 ```
-The logic of your test code is expect that the function statusOfKeys exists in your source code. It's important to note that one of the rules of TDD is that you should write as little code as possible to make the test pass for this test to pass, it's enough to just declare a function with the name.  
-
+The logic of your test code is expect that the function `statusOfKeys` exists in your source code. It's important to note that one of the rules of TDD is that you should write as little code as possible to make the test pass for this test to pass, it's enough to just declare a function with the name.  
 
 next you receive another requirement which is as follows except a keys variable, which should be set to true and console log the keys variable.   
-So the requirement states the `statusOfKeys` function should accept a previously declared keys variable, which should be set to true. The statusOfKeys should then console log the value of the keys variable. 
+So the requirement states the `statusOfKeys` function should accept a previously declared keys variable, which should be set to true. The `statusOfKeys` should then console log the value of the keys variable. 
 
 ```js
 const statusOfKeys = require('./statusOfKeys')
@@ -295,7 +292,7 @@ test('test console log inside statusOfKeys', function(){
 ```
 the code itself would be `statusOfKeys.js`
 ```js
-function(keys){
+function statusOfKeys(keys){
     console.log(keys)
 }
 ```
@@ -305,15 +302,13 @@ Finally, you examine your function code and realize that the indentation is all 
 - Next you write a failing test
 - then you update your source code, So it resolves the requirement 
 - After that you run a test that passes 
-- Finally, you re factor your implementation.  
+- Finally, you refactor your implementation.  
 
 This process is usually explained in three words. Red, Green. Re-factor,   
 
 - red represents the failing test.
 - Green on the other hand, represents the passing test after you make updates to the source code. 
 - The re-factor represents the final tweaks to the code that don't change implementation details, which can always be confirmed by running another subsequent test
-
-TDD when implemented correctly. brings huge benefits to an organization because it allows for automated testing 
 
 ##### TDD Advantages
 
