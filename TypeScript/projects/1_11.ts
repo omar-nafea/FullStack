@@ -17,6 +17,8 @@ let arrThree: (string | number | string[])[] = ["omar", 234, ["omara"]]
 let arrayThree: (string | number)[] = [1, 2, 3, 4, "A", "B", "C"];
 let arrayFour: (string | number | string[] | boolean)[] = [1, 2, 3, 4, "A", "B", ["C", "D"], true, false];
 
+// Array<string> === string[]
+
 let showMsg = true
 
 function showDetails(name: string, age: number, salary: number) : string{

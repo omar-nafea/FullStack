@@ -7,7 +7,7 @@
 
   --- Use With Object
   --- Use With Function
-  --- Use Read Only And Optional Operator
+  --- Use ReadOnly And Optional Operator
 */
 
 interface User {
@@ -141,7 +141,7 @@ type Settin = {
   external: boolean;
 }
 
-let userSettings: Settings = {
+let userSettings: Settin = {
   theme: true,
   font: "Open Sans",
   sidebar: false,
@@ -231,12 +231,6 @@ class User21 {
   sayMsg() {
     return `Hello ${this._changename} Your Salary Is ${this.salary}`;
   }
-  // get username() : string {
-  //   return this._username;
-  // }
-  // set username(value: string) {
-  //   this._username = value;
-  // }
 }
 
 let user1e = new User21("Elzero", 6000, "Cairo");
