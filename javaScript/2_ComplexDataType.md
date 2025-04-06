@@ -192,6 +192,8 @@ fruits.pop();
 console.log(fruits); // ['apple']
 ```
 
+[](./2.5_Advanced_jsConcept.md)
+
 ### Math object cheat sheet
 
 JavaScript has handy built-in objects. One of these popular built-in objects is the Math object. 

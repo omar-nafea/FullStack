@@ -246,6 +246,7 @@ console.log(user1e.sayMsg());
   Class
   - Static Members
   --- Don't Use "name, length, call"
+  what a static keyword does that it's variable does not apply to any instantiation of the class it applies to the class directly itself so we'll be keeping track of varibale not in any one instance of the class
 */
 
 class User22 {

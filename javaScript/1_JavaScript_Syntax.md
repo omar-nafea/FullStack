@@ -385,5 +385,6 @@ for (var i = 100; i > 10; i = i - 10) {
   }
 }
 ```
-
-
+### vim tip
+how to navigate to the next word that is identical to what I'm stantding on in vim
+`*` goes to the next matching word and `#` goes to the previous matching word. 
