@@ -26,7 +26,6 @@ function Btn() {
     );
 }
 ```
-
 ### Eventful issues
 
 You’re now aware that React can work with most of the same events found in HTML, although React handles them differently.  
@@ -35,14 +34,13 @@ This means that you may encounter unfamiliar errors when you run your event-driv
 ##### Event Errors
 
 When you work in any programming environment, language, or framework, you are bound to write code that throws errors, for a variety of reasons.  
-Sometimes it's just about writing the wrong syntax. Other times it's about not thinking of all the possible scenarios and all the possible ways that things can go wrong in your code.  
-Regardless of what causes them, errors are a part of everyday life for a developer.  
+Sometimes it's just about writing the wrong syntax. Other times it's about not thinking of all the possible scenarios and all the possible ways that things can go wrong in your code. Regardless of what causes them, errors are a part of everyday life for a developer.  
 The JavaScript language comes with a built-in error handling syntax, the try...catch syntax. Let’s examine an example of an error in JavaScript:
 ```js
 (5).toUpperCase()
 ```
 Obviously, you cannot uppercase a number value, and thus, this throws the following error:
-```bash
+```sh
 Uncaught TypeError: 5.toUpperCase is not a function
 ```
 To handle this TypeError, you can update the code with a try...catch block that instructs the code to continue running after the error is encountered:
@@ -104,9 +102,7 @@ return (
     <Counter onClick={clickHandler}/>
 )
 ```
-
 ### Event handling and embedded expressions
-
 ##### Handling events using inline anonymous ES5 functions
 
 This approach allows you to directly pass in an ES5 function declaration as the onClick event-handling attribute’s value:
@@ -171,11 +167,32 @@ export default App;
 ```
 The syntax in this example is very common in React. It uses arrow functions, but also allows us to handle situations where our separate function expression spans multiple lines of code.
 
+```jsx
+function App() {
+
+  function handleClick() {
+    let randomNum = Math.floor(Math.random() * 3) + 1;
+    console.log(randomNum);
+    let userInput = prompt('type a number');
+    alert(`Computer number: ${randomNum}, Your guess: ${userInput}`);
+  }
+
+  return (
+    <div>
+      <h1>Task: Add a button and handle a click event</h1>
+      <button onClick={handleClick}>Guess the number between 1 and 3</button>
+    </div>
+  );
+}
+
+export default App;
+```
+
 # Using Assets
 
 Assets are any file that application needed like image, audio, video, text file or any other file the app count on it during running process.  
 **The general rule for asset storage is that if your app can compile without it, you can keep it in the public folder.**   
-you create the assets folder in the React application. The pictures arrive and you place them inside the assets folder so they can be added to your components. To add an asset file to a component, you first need to import it. This can be done with an import statement.   
+you create the assets folder in the React application. The pictures arrive and you place them inside the assets folder so they can be added to your components. To add an asset file to a component, you first need to import it. This can be done with an `import` statement.   
 ```js
 import cat from './assets/images/cat.jpg'
 ```
@@ -239,7 +256,7 @@ Once all the source files of your app have been bundled into a single bundle fil
 
 This works great for smaller apps, but if you have a more extensive app, this approach is likely to affect your site’s speed. The longer it takes for a web app to load, the more likely the visitor will leave and move on to another unrelated website. There are several ways to tackle this issue of a large bundle.
 
-One such approach is code-splitting, a practice where a module bundler like webpack splits the single bundle file into multiple bundles, which are then loaded on an as-needed basis. With the help of code-splitting, you can lazy load only the parts that the visitor to the app needs to have at any given time. This approach significantly reduces the download times and allows React-powered apps to get much better speeds. 
+One such approach is **code-splitting**, a practice where a module bundler like webpack splits the single bundle file into multiple bundles, which are then loaded on an as-needed basis. With the help of code-splitting, you can lazy load only the parts that the visitor to the app needs to have at any given time. This approach significantly reduces the download times and allows React-powered apps to get much better speeds. 
 
 There are other ways to tackle these problems. An example of a viable alternative is SSR (Server-side rendering). With SSR, React components are rendered to HTML on the server, and the visitor downloads the finished HTML code. An alternative to SSR is client-side rendering, which downloads the index.html file and then lets React inject its own code into a dedicated HTML element (the root element in create-react-app). In this course, you’ve only worked with client-side rendering. Sometimes, you can combine client-side rendering and server-side rendering. This approach results in what’s referred to as isomorphic apps.
 
@@ -248,7 +265,7 @@ There are other ways to tackle these problems. An example of a viable alternativ
 You’ll learn how to install the reactjs-media npm package: https://www.npmjs.com/package/react-player
 
 To install this package you'll need to use the following command in the terminal:
-```js
+```sh
 npm install react-player
 ```
 There are a few ways that you can import and use the installed package. For example, to get the entire package's functionality, use the following import:

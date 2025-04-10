@@ -99,7 +99,7 @@ All the data in React can be divided into props data and states data. Props data
 # Hooks
 
 One key benefit of hooks is that they solve the problem of unnecessary code reuse across components. 
-***Hooks are functions*** that were introduced in React version 16 They let you hook into React state and lifestyle features from components.   
+**Hooks are functions** that were introduced in React version 16 They let you hook into React state and lifestyle features from components.   
 `UseState` hook is the most commonly used one. This hook is used to manage the state within a component and keep track of it and it's built directly into React. 
 ```jsx
 import React, {useState} from 'react';
@@ -120,6 +120,7 @@ So to summarize calling the useState hook does two things. It creates a state va
 The `useState` hook should be called at the top level of your component. In this example, notice that the `useState` hook was used to track the Boolean state value.  
 **You can use the `useState` hook to track any type of data.** It could be strings, numbers, arrays, Booleans or objects. For instance, you can even track the number of times a button is pressed.  
 In addition to the hooks that come out of the box with React, you can also build your own hooks, which will let you extract custom component logic into reusable functions. 
+
 ## Using hooks
 
 Let’s say you have a component with an input text field. The user can type into this text field. The component needs to keep track of what the user types within this text field. You can add state and use the `useState` hook, to hold the string. As the user keeps typing, the local state that holds the string needs to get updated with the latest text that has been typed.

@@ -8,11 +8,17 @@ React apps are built using modern JavaScript features, which are commonly known 
 
 Users need to be able to interact with elements on a web page. This means that an HTML document must be represented in a way that JavaScript code can query and update it. And that's the function of the DOM. It's a model of the objects in your HTML file. And web developers interact with the DOM through JavaScript to update content, set up events and animate HTML elements.
 
+Reacts prevents this spaghetti code by avoiding any manipulation of the DOM. Instead, React to provide something known as the virtual DOM. this is an in-memory representation or clone of the real DOM which minimizes updates to the DOM itself. React uses the virtual DOM to update the browser Dom only when needed. This ensures that the update is as minimal as possible, increasing the application speed and performance. 
+
 
 JavaScript topics that you need to be comfortable with before you begin your journey learning React. 
 Data types - Using var, let and const, Conditionals and Loops, Using objects, arrays and functions, ES6 Arrow functions, In-built functions such as map(), forEach() and promises., Destructuring Arrays and Objects, Error Handling 
 
-You will need to add other packages to your React application. A package in JavaScript contains all the files needed for a module. To install these packages effectively and manage their dependencies you can use a package manager like NPM (Node Package Manager). You can install npm by installing Node.js, which will then automatically install npm
+You will need to add other packages to your React application. A package in JavaScript contains all the files needed for a module. To install these packages effectively and manage their dependencies you can use a package manager like NPM (Node Package Manager). You can install npm by installing `Node.js`, which will then automatically install `npm`
+
+Babel is a JavaScript Compiler, What Babel does is this: it allows you to transpile JSX code (which cannot be understood by a browser) into plain JavaScript code (which can be understood by a browser). For React code to be understood by a browser, you need to have a transpiling step in which the JSX code gets converted to plain JavaScript code that a modern browser can work with
+
+> Repl stands for "read-eval-print loop" and it accepts code you write, evaluates it, and produces some result.
 
 ### JavaScript modules, imports - exports
 
@@ -26,7 +32,7 @@ function addTwo(a, b) {
 }
 ```
 
-Say that you have a file named addTwo.js that contains only the above code.
+Say that you have a file named `addTwo.js` that contains only the above code.
 How would you make this file a JavaScript module?
 All that you would need to do to make it a JavaScript module is use the export syntax.
 
@@ -143,26 +149,18 @@ The jsx syntax instructs React to render the heading HTML element with whatever 
 Transpiling: interpreting a programming language and translating it to a specific target language
 
 Transpiling JSX
-By the end of this reading, you will have learned how a component is built.
-Introduction
 
 Components are a nice way to build websites in React because they allow you to build more modular apps. However, how do you build components using React, JSX, and JavaScript? You'll learn how this works in this lesson item.
 A browser cannot understand JSX syntax.
 
 This means that making a browser understand React code requires a lot of supporting technologies.
 
-An example of such a technology is a transpiler.
-
-A transpiler takes a piece of code and transforms it into some other code.
-
-To understand why this is done, here is an example of an ES6 variable declaration:
+A transpiler takes a piece of code and transforms it into some other code. To understand why this is done, here is an example of an ES6 variable declaration:
 ```js
 const PI = 3.14
 ```
 
-This is perfectly valid ES6 syntax.
-
-However, if you were using a very old computer, that computer will have an old browser. Perhaps that browser was built before ES6 came out in 2015.
+This is perfectly valid ES6 syntax. However, if you were using a very old computer, that computer will have an old browser. Perhaps that browser was built before ES6 came out in 2015.
 
 This means that the JavaScript engine that is built into your old computer's browser is likely to be an ES5 JavaScript engine.
 
@@ -170,10 +168,8 @@ In ES5, the only way to declare a variable is the following:
 ```js
 var pi = 3.14
 ```
-
 What this means is that for this old browser to understand the ES6 code, the only way to do it is by transpiling it.
 
-If you feel like it, you can try transpiling ES6 to ES5 code yourself, using the es6console website
 Now, let's move the focus to another example of transpiling. Let's say that you want to use a brand new, most modern ECMAScript syntax in an app. The only problem is that this new syntax is currently not supported by any browser; even an up-to-date browser.
 
 However, by transpiling the new most-modern JavaScript syntax into something that modern browsers can understand, it is able to convert some code that the browser cannot comprehend, into code that it can comprehend, run, and produce a result from.
@@ -255,25 +251,17 @@ root.render(
 
 ##### Here are a few more interesting things about the syntax.
 
-- The use of the className attribute in JSX
-- The use of separate components for repetitive code
-- Where are all the props?
-- Why was I not using the <a> element for empty links? 
+- The use of the `className` attribute in JSX
+- Why was I not using the `<a>` element for empty links? 
 
 
-Why use the className attribute in the JSX syntax, Well, with JSX, it looks like HTML so much that it's easy to forget that it's actually JavaScript code - not HTML.
+Why use the `className` attribute in the JSX syntax, Well, with JSX, it looks like HTML so much that it's easy to forget that it's actually JavaScript code - not HTML.
 
-While regular HTML does indeed have a class attribute, which is used to list one or more CSS classes to be used on a given HTML element, this cannot really work in JSX. The reason is that JSX is a special kind of JavaScript syntax, and the word class is a reserved keyword in JSX. That's why the React team had to make a compromise and so className is used in JSX to list one or more CSS classes to be used on a given element or component.
+While regular HTML does indeed have a class attribute, which is used to list one or more CSS classes to be used on a given HTML element, this cannot really work in JSX. The reason is that JSX is a special kind of JavaScript syntax, and the word class is a reserved keyword in JSX. That's why the React team had to make a compromise and so `className` is used in JSX to list one or more CSS classes to be used on a given element or component.
 
-But why use Intro1.js, Intro2.js, and Intro3.js? Isn't one of the tenets of coding the DRY approach - that is, the "Don't repeat yourself" approach?
+While you can think of the code inside the return statement is regular HTML, it's worth remembering you are in a JavaScript file, and as a result, there are some differences.  you cannot use the keyword class to work with CSS classes in your HTML elements. This is because class is a reserved keyword in JavaScript, you must use a slightly different keyword called className instead. 
 
-Indeed, it is. However, there are still a few concepts to discuss before you learn how to re-use a single component with variations in its content. This has to do with data in components, but don't worry, we'll be getting to that later. 
-
-The third question is about the props object. It has been mentioned before, but so far it hasn't been used. It hasn't been used in this example either.
-
-The answer to this question has to do with the next lesson, titled Component Use and Styling. In this lesson, you'll see in practice how you can make components work better, with the help of props. The final question is about not using the <a> element for empty links in my app.
-
-The answer here depends on whether those links are "internal" - inside an app, or "external", meaning, leading to some external link, such as https://www.coursera.org If the links are internal to the app - as they are envisioned here - using the `<a>` tag is simply not the React way of doing things. You'll learn why that is the case when discussing the use of React Router.
+The reason for not using the <a> element for empty links in my app. is depending on whether those links are "internal" - inside an app, or "external", meaning, leading to some external link, such as https://www.coursera.org If the links are internal to the app - as they are envisioned here - using the `<a>` tag is simply not the React way of doing things. You'll learn why that is the case when discussing the use of React Router.
 
 
 ##### what is the difference between modules and components
@@ -297,19 +285,17 @@ function App() {
   return <h1>Hello there</h1>
 }
 ```
-… if you used the Babel transpiler to transpile this JSX syntactic sugar code down to plain JavaScript code, you’d get back some unusual code:
+if you used the Babel transpiler to transpile this JSX syntactic sugar code down to plain JavaScript code, you’d get back some unusual code:
 ```js
 "use strict";
 function App() {
     return /*#__PURE__*/React.createElement("h1", null, "Hello there");
 }
 ```
-You just want to focus on the React.createElement("h1", null, "Hello there"); part. You can ignore the rest.
-
-This means that the createElement function receives three arguments:
+You just want to focus on the `React.createElement("h1", null, "Hello there");` This means that the `createElement` function receives three arguments:
 
 - The wrapping element to render. 
-- A null value (which is there to show an absence of an expected JavaScript object value). 
+- A `null` value (which is there to show an absence of an expected JavaScript object value). 
 - The inner content that will go inside the wrapping element. 
 
 ##### The wrapping element to render
@@ -325,21 +311,22 @@ function App() { 
   )
 }
 ```
-… the transpiled return statement in plain JavaScript again returns two createElement functions:
+the transpiled `return` statement in plain JavaScript again returns two `createElement` functions:
 ```js
-"use strict";
 function App() {
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Hello there"));
+  return React.createElement(
+    "div",
+    null,
+    React.createElement("h1", null, "Hello there")
+  );
 }
 ```
 So now the third argument of the outer-most `React.createElement` call is another `React.createElement` call.  
-This is how you can nest as many elements as you want. This means that a nested JSX structure is just a bunch of nested React.createElement calls, passed in to other React.createElement calls as their third argument.
+This is how you can nest as many elements as you want. This means that a nested JSX structure is just a bunch of nested `React.createElement` calls, passed in to other `React.createElement` calls as their third argument.
 
 ##### The second – null – argument
 
-The second argument of null can – in this case – be replaced with an empty object.
-
-In that case, your code would contain a pair of curly braces instead of the word null:
+The second argument of null can – in this case – be replaced with an empty object. In that case, your code would contain a pair of curly braces instead of the word `null`:
 ```jsx
 function App() {
   return React.createElement(
@@ -363,3 +350,7 @@ React.createElement(
 
 This is the inner content that will go inside the wrapping element. It's what makes it possible to nest elements inside other elements, mimicking the way that HTML works.
 
+### Limitation of props
+
+- It's one way of transfer data which is from parent to child the opposite way is not allowed.
+- Another important limitation has to do pure functions. when you declare a component using props, it must never modify its own props.
