@@ -36,10 +36,11 @@ function App(){
 }
 ```
 
-In this case, `Hello` is the state value assigned to the word state variable. The function is a built-in one that is not declared. The function can be destructured with any name you'd like, but there is a convention to follow. If you set the States variable name to be greet, then the destructured state function should be `setGreet`. This is because the second destructured variable is a function ( its whole job ) that **will be used to update the state of a variable**. 
+In this case, `Hello` is the state value assigned to the `word` state variable. The function is a built-in one that is not declared. The function can be destructured with any name you'd like, but there is a convention to follow. If you set the States variable name to be `greet`, then the destructured state function should be `setGreet`. This is because the second destructured variable is a function ( its whole job ) that **will be used to update the state of a variable**. 
 ```jsx
 function App(){
     const [ greet, setGreet ] = useState("Hello")
+    // setGreet => this wrong you should call it in react function based on an event.
     return (
         <div>
             <h1>A state value: {greet}</h1>
@@ -116,10 +117,12 @@ While passing props helps to manage states, it is like taking a bus and going th
 
 To set it up, you need to add a piece of code that will be your **context provider**. It's also where the state will be stored. When a component needs to use the state, it becomes a **context consumer**. 
 
+the component that needs the data simply gets it from the context API.
+The way that this is achieved is by extracting the state into a separate file that holds the state in context, then, any file that needs it simply imports it and uses it. 
 
+something that is often overlooked by React beginners is that a prop doesn't always have to pass state. In addition to state, JavaScript values and functions can also be passed to the child component. It's still data but it's props data rather than state data. 
 
 React Context is a way to manage state globally. It can be used together with the useState Hook to share state between deeply nested components more easily than with useState alone.  
-The Problem State should be held by the highest parent component in the stack that requires access to the state. To illustrate, we have many nested components. The component at the top and bottom of the stack need access to the state. To do this without Context, we will need to pass the state as "props" through each nested component. This is called "prop drilling".
 
 ### The Problem
 
@@ -153,7 +156,7 @@ function Component3({ user }) {
 ```
 ### The Solution
 
-The solution is Create Context To create context, you must Import createContext and initialize it
+The solution is Create Context, To create context, you must Import `createContext` and initialize it
 ```js
 import { useState, createContext } from "react";
 import ReactDOM from "react-dom/client";
@@ -173,7 +176,7 @@ function Component1() {
   );
 }
 ```
-Now, all components in this tree will have access to the `userContext`. Use the `useContext` Hook In order to use the Context in a child component, we need to access it using the `useContext` Hook. First, include the useContext in the import statement:
+Now, all components in this tree will have access to the `userContext`. Use the `useContext` Hook In order to use the Context in a child component, we need to access it using the `useContext` Hook. First, include the `useContext` in the import statement:
 ```js
 import { useState, createContext, useContext } from "react";
 ```
@@ -194,9 +197,9 @@ function Component5() {
 // PROVIDER COMPONENT
 import {createContext} from 'react';
 export const MyContext = createContext();
-<MyContext.Provider value={value}>
-<Child />
-</MyContext.Provider>
+  <MyContext.Provider value={value}>
+    <Child />
+  </MyContext.Provider>
 ```
 ```js
 // CONSUMER COMPONENTS
@@ -235,7 +238,7 @@ const MealsContext = createContext()
 const todaysMeals = ['Backed Beans', 'Backed sweet Potatos', 'Backed Potatoes']
 ```   
 I then code the `mealsProvider` as an ES6 function that accepts the children value. **This value holds everything that we wrapped into the `mealsProvider` component when it gets rendered inside the `App` component.**    
-which in this case it `MealsList` and `Counter` components as a children of `MealsProvider` component  
+which in this case it's `MealsList` and `Counter` components as a children of `MealsProvider` component  
 The children value is just returned from the `mealsProvider`, wraps into the `MealsContexts.Provider` JSX elements.   
 The `MealsContexts.Provider` JSX elements comes with the `value` attribute. This value attributes gets assigned the `meals` object, which is the value I sent to the `useState` variable earlier. 
 **All `children` has access to the `value` prop**
@@ -252,10 +255,10 @@ const MealsProvider = ({children}) => {
 export const useMealsListContext = () => useContext(MealsContext)
 export default MealsProvider
 ``` 
-Before exporting the `mealsProvider` component, set a `useMealsListContexts` variable to the `useContext` and passing the `mealsContexts` as its single argument.   
-This makes it easier for me to destructure the meals objects from the `useMealsListContext` variable.  
+Before exporting the `mealsProvider` component, set a `useMealsListContexts` variable to the `useContext` and passing the `mealsContext` as its single argument.   
+This makes it easier to destructure the meals objects from the `useMealsListContext` variable.  
 
-Finally, in the `mealsList` component,   I'm accessing the context date by importing the `useMealsListContext` from the `mealsProvider` file.   
+Finally, in the `mealsList` component, I'm accessing the context data by importing the `useMealsListContext` from the `mealsProvider` file.   
  
 ```js
 // MealsList.js
@@ -284,7 +287,7 @@ Lastly, let's examine the `Counter` component. Note that it gets the context dat
 
 ![](../Pics/mealsListContextAPI.png)
 
-Next, let me show you how the `useReducer` hook works. You can think of it as a superpower to `useStates`. While the `useStates` hook starts with an initial state, the `useReducer` also gets a reducer function in addition to the initial state. 
+Next, let take a look on how the `useReducer` hook works. You can think of it as a superpower to `useStates`. While the `useStates` hook starts with an initial state, the `useReducer` also gets a reducer function in addition to the initial state. 
 ```js
 // App.js
 const reducer = (state, action) => {
@@ -326,6 +329,113 @@ function App() {
 
 export default App
 ```
+```jsx
+import { useReducer } from 'react';
 
+function reducer(state, action) {
+  if (action.type === 'incremented_age') {
+    return {
+      age: state.age + 1
+    };
+  }
+  throw Error('Unknown action.');
+}
 
-​
+export default function Counter() {
+  const [state, dispatch] = useReducer(reducer, { age: 42 });
+
+  return (
+    <>
+      <button onClick={() => {
+        dispatch({ type: 'incremented_age' })
+      }}>
+        Increment age
+      </button>
+      <p>Hello! You are {state.age}.</p>
+    </>
+  );
+}
+```
+To-Do list with useReducer
+```jsx
+import { useReducer } from 'react';
+import AddTask from './AddTask.js';
+import TaskList from './TaskList.js';
+
+function tasksReducer(tasks, action) {
+  switch (action.type) {
+    case 'added': {
+      return [...tasks, {
+        id: action.id,
+        text: action.text,
+        done: false
+      }];
+    }
+    case 'changed': {
+      return tasks.map(t => {
+        if (t.id === action.task.id) {
+          return action.task;
+        } else {
+          return t;
+        }
+      });
+    }
+    case 'deleted': {
+      return tasks.filter(t => t.id !== action.id);
+    }
+    default: {
+      throw Error('Unknown action: ' + action.type);
+    }
+  }
+}
+
+export default function TaskApp() {
+  const [tasks, dispatch] = useReducer(
+    tasksReducer,
+    initialTasks
+  );
+
+  function handleAddTask(text) {
+    dispatch({
+      type: 'added',
+      id: nextId++,
+      text: text,
+    });
+  }
+
+  function handleChangeTask(task) {
+    dispatch({
+      type: 'changed',
+      task: task
+    });
+  }
+
+  function handleDeleteTask(taskId) {
+    dispatch({
+      type: 'deleted',
+      id: taskId
+    });
+  }
+
+  return (
+    <>
+      <h1>Prague itinerary</h1>
+      <AddTask
+        onAddTask={handleAddTask}
+      />
+      <TaskList
+        tasks={tasks}
+        onChangeTask={handleChangeTask}
+        onDeleteTask={handleDeleteTask}
+      />
+    </>
+  );
+}
+
+let nextId = 3;
+const initialTasks = [
+  { id: 0, text: 'Visit Kafka Museum', done: true },
+  { id: 1, text: 'Watch a puppet show', done: false },
+  { id: 2, text: 'Lennon Wall pic', done: false }
+];
+```​

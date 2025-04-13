@@ -21,9 +21,7 @@ root.render(
      your components -->
 </div>
 ```
-Instead, the content of that single div is controlled by React, and it's based on changes to the virtual DOM. It either updates the existing view or loads a completely new view, giving the user the impression of visiting a completely different URL. 
-
-
+Instead, the content of that single div is controlled by React, and **it's based on changes to the virtual DOM. It either updates the existing view or loads a completely new view**, giving the user the impression of visiting a completely different URL.  
 Recall that with HTML, developers can use a list to make a navigation menu. 
 ```html
 <ul>
@@ -86,12 +84,13 @@ But what if we need to have multiple pages with different layouts in our applica
 
 |Single Page Application diagram with multiple templates loaded into a single page| Traditional page application with multiple pages to be loaded |
 |--|--| 
-|![](../Pics/singlePageApplications.jpeg) | ![](../Pics/traditionalPageApplication.jpeg) | 
+|![](../Pics/singlePageApplications.jpeg) | ![](../Pics/traditionalPageApplication.jpeg) |  
+
 You have a web application that has a navigation bar on top and two pages. One page shows the latest news, and the other shows the current user’s profile page. The navigation bar contains a link for each page.
 
 - In a traditional website, when the user clicks the Profile link, the web browser sends the request to the web server. The web server generates the HTML page and sends it back to the web browser. The web browser then renders the new web page.
 
-- In a Single Page Application, different pages are broken into templates (or views). Each view will have HTML code containing variables that can be updated by the application. The web browser sends the request to the web server, and the web server sends back a JSON object. The web browser then updates the web page by inserting the template with the variables replaced by the values in the JSON object.
+- In a Single Page Application, different pages are broken into **templates** (or views). Each view will have HTML code containing variables that can be updated by the application. The web browser sends the request to the web server, and the web server sends back a **JSON** object. The web browser then updates the web page by inserting the template with the variables replaced by the values in the JSON object.
 
 ### Anchor Tag Elements in Single-Page Elements
 
@@ -100,10 +99,11 @@ A single-page application can’t have regular anchor tag elements as a traditio
 The reason for this is that the default behavior of an anchor tag is to load another HTML file from a server and refresh the page. This page refresh is not possible in a SPA that's powered by a library such as React because a total page refresh is not the way that a SPA works.
 
 Instead, a SPA comes with its own special implementation of anchor tags and links, which only give an illusion of loading different pages to the end user.   
-They simply load different components into a single element of the real DOM into which the virtual DOM tree gets mounted and updated.
+**They simply load different components into a single element of the real DOM into which the virtual DOM tree gets mounted and updated.**
+
 ### Navbar Links
 
-```bash
+```zsh
 npm i react-router-dom
 ```
 ```js
@@ -149,6 +149,71 @@ function App() {
 export default App
 ```
 
+## How to Add an External Link With React Router?
+
+You can use the Link component or an HTML anchor tag if you want to redirect to an external link with React Router. Using the `<Link>` component, you can do it thanks to the `pathname` and `target` parameters. It will redirect the user to the specified URL.
+
+### Using React Router
+
+If you use this library to redirect to an external URL, you can use the `<Link />` component with the `pathname` and `target` property.
+```jsx
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom"
+import "./styles.css";
+
+export default function App() {
+  return (
+    <Router>
+      <Switch>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
+  )
+}
+
+function Home() {
+  return (
+    <div>
+      <Link to={{ pathname: "https://herewecode.io/" }} target="_blank">Click to open HereWeCode (new tab)</Link>
+    </div>
+  )
+}
+```
+
+As you can see above, when you pass an external URL to the React Router Link component and combine it with a `target="_blank"` property, the link will open a new tab with the URL of your choice.
+
+Note: Unfortunately, it's impossible to open an external URL in the same tab using React Router. If you don't provide the target property, the router will append the URL to your current website URL (e.g., https://my-website.com/https://herewecode.io/). 
+
+### Using an Anchor Tag ()
+
+If you want to open an external link to the current tab, the most straightforward way is to use the native anchor tag in HTML (`<a>`).
+```jsx
+import React from "react"
+
+export default function App() {
+  return (
+    <div>
+      <p>
+        <a href="https://herewecode.io/">
+          Click to open HereWeCode (current tab)
+        </a>
+      </p>
+      <p>
+        <a href="https://herewecode.io/" target="_blank">
+          Click to open HereWeCode (new tab)
+        </a>
+      </p>
+    </div>
+  )
+}
+```
 ## Conditional rendering
 
 ### Applying conditional rendering
@@ -209,10 +274,9 @@ function LogicalAndExample() {
     )
 }
 ```
-There are a few things to unpack here, so here is the explanation of the `LogicalAndExample` component, top to bottom:
-
-- First, you ask the user to type into the prompt, specifying that you require anything other than a zero character; and you save the input into the val value.
-- In the return statement, an h1 heading is wrapped inside a div element, and then curly braces are used to include a JSX expression. Inside this JSX expression is a single `&&` operator, which is surrounded by some code both on its left and on its right sides; on the left side, the `val` value is provided, and on the right, a piece of JSX is provided. 
+- First, you ask the user to type into the prompt, specifying that you require anything other than a zero character; and you save the input into the `val` value.
+- In the return statement, an `h1` heading is wrapped inside a div element, and then curly braces are used to include a JSX expression.  
+Inside this JSX expression is a single `&&` operator, which is surrounded by some code both on its left and on its right sides; on the left side, the `val` value is provided, and on the right, a piece of JSX is provided. 
 
 To understand what will be output on screen, consider the following example in standard JavaScript:
 ```js
@@ -223,7 +287,7 @@ If you ran this command in the browser’s console, the text ‘This will show�
 false && console.log('This will never show')
 ```
 If you ran this command, the output will just be the boolean value of false.  
-**In other words, if a prop gets evaluated to true, using the && operator, you can render whatever JSX elements you want to the right of the && operator**
+**In other words, if a prop gets evaluated to true, using the `&&` operator, you can render whatever JSX elements you want to the right of the `&&` operator**
 
 ### Conditional components
 
@@ -245,27 +309,25 @@ Let’s take a look at a simple example. Let’s say you have two child componen
 
 In the parent component, named `LogInOutButton`, you can check the props passed into the parent component and return a different child component based on the value of the props.
 
-In this example, the props contains a property named isLoggedIn. When this is set to true, the LogoutButton component is returned. Otherwise, the LoginButton component is returned.
+In this example, the props contains a property named `isLoggedIn`. When this is set to `true`, the `LogoutButton` component is returned. Otherwise, the `LoginButton` component is returned.
 ```js
 function LogInOutButton(props) {
 const isLoggedIn = props.isLoggedIn;
   if (isLoggedIn) {
-    return <LogoutButton />;
-  } else {
-  return <LoginButton />;
+        return <LogoutButton />;
+    } else {
+        return <LoginButton />;
 }
 ```
-
-Then when the LogInOutButton parent component is used, the prop can be passed in.
+Then when the `LogInOutButton` parent component is used, the prop can be passed in.
 ```js
 <LogInOutButton isLoggedIn={false} />
 ```
-
 This is a simple example showing how you can change what is displayed based on a condition check. You will use this often when developing React applications.
 
-The logical AND operator is used to conditionally render some JSX elements based on whether a value to the LEFT of the AND operator evaluates to true.
-
+The logical AND operator is used to conditionally render some JSX elements based on whether a value to the **LEFT** of the AND operator evaluates to `true`.
 ```js
 function LogInOutButton(props) {
 return props.isLoggedIn ? <LogoutButton > : <LoginButton/>
 ```
+

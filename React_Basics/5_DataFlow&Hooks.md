@@ -28,19 +28,20 @@ let's explore a situation: you have to call the `PromoHeading` component in the 
 if you update the child component you'd have to update multiple components with the same data. You rather establish a **single source of truth** that contains the two strings that store the values for the texts, "99 percent of all items" and "everything must go". This will be contained within the parent component so that any data needed can be passed onto the child component using **props**. 
 
 Recall the props is a feature of React that essentially allows you to hold information about the UI in the browser. let's use this approach First, you create a single source of truth, a JavaScript object named data
-```js
+
+Next, you update the `Promo` component to pass the `heading` and the `callToAction` values of the data object to the `PromoHeading` component. This is known as passing data from the parent to the child component. 
+```jsx
+import PormoHeading from './PromoHeading'
+
 const data = {
     heading: '99% off all items'
     callToAction: 'Everything must go'
 }
-```
-Next, you update the `Promo` component to pass the `heading` and the `callToAction` values of the data object to the `PromoHeading` component. This is known as passing data from the parent to the child component. 
-```jsx
-import PormoHeading from './PromoHeading'
+
 function Promo(){
     return(
         <div>
-            <PromoHeading  heading={props.heading} callToAction={props.callToAction}/>
+            <PromoHeading  heading={data.heading} callToAction={data.callToAction}/>
         </div>
     )
 }
@@ -93,6 +94,8 @@ function Bowl(props) {
 };
 ```
 Having data move through props in only one direction makes it simpler to understand the logic of how the components interact. If data were moving everywhere, all the time, then it would be much harder to comprehend its logical flow.  
+
+**Important**
 In React, data is passed down from parent components to a child components via props. A child components can't mutate or change its props. It can only read them and re-render. This means that the data comes from the parents and it's just consumed in the child components.   
 All the data in React can be divided into props data and states data. Props data is data outside the components that it receives and works with but cannot mutate. State data is data inside the components that it controls and can mutate. The prop data are belongs to the parent that renders the components. The state data belongs to the component itself. 
 
@@ -107,17 +110,17 @@ const [showMenu, setShowMenu] = useState(false)
 ```
 
 Notice that the convention is to name the state variable and the set of function using array destructuring. When you declare a state variable using the `useState`, it returns a pair which is an array with two items. Without array destructuring, the code would be long and cumbersome. 
-
-Since it's more confusing and tedious to access the array items by index, array destructuring is preferred and it significantly simplifies the code. You now have a new state variable called `showMenu`. The `useState` then sets the initial value of `showMenu` as false.
-
 ```js
 [false, ƒ]
 0: false
 1: ƒ ()length: 1
 ```
+Since it's more confusing and tedious to access the array items by index, array destructuring is preferred and it significantly simplifies the code. You now have a new state variable called `showMenu`. The `useState` then sets the initial value of `showMenu` as false.
+
 So to summarize calling the useState hook does two things. It creates a state variable with an initial value that represents the current state, which in this example is `showMenu`. And it creates a function to **set** that states variable value, which in this case is `setShowMenu`. The function `setShowMenu` is used to update the value of show menu bypassing the Boolean value to it. It does not matter what names you use for the state variables. 
 
-The `useState` hook should be called at the top level of your component. In this example, notice that the `useState` hook was used to track the Boolean state value.  
+**Hooks can be called only at the top level and only from React functions.**  
+In this example, notice that the `useState` hook was used to track the Boolean state value.  
 **You can use the `useState` hook to track any type of data.** It could be strings, numbers, arrays, Booleans or objects. For instance, you can even track the number of times a button is pressed.  
 In addition to the hooks that come out of the box with React, you can also build your own hooks, which will let you extract custom component logic into reusable functions. 
 
@@ -172,9 +175,9 @@ export default function InputComponent() {
 ```
 ### Rules of Hooks 
 
-- ***You can only call hooks at the top level of your component or your own hooks.*** 
-- ***You cannot call hooks inside loops or conditions.*** 
-- ***You can only call hooks from React functions, and not regular JavaScript functions.*** 
+- **You can only call hooks at the top level of your component or your own hooks.** 
+- **You cannot call hooks inside loops or conditions.** 
+- **You can only call hooks from React functions, and not regular JavaScript functions.**
 
 To demonstrate, let’s extend the previous example, to include three input text fields within a single component. This could be a registration form with fields for first name, last name and email. 
 Text fields of first name, last name and email
@@ -210,8 +213,8 @@ export default function RegisterForm() {
 Notice that you are using a `form` object to store the state of all three text input field values:
 ```jsx
 const[form, setForm] =useState({
-firstName:'Luke',
-lastName:'Jones',
+    firstName:'Luke',
+    lastName:'Jones',
     email:'lukeJones@sculpture.com',
 });
 ```

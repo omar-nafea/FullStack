@@ -190,9 +190,10 @@ export default App;
 
 # Using Assets
 
-Assets are any file that application needed like image, audio, video, text file or any other file the app count on it during running process.  
+Assets are any file that application needed like image, audio, video, text file, style sheets, fonts, media files or any other file the app count on it during running process.  
+A common way to do keep assets easily and readily available to your components. is to add an `assets` folder inside of a source (`src`) folder and keep all your apps assets there. Some assets can also be placed inside the public folder. For example, you'll find that some images such as `favicon` are stored there by default. 
 **The general rule for asset storage is that if your app can compile without it, you can keep it in the public folder.**   
-you create the assets folder in the React application. The pictures arrive and you place them inside the assets folder so they can be added to your components. To add an asset file to a component, you first need to import it. This can be done with an `import` statement.   
+you create the `assets` folder in the React application. The pictures arrive and you place them inside the assets folder so they can be added to your components. To add an asset file to a component, you first need to import it.
 ```js
 import cat from './assets/images/cat.jpg'
 ```
@@ -202,14 +203,29 @@ import cat from './assets/images/cat.jpg'
 <img src={cat} alt="Cat image" />
 </>
 ```
-Alternatively, instead of the asset name, you can reference the path to the assets folder relative to the component. 
+Alternatively, instead of the asset name, you can reference the path to the assets folder relative to the component. I use the `height` attribute to limit the size of the image by making its height exactly `200` pixels. 
 ```js
 <>
 <img src={require('./assets/image/cat.jpg')} 
+height={200}
 alt="Cat image" />
 </>
 ```
 You can do this with the `require` keyword as well as curly braces that encase the JSX Expression and act as delimiters.  It's important to know that with this method, you no longer need the `import` statement. This is because you're using the required syntax right inside the JSX Expression that's assigned to the `src` JSX attribute. 
+
+this time I want to display a random image URL from a photo hosting website.
+To do this:
+```jsx
+functoin App(){
+const randomImageURL = 'https://picsum.photos/400/265'
+return (
+    <>
+        <img src={randomImageURL} 
+        height={200}
+        alt="Cat image" />
+    </>
+)}
+```
 
 ### Bundling assets
 
@@ -260,6 +276,18 @@ One such approach is **code-splitting**, a practice where a module bundler like 
 
 There are other ways to tackle these problems. An example of a viable alternative is SSR (Server-side rendering). With SSR, React components are rendered to HTML on the server, and the visitor downloads the finished HTML code. An alternative to SSR is client-side rendering, which downloads the index.html file and then lets React inject its own code into a dedicated HTML element (the root element in create-react-app). In this course, you’ve only worked with client-side rendering. Sometimes, you can combine client-side rendering and server-side rendering. This approach results in what’s referred to as isomorphic apps.
 
+### Audio and Video
+
+You can use the readily available HTML5 video tag to load a local video asset to your React app. Like loading an image or any other kind of asset file, you can just declare a variable somewhere above a component's return statement and then add it as a JSX expression to the SRC attribute.  
+
+However, this approach might not work as easily with some major providers of video content, such as one of the several social media and social video sharing platforms. In that case, you have the option of rolling out your own solutions.  
+
+This may be a bit more involved than just adding a video tag to an app. It might depend on the specific instructions on how a given social media platform recommends that you embed the video and audio assets into websites. Very often, you'd get a code snippet that you can copy and paste.  
+
+However, a specific implementation might be slightly different because you would, for example, like to add it as a separate React component. You might be wondering, why do you want to prepare it as a separate component? One of the reasons is that you'd be able to easily switch one video with another by passing the unique ID of a given video as a prop. You can then control the video output that way.   
+
+So far, you've learned about two ways of adding videos to your apps. The first method involves just serving a local video using the video element, and the second method is using embedded third-party videos. There's another approach you may consider, namely using a third-party NPM package to streamline the process of adding videos to your app. 
+
 ### Media packages
 
 You’ll learn how to install the reactjs-media npm package: https://www.npmjs.com/package/react-player
@@ -272,6 +300,8 @@ There are a few ways that you can import and use the installed package. For exam
 ```js
 import ReactPlayer from "react-player";
 ```
+![](../Pics/reactPlayerProps.png)
+
 If you are, for example, only planning to use videos from a site like YouTube, to reduce bundle size, you can use the following import:
 ```js
 import React from "react";
@@ -286,7 +316,14 @@ const App = () => {
 };
 const MyVideo = () => {
   return (
-    <ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U' />
+    <ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U' 
+    playing={false}
+    loop={true}
+    controls={true}
+    height={'435px'}
+    width={'523px'}
+    volume={0.5}
+    />
   );
 };
 export default App;
