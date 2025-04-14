@@ -224,5 +224,4 @@ The useReducer hook in React provides a robust way to manage state, particularly
 
 Whether you are managing a simple state or a complex application, useReducer can help you handle state transitions in a clean and efficient manner, making your React applications more maintainable and scalable.
 
-## useEffect
 
