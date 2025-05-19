@@ -211,6 +211,7 @@ height={200}
 alt="Cat image" />
 </>
 ```
+
 You can do this with the `require` keyword as well as curly braces that encase the JSX Expression and act as delimiters.  It's important to know that with this method, you no longer need the `import` statement. This is because you're using the required syntax right inside the JSX Expression that's assigned to the `src` JSX attribute. 
 
 this time I want to display a random image URL from a photo hosting website.
