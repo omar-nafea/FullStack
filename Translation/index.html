@@ -28,6 +28,14 @@
       <div
         id="flashcard"
         class="flashcard">
+        {/* ...
+        (flashcard-front
+        and
+        flashcard-back
+        structure
+        remains the
+        same) ...
+        */}
         <div
           class="flashcard-front">
           <div
@@ -56,7 +64,6 @@
             <h2
               id="flashcard-word-back">
             </h2>
-
             <div
               id="flashcard-headword-translation-area">
               <p>
@@ -72,7 +79,6 @@
             </div>
             <hr
               class="content-separator">
-
             <div
               id="flashcard-mw-details">
               <p>
@@ -108,23 +114,9 @@
               id="flashcard-word-not-found-area"
               style="display:none;">
               {/*
-              Message
-              for
-              "word
-              not
-              found"
-              is
+              Content
               handled
-              dynamically
-              in JS.
-              Headword
-              translation
-              will
-              still
-              appear
-              above
-              via
-              flashcard-headword-translation-area
+              by JS
               */}
             </div>
           </div>
@@ -136,8 +128,8 @@
       id="flashcard-navigation">
       <button
         id="prev-card-btn">Previous</button>
-      <button
-        id="next-card-btn">Next</button>
+        <button
+          id="next-card-btn">Next</button>
     </div>
 
     <div
