@@ -80,7 +80,7 @@ Here are the fundamental concepts of OOP in PHP:
 
 ---
 
-### 2. Encapsulation 💊
+### 2. Encapsulation 
 
 Encapsulation is the bundling of data (properties) and methods that operate on that data within a single unit (the class). It also involves restricting direct access to some of an object's components, which is known as **access control**.
 
@@ -154,7 +154,7 @@ Encapsulation is the bundling of data (properties) and methods that operate on t
 
 ---
 
-### 3. Inheritance 👨‍👩‍👧‍👦
+### 3. Inheritance
 
 Inheritance is a mechanism where a new class (child or subclass) derives properties and methods from an existing class (parent or superclass). This promotes code reuse and establishes a "is-a" relationship (e.g., a `Dog` _is an_ `Animal`).
 
@@ -245,11 +245,11 @@ Inheritance is a mechanism where a new class (child or subclass) derives propert
 
 ---
 
-### 4. Polymorphism 🎭
+### 4. Polymorphism 
 
 Polymorphism ("many forms") allows objects of different classes to respond to the same method call in different ways. It's often achieved through inheritance and interfaces. It allows you to treat objects of different classes in a uniform way if they share a common parent class or implement the same interface.
 
-    ```php
+```php
     <?php
 
     interface Shape { // Define a contract
@@ -323,8 +323,8 @@ Polymorphism ("many forms") allows objects of different classes to respond to th
     makeBirdFly($penguin); // Output: Penguin cannot fly, it swims.
 
     ?>
-    ```
-    In the `Shape` example, both `Circle` and `Rectangle` objects can call `calculateArea()`, but the actual calculation performed is specific to each class. The `printArea` function can work with any object that implements the `Shape` interface.
+```
+In the `Shape` example, both `Circle` and `Rectangle` objects can call `calculateArea()`, but the actual calculation performed is specific to each class. The `printArea` function can work with any object that implements the `Shape` interface.
     In the `Bird` example, `makeBirdFly` can accept any object that is a `Bird` or its subclass. The `fly()` method behaves differently for `Sparrow` and `Penguin`.
 
 ---
