@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FFmpeg Batch Script Generator</title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+        background-color: #121212;
+        color: #e0e0e0;
+        padding: 2rem;
+      }
+      .container {
+        background-color: #1e1e1e;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        max-width: 800px;
+        margin: auto;
+      }
+      h1,
+      h2 {
+        color: #bb86fc;
+      }
+      .grid-inputs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      .input-group {
+        margin-bottom: 1rem;
+      }
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #cfcfcf;
+      }
+      input, textarea {
+        width: 100%;
+        padding: 0.75rem;
+        background-color: #333;
+        border: 1px solid #444;
+        border-radius: 6px;
+        color: #e0e0e0;
+        box-sizing: border-box;
+        font-family: inherit;
+      }
+      .button-group {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      button {
+        padding: 0.8rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+      #addBtn {
+        background-color: #03dac6;
+        color: #121212;
+      }
+      #clearBtn {
+        background-color: #cf6679;
+        color: #121212;
+      }
+      #generateBtn {
+        background-color: #3700b3;
+        color: #fff;
+      }
+      #queueList {
+        list-style-type: none;
+        padding-left: 0;
+      }
+      #queueList li {
+        background: #252525;
+        margin-bottom: 5px;
+        padding: 8px;
+        border-radius: 4px;
+        word-break: break-all;
+      }
+      textarea#output {
+        width: 100%;
+        height: 250px;
+        margin-top: 1.5rem;
+        background-color: #252525;
+        padding: 1rem;
+        border-radius: 6px;
+        font-family: "Courier New", Courier, monospace;
+        border: 1px solid #444;
+        box-sizing: border-box;
+        color: #e0e0e0;
+        cursor: pointer;
+      }
+      textarea#output:hover {
+        background-color: #333;
+      }
+    </style>
+</head>
+<body>
+    <div class="container">
+      <h1>FFmpeg Batch Script Generator Parsing cURL 📜</h1>
+
+      <div class="grid-inputs">
+        <div class="input-group">
+          <label for="videoNameInput">Video Name:</label>
+          <input
+            type="text"
+            id="videoNameInput"
+            placeholder="e.g., introduction-to-css"
+          />
+        </div>
+        <div class="input-group">
+          <label for="initialValueInput">Start Numbering at:</label>
+          <input type="number" id="initialValueInput" value="1" min="1" />
+        </div>
+      </div>
+
+      <div class="input-group">
+          <label for="curlInput">Paste cURL Command:</label>
+          <textarea id="curlInput" rows="6" placeholder="Paste the full cURL command here to add to the queue..."></textarea>
+      </div>
+
+      <div class="button-group">
+        <button id="clearBtn">Clear Queue</button>
+        <button id="generateBtn">Generate Script</button>
+        <button id="addBtn">Add to Queue</button>
+
+      </div>
+
+      <h2>Download Queue (<span id="queueCount">0</span>)</h2>
+      <ul id="queueList"></ul>
+
+      <textarea id="output" readonly title="Click to copy script"></textarea>
+    </div>
+
+    <script>
+      const QUEUE_KEY = "ffmpegQueue";
+      const COUNTER_KEY = "ffmpegInitialCounter";
+
+      const videoNameInput = document.getElementById("videoNameInput");
+      const initialValueInput = document.getElementById("initialValueInput");
+      const curlInput = document.getElementById("curlInput"); // New input
+      const addBtn = document.getElementById("addBtn");
+      const clearBtn = document.getElementById("clearBtn");
+      const generateBtn = document.getElementById("generateBtn");
+      const outputArea = document.getElementById("output");
+      const queueList = document.getElementById("queueList");
+      const queueCount = document.getElementById("queueCount");
+
+      let commandQueue = [];
+
+      // --- State Management (Local Storage) ---
+      function saveState() {
+        localStorage.setItem(QUEUE_KEY, JSON.stringify(commandQueue));
+        localStorage.setItem(COUNTER_KEY, initialValueInput.value);
+      }
+      function loadState() {
+        const storedQueue = localStorage.getItem(QUEUE_KEY);
+        const storedCounter = localStorage.getItem(COUNTER_KEY);
+        if (storedQueue) commandQueue = JSON.parse(storedQueue);
+        if (storedCounter) initialValueInput.value = storedCounter;
+        outputArea.placeholder = "Your shell script will appear here...";
+        renderQueue();
+      }
+
+      // --- Core Functions ---
+      function addToQueue() {
+        const name = videoNameInput.value.trim();
+        const curlCommand = curlInput.value.trim();
+
+        if (!name || !curlCommand) {
+          return;
+        }
+        
+        // --- NEW: Parsing logic with Regular Expressions ---
+        const urlRegex = /curl\s+'(https?:\/\/[^']+)'/;
+        const cookieRegex = /-H\s+'Cookie:\s+([^']+)'/;
+
+        const urlMatch = curlCommand.match(urlRegex);
+        const cookieMatch = curlCommand.match(cookieRegex);
+
+        if (!urlMatch || !cookieMatch) {
+            alert("Could not parse the cURL command.\n\nMake sure it's copied correctly and contains both a URL (right after 'curl') and a 'Cookie:' header.");
+            return;
+        }
+
+        const link = urlMatch[1];
+        const cookie = cookieMatch[1];
+        
+        commandQueue.push({ name, cookie, link });
+        renderQueue();
+        saveState();
+
+        // Clear the cURL input and focus it for the next entry
+        curlInput.value = "";
+        curlInput.focus();
+      }
+      
+      function clearQueue() {
+        if (commandQueue.length === 0) return; // Do nothing if already empty
+        const startNumber = parseInt(initialValueInput.value) || 1;
+        const nextNumber = startNumber + commandQueue.length;
+
+        initialValueInput.value = nextNumber; // Update the start number for the next batch
+        commandQueue = []; // Clear the array
+
+        renderQueue();
+        saveState();
+      }
+
+       function copyToClipboard() {
+        const scriptText = outputArea.value;
+        if (!scriptText || scriptText.includes("...")) {
+          return;
+        }
+        navigator.clipboard
+          .writeText(scriptText)
+          .then(() => {
+            outputArea.value = "Copied to clipboard!";
+            setTimeout(() => {
+              outputArea.value = scriptText;
+            }, 2000);
+          })
+          .catch((err) => {
+            console.error("Failed to copy script: ", err);
+              outputArea.value = "Failed to copy! Check console.";
+          });
+      }
+
+
+      function renderQueue() {
+        queueList.innerHTML = ""; // Clear the list
+        const startNumber = parseInt(initialValueInput.value) || 1;
+        commandQueue.forEach((item, index) => {
+          const videoNumber = startNumber + index;
+          const listItem = document.createElement("li");
+          listItem.textContent = `${videoNumber}: ${item.name}`;
+          queueList.appendChild(listItem);
+        });
+        queueCount.textContent = commandQueue.length;
+      }
+      
+      function generateScript() {
+        if (commandQueue.length === 0) {
+          outputArea.value = "Add some videos to the queue first!";
+          return;
+        }
+
+        const startNumber = parseInt(initialValueInput.value) || 1;
+        // Add a note for Windows users about the volume mount syntax
+        let scriptContent = "#!/bin/bash\nset -euo pipefail\n\n";
+        commandQueue.forEach((item, index) => {
+          const videoNumber = startNumber + index;
+          const safeName = item.name.replace(/[\s\W]+/g, "_");
+          const fileName = `${videoNumber}_${safeName}.mp4`;
+
+          
+          const dockerWrapper = `docker run --rm --user "$(id -u):$(id -g)" -v "$(pwd):/data" my-ffmpeg`;
+
+          scriptContent += `echo "--- [${videoNumber}] Starting download for: ${item.name} ---"\n`;
+          
+          // my-ffmpeg already uses yt-dlp as its entrypoint. Single quotes
+          // prevent Bash from expanding dollar signs found in cookie values.
+          scriptContent += `${dockerWrapper} --fragment-retries 10 --add-header 'Cookie: ${item.cookie}' -o "${fileName}" "${item.link}" && chmod 666 "${fileName}"\n\n`;
+        });
+
+            scriptContent += `echo "--- All downloads complete! ---"\n`;
+            outputArea.value = scriptContent;
+            copyToClipboard();
+            clearQueue();
+        }
+
+     
+      // --- Event Listeners ---
+      document.addEventListener("DOMContentLoaded", loadState);
+      addBtn.addEventListener("click", addToQueue);
+      clearBtn.addEventListener("click", clearQueue);
+      generateBtn.addEventListener("click", generateScript);
+      outputArea.addEventListener("click", copyToClipboard);
+      initialValueInput.addEventListener("change", () => {
+        renderQueue();
+        saveState();
+      });
+
+      // --- Auto-add functionality for the new cURL input ---
+      curlInput.addEventListener("mouseout", () => {
+        setTimeout(addToQueue, 100);
+      });
+    </script>
+</body>
+</html>
